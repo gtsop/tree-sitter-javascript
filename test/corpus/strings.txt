@@ -5,11 +5,13 @@ Strings
 'foo'
 "foo"
 "fo\"o"
+"fo\\o"
 `foo`
 
 ---
 
 (source_file
+  (string)
   (string)
   (string)
   (string)
