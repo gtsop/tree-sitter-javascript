@@ -1,0 +1,14 @@
+========
+Comments
+========
+
+// comment
+/* comment */
+/* com//ment */
+
+---
+
+(source_file
+  (comment)
+  (comment)
+  (comment))

@@ -1,5 +1,10 @@
 [
   {
+    "type": "comment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "const",
     "named": true,
     "fields": {},
@@ -152,16 +157,20 @@
     "named": false
   },
   {
+    "type": "*/",
+    "named": false
+  },
+  {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": "/*",
     "named": false
   },
   {
     "type": "`",
     "named": false
-  },
-  {
-    "type": "comment",
-    "named": true
   },
   {
     "type": "const",

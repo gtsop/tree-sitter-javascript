@@ -26,8 +26,6 @@ module.exports = grammar({
         ),
       ),
 
-    comment: (_) => /\/\/.*\n/,
-
     function: ($) => seq("function", " ", $.identifier, $.params, $.context),
 
     params: ($) =>
@@ -55,5 +53,13 @@ module.exports = grammar({
     _single_string: (_) => seq("'", token(/[^']*/), "'"),
     _double_string: (_) => seq('"', token(/([^"]|\\.)*/), '"'),
     _template_string: (_) => seq("`", token(/[^`]*/), "`"),
+
+    /*
+     * Comments
+     */
+    comment: ($) => choice($._multi_comment, $._single_comment),
+
+    _multi_comment: (_) => seq("/*", token(/([^*]|\*[^/])*/), "*/"),
+    _single_comment: (_) => token(/\/\/.*\n/),
   },
 });
