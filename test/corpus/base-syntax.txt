@@ -1,0 +1,10 @@
+===========
+Base Syntax
+===========
+
+// comment
+
+---
+
+(source_file
+  (comment))

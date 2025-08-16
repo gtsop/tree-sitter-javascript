@@ -12,6 +12,8 @@ module.exports = grammar({
 
   rules: {
     // TODO: add the actual grammar rules
-    source_file: $ => "hello"
-  }
+    source_file: ($) => choice($.comment),
+
+    comment: (_) => /\/\/.*\n/,
+  },
 });
