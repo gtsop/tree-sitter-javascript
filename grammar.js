@@ -11,9 +11,8 @@ module.exports = grammar({
   name: "javascript",
 
   rules: {
-    source_file: ($) => repeat(choice($.string, $.comment, $.keyword)),
-
-    // identifier: (_) => /[a-zA-Z0-9_]+/,
+    source_file: ($) =>
+      repeat(choice($.string, $.comment, $.keyword, $.regex, $.identifier)),
 
     /*
      * Comments
@@ -28,30 +27,54 @@ module.exports = grammar({
      */
 
     keyword: ($) =>
-      choice(
-        "as",
-        "break",
-        "case",
-        "class",
-        "const",
-        "continue",
-        "default",
-        "delete",
-        "else",
-        "export",
-        "for",
-        "from",
-        "function",
-        "if",
-        "import",
-        "in",
-        "let",
-        "new",
-        "of",
-        "return",
-        "switch",
-        "var",
-        "while",
+      token(
+        choice(
+          "as",
+          "break",
+          "case",
+          "class",
+          "const",
+          "continue",
+          "default",
+          "delete",
+          "else",
+          "export",
+          "for",
+          "from",
+          "function",
+          "if",
+          "import",
+          "in",
+          "let",
+          "new",
+          "of",
+          "return",
+          "switch",
+          "var",
+          "while",
+        ),
+      ),
+
+    identifier: (_) => token(/[a-zA-Z0-9_]+/),
+
+    /*
+     * RegEx
+     */
+    // regex literal: cannot start with '/*'
+    regex: ($) =>
+      token(
+        prec(
+          1,
+          seq(
+            "/",
+            // first char: not '*', '/', '\n' (or allow escaped)
+            choice(/[^*/\n\\]/, /\\./),
+            // rest
+            repeat(choice(/[^/\n\\]/, /\\./)),
+            "/",
+            optional(/[a-zA-Z]+/),
+          ),
+        ),
       ),
 
     /*
