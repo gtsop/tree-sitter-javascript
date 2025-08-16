@@ -52,8 +52,8 @@ module.exports = grammar({
     string: ($) =>
       choice($._single_string, $._double_string, $._template_string),
 
-    _single_string: (_) => seq("'", /[^']*/, "'"),
-    _double_string: (_) => seq('"', /[^"]*/, '"'),
-    _template_string: (_) => seq("`", /[^`]*/, "`"),
+    _single_string: (_) => seq("'", token(/[^']*/), "'"),
+    _double_string: (_) => seq('"', token(/([^"]|\\.)*/), '"'),
+    _template_string: (_) => seq("`", token(/[^`]*/), "`"),
   },
 });

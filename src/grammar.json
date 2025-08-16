@@ -208,8 +208,11 @@
           "value": "'"
         },
         {
-          "type": "PATTERN",
-          "value": "[^']*"
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "[^']*"
+          }
         },
         {
           "type": "STRING",
@@ -225,8 +228,11 @@
           "value": "\""
         },
         {
-          "type": "PATTERN",
-          "value": "[^\"]*"
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "([^\"]|\\\\.)*"
+          }
         },
         {
           "type": "STRING",
@@ -242,8 +248,11 @@
           "value": "`"
         },
         {
-          "type": "PATTERN",
-          "value": "[^`]*"
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "[^`]*"
+          }
         },
         {
           "type": "STRING",

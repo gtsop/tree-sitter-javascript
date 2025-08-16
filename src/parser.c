@@ -308,7 +308,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
         ',', 11,
         '/', 4,
         ';', 17,
-        '`', 40,
+        '`', 41,
         'c', 25,
         'f', 32,
         'l', 20,
@@ -550,6 +550,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 38:
       ACCEPT_TOKEN(aux_sym__double_string_token1);
+      if (lookahead == '\\') ADVANCE(40);
       if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') ADVANCE(38);
       if (lookahead != 0 &&
@@ -557,23 +558,29 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 39:
       ACCEPT_TOKEN(aux_sym__double_string_token1);
+      if (lookahead == '\\') ADVANCE(40);
       if (lookahead != 0 &&
           lookahead != '"') ADVANCE(39);
       END_STATE();
     case 40:
-      ACCEPT_TOKEN(anon_sym_BQUOTE);
+      ACCEPT_TOKEN(aux_sym__double_string_token1);
+      if (lookahead == '\\') ADVANCE(40);
+      if (lookahead != 0) ADVANCE(39);
       END_STATE();
     case 41:
-      ACCEPT_TOKEN(aux_sym__template_string_token1);
-      if (('\t' <= lookahead && lookahead <= '\r') ||
-          lookahead == ' ') ADVANCE(41);
-      if (lookahead != 0 &&
-          lookahead != '`') ADVANCE(42);
+      ACCEPT_TOKEN(anon_sym_BQUOTE);
       END_STATE();
     case 42:
       ACCEPT_TOKEN(aux_sym__template_string_token1);
+      if (('\t' <= lookahead && lookahead <= '\r') ||
+          lookahead == ' ') ADVANCE(42);
       if (lookahead != 0 &&
-          lookahead != '`') ADVANCE(42);
+          lookahead != '`') ADVANCE(43);
+      END_STATE();
+    case 43:
+      ACCEPT_TOKEN(aux_sym__template_string_token1);
+      if (lookahead != 0 &&
+          lookahead != '`') ADVANCE(43);
       END_STATE();
     default:
       return false;
@@ -604,7 +611,7 @@ static const TSLexerMode ts_lex_modes[STATE_COUNT] = {
   [20] = {.lex_state = 2},
   [21] = {.lex_state = 35},
   [22] = {.lex_state = 38},
-  [23] = {.lex_state = 41},
+  [23] = {.lex_state = 42},
   [24] = {.lex_state = 0},
   [25] = {.lex_state = 2},
   [26] = {.lex_state = 2},
