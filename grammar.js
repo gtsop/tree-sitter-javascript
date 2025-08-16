@@ -12,19 +12,7 @@ module.exports = grammar({
 
   rules: {
     // TODO: add the actual grammar rules
-    source_file: ($) =>
-      repeat(
-        choice(
-          $.string,
-          $.comment,
-          $.function,
-          $.var,
-          $.let,
-          $.const,
-          $.identifier,
-          $.semi,
-        ),
-      ),
+    source_file: ($) => repeat(choice($.string, $.comment, $.keyword)),
 
     function: ($) => seq("function", " ", $.identifier, $.params, $.context),
 
@@ -45,6 +33,41 @@ module.exports = grammar({
     identifier: (_) => /[a-zA-Z0-9_]+/,
 
     /*
+     * Comments
+     */
+    comment: ($) => choice($._multi_comment, $._single_comment),
+
+    _multi_comment: (_) => seq("/*", token(/([^*]|\*[^/])*/), "*/"),
+    _single_comment: (_) => token(/\/\/.*\n/),
+
+    /*
+     * Keywords
+     */
+
+    keyword: ($) =>
+      choice(
+        "break",
+        "case",
+        "class",
+        "const",
+        "continue",
+        "default",
+        "delete",
+        "else",
+        "for",
+        "function",
+        "if",
+        "in",
+        "let",
+        "new",
+        "of",
+        "return",
+        "switch",
+        "var",
+        "while",
+      ),
+
+    /*
      * Strings
      */
     string: ($) =>
@@ -53,13 +76,5 @@ module.exports = grammar({
     _single_string: (_) => seq("'", token(/[^']*/), "'"),
     _double_string: (_) => seq('"', token(/([^"]|\\.)*/), '"'),
     _template_string: (_) => seq("`", token(/[^`]*/), "`"),
-
-    /*
-     * Comments
-     */
-    comment: ($) => choice($._multi_comment, $._single_comment),
-
-    _multi_comment: (_) => seq("/*", token(/([^*]|\*[^/])*/), "*/"),
-    _single_comment: (_) => token(/\/\/.*\n/),
   },
 });

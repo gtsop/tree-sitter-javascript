@@ -1,0 +1,50 @@
+========
+Keywords
+========
+
+break
+case
+class
+const
+continue
+default
+delete
+else
+for
+function
+if
+in
+let
+new
+of
+return
+switch
+var
+while
+
+
+---
+
+(source_file
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+)
+
+
