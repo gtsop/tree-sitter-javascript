@@ -11,26 +11,9 @@ module.exports = grammar({
   name: "javascript",
 
   rules: {
-    // TODO: add the actual grammar rules
     source_file: ($) => repeat(choice($.string, $.comment, $.keyword)),
 
-    function: ($) => seq("function", " ", $.identifier, $.params, $.context),
-
-    params: ($) =>
-      seq("(", optional(repeat(seq($.identifier, optional(",")))), ")"),
-
-    const: (_) => /const/,
-
-    return: (_) => /return/,
-
-    context: (_) => /\{.*\}/,
-
-    var: ($) => seq("var", " ", $.identifier),
-    let: ($) => seq("let", " ", $.identifier),
-    const: ($) => seq("const", " ", $.identifier),
-    semi: (_) => /;/,
-
-    identifier: (_) => /[a-zA-Z0-9_]+/,
+    // identifier: (_) => /[a-zA-Z0-9_]+/,
 
     /*
      * Comments
