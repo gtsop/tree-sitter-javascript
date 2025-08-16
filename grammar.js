@@ -12,8 +12,21 @@ module.exports = grammar({
 
   rules: {
     // TODO: add the actual grammar rules
-    source_file: ($) => choice($.comment),
+    source_file: ($) => repeat(choice($.comment, $.function)),
 
     comment: (_) => /\/\/.*\n/,
+
+    function: ($) => seq("function", " ", $.identifier, $.params),
+
+    params: ($) => /\(\)/,
+
+    identifier: (_) => /[a-zA-Z0-9_]*/,
+    //identifier: (_) => /[a-zA-Z0-9_]/,
+
+    const: (_) => /const/,
+
+    return: (_) => /return/,
+
+    context: (_) => /{.*}/,
   },
 });

@@ -4,7 +4,14 @@ Base Syntax
 
 // comment
 
+function add()
+
 ---
 
 (source_file
-  (comment))
+  (comment)
+  (function
+    (identifier)
+    (params)
+  ))
+

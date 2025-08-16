@@ -3,17 +3,65 @@
   "name": "javascript",
   "rules": {
     "source_file": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "comment"
-        }
-      ]
+      "type": "REPEAT",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "comment"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "function"
+          }
+        ]
+      }
     },
     "comment": {
       "type": "PATTERN",
       "value": "\\/\\/.*\\n"
+    },
+    "function": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "function"
+        },
+        {
+          "type": "STRING",
+          "value": " "
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "params"
+        }
+      ]
+    },
+    "params": {
+      "type": "PATTERN",
+      "value": "\\(\\)"
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z0-9_]*"
+    },
+    "const": {
+      "type": "PATTERN",
+      "value": "const"
+    },
+    "return": {
+      "type": "PATTERN",
+      "value": "return"
+    },
+    "context": {
+      "type": "PATTERN",
+      "value": "{.*}"
     }
   },
   "extras": [
