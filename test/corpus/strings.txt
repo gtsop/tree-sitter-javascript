@@ -1,0 +1,14 @@
+=======
+Strings
+=======
+
+'foo'
+"foo"
+`foo`
+
+---
+
+(source_file
+  (string)
+  (string)
+  (string))

@@ -12,7 +12,19 @@ module.exports = grammar({
 
   rules: {
     // TODO: add the actual grammar rules
-    source_file: ($) => repeat(choice($.comment, $.function)),
+    source_file: ($) =>
+      repeat(
+        choice(
+          $.string,
+          $.comment,
+          $.function,
+          $.var,
+          $.let,
+          $.const,
+          $.identifier,
+          $.semi,
+        ),
+      ),
 
     comment: (_) => /\/\/.*\n/,
 
@@ -21,12 +33,27 @@ module.exports = grammar({
     params: ($) =>
       seq("(", optional(repeat(seq($.identifier, optional(",")))), ")"),
 
-    identifier: (_) => /[a-zA-Z0-9_]+/,
-
     const: (_) => /const/,
 
     return: (_) => /return/,
 
     context: (_) => /\{.*\}/,
+
+    var: ($) => seq("var", " ", $.identifier),
+    let: ($) => seq("let", " ", $.identifier),
+    const: ($) => seq("const", " ", $.identifier),
+    semi: (_) => /;/,
+
+    identifier: (_) => /[a-zA-Z0-9_]+/,
+
+    /*
+     * Strings
+     */
+    string: ($) =>
+      choice($._single_string, $._double_string, $._template_string),
+
+    _single_string: (_) => seq("'", /[^']*/, "'"),
+    _double_string: (_) => seq('"', /[^"]*/, '"'),
+    _template_string: (_) => seq("`", /[^`]*/, "`"),
   },
 });
