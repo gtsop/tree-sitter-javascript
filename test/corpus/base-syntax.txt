@@ -4,7 +4,7 @@ Base Syntax
 
 // comment
 
-function add()
+function add(a, b)
 
 ---
 
@@ -12,6 +12,9 @@ function add()
   (comment)
   (function
     (identifier)
-    (params)
+    (params
+      (identifier)
+      (identifier)
+    )
   ))
 

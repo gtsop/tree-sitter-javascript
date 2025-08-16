@@ -19,6 +19,21 @@
     }
   },
   {
+    "type": "params",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -43,6 +58,18 @@
     "named": false
   },
   {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
     "type": "comment",
     "named": true
   },
@@ -52,10 +79,6 @@
   },
   {
     "type": "identifier",
-    "named": true
-  },
-  {
-    "type": "params",
     "named": true
   }
 ]

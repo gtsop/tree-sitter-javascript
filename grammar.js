@@ -18,10 +18,10 @@ module.exports = grammar({
 
     function: ($) => seq("function", " ", $.identifier, $.params),
 
-    params: ($) => /\(\)/,
+    params: ($) =>
+      seq("(", optional(repeat(seq($.identifier, optional(",")))), ")"),
 
-    identifier: (_) => /[a-zA-Z0-9_]*/,
-    //identifier: (_) => /[a-zA-Z0-9_]/,
+    identifier: (_) => /[a-zA-Z0-9_]+/,
 
     const: (_) => /const/,
 
