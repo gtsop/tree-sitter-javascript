@@ -16,7 +16,7 @@ module.exports = grammar({
 
     comment: (_) => /\/\/.*\n/,
 
-    function: ($) => seq("function", " ", $.identifier, $.params),
+    function: ($) => seq("function", " ", $.identifier, $.params, $.context),
 
     params: ($) =>
       seq("(", optional(repeat(seq($.identifier, optional(",")))), ")"),
@@ -27,6 +27,6 @@ module.exports = grammar({
 
     return: (_) => /return/,
 
-    context: (_) => /{.*}/,
+    context: (_) => /\{.*\}/,
   },
 });

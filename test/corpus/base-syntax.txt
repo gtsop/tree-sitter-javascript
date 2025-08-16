@@ -4,7 +4,7 @@ Base Syntax
 
 // comment
 
-function add(a, b)
+function add(a, b) { }
 
 ---
 
@@ -16,5 +16,6 @@ function add(a, b)
       (identifier)
       (identifier)
     )
+    (context)
   ))
 

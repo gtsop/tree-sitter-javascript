@@ -8,6 +8,10 @@
       "required": true,
       "types": [
         {
+          "type": "context",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -71,6 +75,10 @@
   },
   {
     "type": "comment",
+    "named": true
+  },
+  {
+    "type": "context",
     "named": true
   },
   {

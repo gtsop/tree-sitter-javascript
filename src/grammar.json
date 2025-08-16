@@ -40,6 +40,10 @@
         {
           "type": "SYMBOL",
           "name": "params"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "context"
         }
       ]
     },
@@ -102,7 +106,7 @@
     },
     "context": {
       "type": "PATTERN",
-      "value": "{.*}"
+      "value": "\\{.*\\}"
     }
   },
   "extras": [
