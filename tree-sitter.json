@@ -1,0 +1,39 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "javascript",
+      "camelcase": "Javascript",
+      "title": "Javascript",
+      "scope": "source.javascript",
+      "file-types": [
+        "javascript"
+      ],
+      "injection-regex": "^javascript$",
+      "class-name": "TreeSitterJavascript"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "AGPLv3",
+    "description": "Javascript grammar",
+    "authors": [
+      {
+        "name": "George Tsopanoglou",
+        "email": "gtsop+github@protonmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/gtsop/tree-sitter-javascript.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
