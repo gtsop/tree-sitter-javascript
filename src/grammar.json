@@ -204,6 +204,10 @@
       "members": [
         {
           "type": "STRING",
+          "value": "as"
+        },
+        {
+          "type": "STRING",
           "value": "break"
         },
         {
@@ -236,7 +240,15 @@
         },
         {
           "type": "STRING",
+          "value": "export"
+        },
+        {
+          "type": "STRING",
           "value": "for"
+        },
+        {
+          "type": "STRING",
+          "value": "from"
         },
         {
           "type": "STRING",
@@ -245,6 +257,10 @@
         {
           "type": "STRING",
           "value": "if"
+        },
+        {
+          "type": "STRING",
+          "value": "import"
         },
         {
           "type": "STRING",

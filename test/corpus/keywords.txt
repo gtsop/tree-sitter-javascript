@@ -2,6 +2,7 @@
 Keywords
 ========
 
+as
 break
 case
 class
@@ -10,9 +11,12 @@ continue
 default
 delete
 else
+export
 for
+from
 function
 if
+import
 in
 let
 new
@@ -26,6 +30,10 @@ while
 ---
 
 (source_file
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
   (keyword)
   (keyword)
   (keyword)

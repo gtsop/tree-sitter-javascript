@@ -46,6 +46,7 @@ module.exports = grammar({
 
     keyword: ($) =>
       choice(
+        "as",
         "break",
         "case",
         "class",
@@ -54,9 +55,12 @@ module.exports = grammar({
         "default",
         "delete",
         "else",
+        "export",
         "for",
+        "from",
         "function",
         "if",
+        "import",
         "in",
         "let",
         "new",
