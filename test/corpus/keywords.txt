@@ -12,17 +12,20 @@ default
 delete
 else
 export
+extends
 for
 from
 function
 if
 import
 in
+interface
 let
 new
 of
 return
 switch
+type
 var
 while
 
@@ -30,6 +33,9 @@ while
 ---
 
 (source_file
+  (keyword)
+  (keyword)
+  (keyword)
   (keyword)
   (keyword)
   (keyword)

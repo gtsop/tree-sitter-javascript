@@ -117,6 +117,10 @@
           },
           {
             "type": "STRING",
+            "value": "extends"
+          },
+          {
+            "type": "STRING",
             "value": "for"
           },
           {
@@ -141,6 +145,14 @@
           },
           {
             "type": "STRING",
+            "value": "interface"
+          },
+          {
+            "type": "STRING",
+            "value": "keyof"
+          },
+          {
+            "type": "STRING",
             "value": "let"
           },
           {
@@ -158,6 +170,10 @@
           {
             "type": "STRING",
             "value": "switch"
+          },
+          {
+            "type": "STRING",
+            "value": "type"
           },
           {
             "type": "STRING",
