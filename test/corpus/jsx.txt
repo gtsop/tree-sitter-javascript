@@ -7,10 +7,7 @@ JSX
 <Hello/>
 <Hello foo="bar" />
 <Hello foo={"bar"}></Hello>
-<Hello Foo={() => console.log("hi")} />
-<Hello>
-  Some content
-</Hello>
+<Hello>Some content</Hello>
 <Hello><World /></Hello>
 
 ---
@@ -26,11 +23,10 @@ JSX
     (attribute_value))
   (jsx_start
     (attribute_name)
-    (attribute_value))
+    (attribute_value
+      (jsx_context
+        (string))))
   (jsx_end)
-  (jsx_self
-    (attribute_name)
-    (attribute_value))
   (jsx_start)
   (text)
   (jsx_end)

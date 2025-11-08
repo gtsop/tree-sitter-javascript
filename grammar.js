@@ -10,9 +10,13 @@
 module.exports = grammar({
   name: "javascript",
 
+  conflicts: ($) => [[$.jsx_start, $.jsx_self]],
+
   rules: {
-    source_file: ($) =>
-      repeat(
+    source_file: ($) => optional($._js_context),
+
+    _js_context: ($) =>
+      repeat1(
         choice(
           $.string,
           $.comment,
@@ -137,8 +141,9 @@ module.exports = grammar({
 
     attribute_name: (_) => token(/[a-zA-Z]+/),
 
-    attribute_value: (_) =>
-      choice(seq('"', /[a-z]+/, '"'), seq("{", /[^}]+/, "}")),
+    attribute_value: ($) => choice(seq('"', /[a-z]+/, '"'), $.jsx_context),
+
+    jsx_context: ($) => seq("{", $._js_context, "}"),
 
     text: (_) => /[^<]+/,
   },
