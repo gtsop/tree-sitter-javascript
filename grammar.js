@@ -101,7 +101,15 @@ module.exports = grammar({
 
     function_name: ($) => $.identifier,
 
-    function_params: ($) => seq(token("("), token(")")),
+    function_params: ($) =>
+      seq(
+        token("("),
+        optional(repeat(seq($.function_param, optional(token(","))))),
+        token(")"),
+      ),
+
+    function_param: ($) =>
+      choice($.identifier, seq(token("..."), $.identifier)),
 
     function_body: ($) => seq(token("{"), token("}")),
 

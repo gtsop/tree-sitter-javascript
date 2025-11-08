@@ -3,15 +3,31 @@ Functions
 =========
 
 function(){}
+function foo(){}
+function foo(a){}
+function foo(a,b){}
+function foo(a, ...rest){}
+function foo(...rest){}
 
 ---
 
 (source_file
   (statement
-    (function_declaration
-      (kw_function)
-      (function_params)
-      (function_body)
-    )
+    (function_declaration (kw_function) (function_params) (function_body))
+  )
+  (statement
+    (function_declaration (kw_function) (function_name (identifier)) (function_params) (function_body))
+  )
+  (statement
+    (function_declaration (kw_function) (function_name (identifier)) (function_params (function_param (identifier))) (function_body))
+  )
+  (statement
+    (function_declaration (kw_function) (function_name (identifier)) (function_params (function_param (identifier)) (function_param (identifier))) (function_body))
+  )
+  (statement
+    (function_declaration (kw_function) (function_name (identifier)) (function_params (function_param (identifier)) (function_param (identifier))) (function_body))
+  )
+  (statement
+    (function_declaration (kw_function) (function_name (identifier)) (function_params (function_param (identifier))) (function_body))
   )
 )
