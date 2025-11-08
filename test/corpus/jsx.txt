@@ -5,6 +5,13 @@ JSX
 <></>
 <Hello></Hello>
 <Hello/>
+<Hello foo="bar" />
+<Hello foo={"bar"}></Hello>
+<Hello Foo={() => console.log("hi")} />
+<Hello>
+  Some content
+</Hello>
+<Hello><World /></Hello>
 
 ---
 
@@ -13,4 +20,22 @@ JSX
   (jsx_end)
   (jsx_start)
   (jsx_end)
-  (jsx_self))
+  (jsx_self)
+  (jsx_self
+    (attribute_name)
+    (attribute_value))
+  (jsx_start
+    (attribute_name)
+    (attribute_value))
+  (jsx_end)
+  (jsx_self
+    (attribute_name)
+    (attribute_value))
+  (jsx_start)
+  (text)
+  (jsx_end)
+  (jsx_start)
+  (jsx_self)
+  (jsx_end)
+
+)
