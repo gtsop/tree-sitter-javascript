@@ -1,0 +1,37 @@
+=======
+Imports
+=======
+
+import target from 'module';
+import * as target from 'module';
+import { target } from 'module';
+import { target as alias } from 'module';
+import { target, two } from 'module';
+import { target as alias, two } from 'module';
+import { 'some string' as alias } from 'module';
+
+---
+
+(source_file
+  (statement
+    (import_declaration (kw_import) (import_clause (import_clause_name (identifier))) (kw_from) (import_module_specifier (string)))
+  )
+  (statement
+    (import_declaration (kw_import) (import_clause (import_clause_namespace) (kw_as) (import_clause_name (identifier))) (kw_from) (import_module_specifier (string)))
+  )
+  (statement
+    (import_declaration (kw_import) (import_clause (import_clause_name (identifier))) (kw_from) (import_module_specifier (string)))
+  )
+  (statement
+    (import_declaration (kw_import) (import_clause (identifier) (kw_as) (import_clause_name (identifier))) (kw_from) (import_module_specifier (string)))
+  )
+  (statement
+    (import_declaration (kw_import) (import_clause (import_clause_name (identifier)) (import_clause_name (identifier))) (kw_from) (import_module_specifier (string)))
+  )
+  (statement
+    (import_declaration (kw_import) (import_clause (identifier) (kw_as) (import_clause_name (identifier)) (import_clause_name (identifier))) (kw_from) (import_module_specifier (string)))
+  )
+  (statement
+    (import_declaration (kw_import) (import_clause (string) (kw_as) (import_clause_name (identifier))) (kw_from) (import_module_specifier (string)))
+  )
+)

@@ -2,7 +2,6 @@
 Keywords
 ========
 
-as
 break
 case
 class
@@ -14,10 +13,8 @@ else
 export
 extends
 for
-from
 function
 if
-import
 in
 interface
 let
@@ -33,9 +30,6 @@ while
 ---
 
 (source_file
-  (keyword)
-  (keyword)
-  (keyword)
   (keyword)
   (keyword)
   (keyword)

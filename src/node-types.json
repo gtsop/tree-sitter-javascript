@@ -25,6 +25,94 @@
     "fields": {}
   },
   {
+    "type": "import_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_clause_name",
+          "named": true
+        },
+        {
+          "type": "import_clause_namespace",
+          "named": true
+        },
+        {
+          "type": "kw_as",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "import_clause_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "import_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "import_clause",
+          "named": true
+        },
+        {
+          "type": "import_module_specifier",
+          "named": true
+        },
+        {
+          "type": "kw_from",
+          "named": true
+        },
+        {
+          "type": "kw_import",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "import_module_specifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "jsx_context",
     "named": true,
     "fields": {},
@@ -61,11 +149,19 @@
           "named": true
         },
         {
+          "type": "statement",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
         {
           "type": "text",
+          "named": true
+        },
+        {
+          "type": "ts_generic",
           "named": true
         }
       ]
@@ -152,11 +248,34 @@
           "named": true
         },
         {
+          "type": "statement",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         },
         {
           "type": "text",
+          "named": true
+        },
+        {
+          "type": "ts_generic",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "import_declaration",
           "named": true
         }
       ]
@@ -164,6 +283,11 @@
   },
   {
     "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "ts_generic",
     "named": true,
     "fields": {}
   },
@@ -180,11 +304,19 @@
     "named": false
   },
   {
+    "type": ",",
+    "named": false
+  },
+  {
     "type": "/*",
     "named": false
   },
   {
     "type": "/>",
+    "named": false
+  },
+  {
+    "type": ";",
     "named": false
   },
   {
@@ -212,7 +344,23 @@
     "named": true
   },
   {
+    "type": "import_clause_namespace",
+    "named": true
+  },
+  {
     "type": "keyword",
+    "named": true
+  },
+  {
+    "type": "kw_as",
+    "named": true
+  },
+  {
+    "type": "kw_from",
+    "named": true
+  },
+  {
+    "type": "kw_import",
     "named": true
   },
   {

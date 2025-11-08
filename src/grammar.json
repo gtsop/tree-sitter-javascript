@@ -21,6 +21,10 @@
         "members": [
           {
             "type": "SYMBOL",
+            "name": "statement"
+          },
+          {
+            "type": "SYMBOL",
             "name": "string"
           },
           {
@@ -42,9 +46,172 @@
           {
             "type": "SYMBOL",
             "name": "_full_jsx"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "ts_generic"
           }
         ]
       }
+    },
+    "statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "import_declaration"
+        }
+      ]
+    },
+    "import_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "kw_import"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "import_clause"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "kw_from"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "import_module_specifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_semi"
+        }
+      ]
+    },
+    "import_clause": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_import_clause_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_import_clause_namespace"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_import_clause_named_imports"
+        }
+      ]
+    },
+    "_import_clause_named_imports": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "import_clause_name"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_import_clause_alias"
+                  }
+                ]
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "_import_clause_identifier": {
+      "type": "SYMBOL",
+      "name": "import_clause_name"
+    },
+    "_import_clause_namespace": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "import_clause_namespace"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "kw_as"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "import_clause_name"
+        }
+      ]
+    },
+    "_import_clause_alias": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "string"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "kw_as"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "import_clause_name"
+        }
+      ]
+    },
+    "import_clause_name": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
+    "import_clause_namespace": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "*"
+      }
+    },
+    "import_module_specifier": {
+      "type": "SYMBOL",
+      "name": "string"
     },
     "comment": {
       "type": "CHOICE",
@@ -86,15 +253,32 @@
         "value": "\\/\\/.*\\n"
       }
     },
+    "kw_as": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "as"
+      }
+    },
+    "kw_from": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "from"
+      }
+    },
+    "kw_import": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "import"
+      }
+    },
     "keyword": {
       "type": "TOKEN",
       "content": {
         "type": "CHOICE",
         "members": [
-          {
-            "type": "STRING",
-            "value": "as"
-          },
           {
             "type": "STRING",
             "value": "break"
@@ -141,19 +325,11 @@
           },
           {
             "type": "STRING",
-            "value": "from"
-          },
-          {
-            "type": "STRING",
             "value": "function"
           },
           {
             "type": "STRING",
             "value": "if"
-          },
-          {
-            "type": "STRING",
-            "value": "import"
           },
           {
             "type": "STRING",
@@ -206,7 +382,7 @@
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": "[a-zA-Z0-9_]+"
+        "value": "[A-Za-z_$][A-Za-z0-9_$]*"
       }
     },
     "regex": {
@@ -344,6 +520,23 @@
         {
           "type": "STRING",
           "value": "`"
+        }
+      ]
+    },
+    "ts_generic": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[a-zA-Z]*"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
         }
       ]
     },
@@ -607,6 +800,10 @@
     "text": {
       "type": "PATTERN",
       "value": "[^<]+"
+    },
+    "_semi": {
+      "type": "STRING",
+      "value": ";"
     }
   },
   "extras": [
@@ -616,6 +813,10 @@
     }
   ],
   "conflicts": [
+    [
+      "ts_generic",
+      "jsx_start"
+    ],
     [
       "jsx_start",
       "jsx_self"

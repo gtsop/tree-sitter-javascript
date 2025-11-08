@@ -10,7 +10,10 @@
 module.exports = grammar({
   name: "javascript",
 
-  conflicts: ($) => [[$.jsx_start, $.jsx_self]],
+  conflicts: ($) => [
+    [$.ts_generic, $.jsx_start],
+    [$.jsx_start, $.jsx_self],
+  ],
 
   rules: {
     source_file: ($) => optional($._js_context),
@@ -18,14 +21,61 @@ module.exports = grammar({
     _js_context: ($) =>
       repeat1(
         choice(
+          $.statement,
           $.string,
           $.comment,
           $.keyword,
           $.regex,
           $.identifier,
           $._full_jsx,
+          $.ts_generic,
         ),
       ),
+
+    statement: ($) => choice($.import_declaration),
+
+    /**
+     * IMPORTS
+     */
+    import_declaration: ($) =>
+      seq(
+        $.kw_import,
+        $.import_clause,
+        $.kw_from,
+        $.import_module_specifier,
+        $._semi,
+      ),
+
+    import_clause: ($) =>
+      choice(
+        $._import_clause_identifier,
+        $._import_clause_namespace,
+        $._import_clause_named_imports,
+      ),
+
+    _import_clause_named_imports: ($) =>
+      seq(
+        "{",
+        repeat(
+          seq(
+            choice($.import_clause_name, $._import_clause_alias),
+            optional(","),
+          ),
+        ),
+        "}",
+      ),
+
+    _import_clause_identifier: ($) => $.import_clause_name,
+
+    _import_clause_namespace: ($) =>
+      seq($.import_clause_namespace, $.kw_as, $.import_clause_name),
+
+    _import_clause_alias: ($) =>
+      seq(choice($.identifier, $.string), $.kw_as, $.import_clause_name),
+
+    import_clause_name: ($) => $.identifier,
+    import_clause_namespace: (_) => token("*"),
+    import_module_specifier: ($) => $.string,
 
     /*
      * Comments
@@ -39,10 +89,13 @@ module.exports = grammar({
      * Keywords
      */
 
+    kw_as: (_) => token("as"),
+    kw_from: (_) => token("from"),
+    kw_import: (_) => token("import"),
+
     keyword: ($) =>
       token(
         choice(
-          "as",
           "break",
           "case",
           "class",
@@ -54,10 +107,8 @@ module.exports = grammar({
           "export",
           "extends",
           "for",
-          "from",
           "function",
           "if",
-          "import",
           "in",
           "interface",
           "keyof",
@@ -72,7 +123,7 @@ module.exports = grammar({
         ),
       ),
 
-    identifier: (_) => token(/[a-zA-Z0-9_]+/),
+    identifier: (_) => token(/[A-Za-z_$][A-Za-z0-9_$]*/),
 
     /*
      * RegEx
@@ -107,6 +158,9 @@ module.exports = grammar({
     /*
      * JSX
      */
+
+    ts_generic: (_) => seq("<", /[a-zA-Z]*/, ">"),
+
     jsx_start: ($) =>
       seq(
         "<",
@@ -146,6 +200,8 @@ module.exports = grammar({
     jsx_context: ($) => seq("{", $._js_context, "}"),
 
     text: (_) => /[^<]+/,
+
+    _semi: (_) => ";",
   },
 });
 
