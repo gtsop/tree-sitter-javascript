@@ -1,0 +1,16 @@
+===
+JSX
+===
+
+<></>
+<Hello></Hello>
+<Hello/>
+
+---
+
+(source_file
+  (jsx_start)
+  (jsx_end)
+  (jsx_start)
+  (jsx_end)
+  (jsx_self))

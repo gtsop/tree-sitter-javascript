@@ -1,8 +1,61 @@
 [
   {
+    "type": "attribute_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "attribute_value",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "comment",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "jsx_end",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "jsx_self",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_name",
+          "named": true
+        },
+        {
+          "type": "attribute_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "jsx_start",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_name",
+          "named": true
+        },
+        {
+          "type": "attribute_value",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "source_file",
@@ -22,6 +75,18 @@
           "named": true
         },
         {
+          "type": "jsx_end",
+          "named": true
+        },
+        {
+          "type": "jsx_self",
+          "named": true
+        },
+        {
+          "type": "jsx_start",
+          "named": true
+        },
+        {
           "type": "keyword",
           "named": true
         },
@@ -31,6 +96,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "text",
           "named": true
         }
       ]
@@ -58,6 +127,26 @@
     "named": false
   },
   {
+    "type": "/>",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "</",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
     "type": "`",
     "named": false
   },
@@ -72,5 +161,17 @@
   {
     "type": "regex",
     "named": true
+  },
+  {
+    "type": "text",
+    "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
   }
 ]

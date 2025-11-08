@@ -12,7 +12,16 @@ module.exports = grammar({
 
   rules: {
     source_file: ($) =>
-      repeat(choice($.string, $.comment, $.keyword, $.regex, $.identifier)),
+      repeat(
+        choice(
+          $.string,
+          $.comment,
+          $.keyword,
+          $.regex,
+          $.identifier,
+          $._full_jsx,
+        ),
+      ),
 
     /*
      * Comments
@@ -90,6 +99,48 @@ module.exports = grammar({
     _single_string: (_) => seq("'", token(/[^']*/), "'"),
     _double_string: (_) => seq('"', token(/([^"]|\\.)*/), '"'),
     _template_string: (_) => seq("`", token(/[^`]*/), "`"),
+
+    /*
+     * JSX
+     */
+    jsx_start: ($) =>
+      seq(
+        "<",
+        optional(/[a-zA-Z]*/),
+        optional(
+          repeat(seq($.attribute_name, optional(seq("=", $.attribute_value)))),
+        ),
+        ">",
+      ),
+
+    _full_jsx: ($) =>
+      choice(
+        seq(
+          $.jsx_start,
+          optional(repeat(choice($.text, $._full_jsx, $.comment))),
+          $.jsx_end,
+        ),
+        $.jsx_self,
+      ),
+
+    jsx_self: ($) =>
+      seq(
+        "<",
+        optional(/[a-zA-Z]*/),
+        optional(
+          repeat(seq($.attribute_name, optional(seq("=", $.attribute_value)))),
+        ),
+        "/>",
+      ),
+
+    jsx_end: (_) => seq("</", optional(/[a-zA-Z]+/), ">"),
+
+    attribute_name: (_) => token(/[a-zA-Z]+/),
+
+    attribute_value: (_) =>
+      choice(seq('"', /[a-z]+/, '"'), seq("{", /[^}]+/, "}")),
+
+    text: (_) => /[^<]+/,
   },
 });
 
