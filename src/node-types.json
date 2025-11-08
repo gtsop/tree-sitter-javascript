@@ -76,11 +76,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "initializer",
           "named": true
         }
       ]
@@ -184,6 +188,21 @@
       "types": [
         {
           "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "initializer",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dt_number",
           "named": true
         }
       ]
@@ -431,6 +450,10 @@
   {
     "type": "`",
     "named": false
+  },
+  {
+    "type": "dt_number",
+    "named": true
   },
   {
     "type": "identifier",

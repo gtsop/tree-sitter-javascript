@@ -109,7 +109,10 @@ module.exports = grammar({
       ),
 
     function_param: ($) =>
-      choice($.identifier, seq(token("..."), $.identifier)),
+      choice(
+        seq($.identifier, optional(seq(token("="), $.initializer))),
+        seq(token("..."), $.identifier),
+      ),
 
     function_body: ($) => seq(token("{"), token("}")),
 
@@ -164,6 +167,10 @@ module.exports = grammar({
       ),
 
     identifier: (_) => token(/[A-Za-z_$][A-Za-z0-9_$]*/),
+
+    initializer: ($) => choice($.dt_number),
+
+    dt_number: ($) => token(/[0-9]+/),
 
     /*
      * RegEx
