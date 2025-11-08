@@ -1,0 +1,17 @@
+=========
+Functions
+=========
+
+function(){}
+
+---
+
+(source_file
+  (statement
+    (function_declaration
+      (kw_function)
+      (function_params)
+      (function_body)
+    )
+  )
+)

@@ -13,7 +13,6 @@ else
 export
 extends
 for
-function
 if
 in
 interface
@@ -30,7 +29,6 @@ while
 ---
 
 (source_file
-  (keyword)
   (keyword)
   (keyword)
   (keyword)

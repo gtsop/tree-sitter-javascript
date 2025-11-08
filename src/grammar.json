@@ -60,6 +60,10 @@
         {
           "type": "SYMBOL",
           "name": "import_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_declaration"
         }
       ]
     },
@@ -233,6 +237,77 @@
       "type": "SYMBOL",
       "name": "string"
     },
+    "function_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "kw_function"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "function_name"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_params"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_body"
+        }
+      ]
+    },
+    "function_name": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
+    "function_params": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "("
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": ")"
+          }
+        }
+      ]
+    },
+    "function_body": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "{"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "}"
+          }
+        }
+      ]
+    },
     "comment": {
       "type": "CHOICE",
       "members": [
@@ -285,6 +360,13 @@
       "content": {
         "type": "STRING",
         "value": "from"
+      }
+    },
+    "kw_function": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "function"
       }
     },
     "kw_import": {
@@ -342,10 +424,6 @@
           {
             "type": "STRING",
             "value": "for"
-          },
-          {
-            "type": "STRING",
-            "value": "function"
           },
           {
             "type": "STRING",

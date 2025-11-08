@@ -32,11 +32,16 @@ module.exports = grammar({
         ),
       ),
 
-    statement: ($) => choice($.import_declaration),
+    statement: ($) => choice($.import_declaration, $.function_declaration),
+
+    /************************************************************************
+     * DECLARATIONS
+     */
 
     /**
-     * IMPORTS
+     * Import
      */
+
     import_declaration: ($) =>
       seq(
         $.kw_import,
@@ -82,6 +87,28 @@ module.exports = grammar({
     import_clause_namespace: (_) => token("*"),
     import_module_specifier: ($) => $.string,
 
+    /**
+     * Functions
+     */
+
+    function_declaration: ($) =>
+      seq(
+        $.kw_function,
+        optional($.function_name),
+        $.function_params,
+        $.function_body,
+      ),
+
+    function_name: ($) => $.identifier,
+
+    function_params: ($) => seq(token("("), token(")")),
+
+    function_body: ($) => seq(token("{"), token("}")),
+
+    /************************************************************************
+     * DECLARATIONS
+     */
+
     /*
      * Comments
      */
@@ -96,6 +123,7 @@ module.exports = grammar({
 
     kw_as: (_) => token("as"),
     kw_from: (_) => token("from"),
+    kw_function: (_) => token("function"),
     kw_import: (_) => token("import"),
 
     keyword: ($) =>
@@ -112,7 +140,6 @@ module.exports = grammar({
           "export",
           "extends",
           "for",
-          "function",
           "if",
           "in",
           "interface",
