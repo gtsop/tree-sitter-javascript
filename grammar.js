@@ -47,10 +47,15 @@ module.exports = grammar({
       ),
 
     import_clause: ($) =>
-      choice(
-        $._import_clause_identifier,
-        $._import_clause_namespace,
-        $._import_clause_named_imports,
+      repeat1(
+        seq(
+          choice(
+            $._import_clause_default,
+            $._import_clause_namespace,
+            $._import_clause_named_imports,
+          ),
+          optional(","),
+        ),
       ),
 
     _import_clause_named_imports: ($) =>
@@ -65,7 +70,7 @@ module.exports = grammar({
         "}",
       ),
 
-    _import_clause_identifier: ($) => $.import_clause_name,
+    _import_clause_default: ($) => $.import_clause_name,
 
     _import_clause_namespace: ($) =>
       seq($.import_clause_namespace, $.kw_as, $.import_clause_name),
