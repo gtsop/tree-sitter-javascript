@@ -26,12 +26,12 @@ module.exports = grammar({
         choice(
           $.declaration,
           $.statement,
-          $.string,
-          $.comment,
           $.keyword,
           $.literal_regex,
           $._full_jsx,
           $.ts_generic,
+          $.string,
+          $.comment,
         ),
       ),
 
@@ -79,6 +79,7 @@ module.exports = grammar({
               choice(
                 $.comment,
                 seq($.literal_object_key, ":", $.literal_object_value),
+                $.literal_object_shorthand,
               ),
               optional(","),
             ),
@@ -88,6 +89,7 @@ module.exports = grammar({
       ),
     literal_object_key: ($) => $.identifier,
     literal_object_value: ($) => $.expression,
+    literal_object_shorthand: ($) => $.identifier,
     literal_regex: ($) =>
       token(
         prec(

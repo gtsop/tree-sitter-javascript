@@ -29,14 +29,6 @@
           },
           {
             "type": "SYMBOL",
-            "name": "string"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "comment"
-          },
-          {
-            "type": "SYMBOL",
             "name": "keyword"
           },
           {
@@ -50,6 +42,14 @@
           {
             "type": "SYMBOL",
             "name": "ts_generic"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "string"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "comment"
           }
         ]
       }
@@ -340,6 +340,10 @@
                             "name": "literal_object_value"
                           }
                         ]
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "literal_object_shorthand"
                       }
                     ]
                   },
@@ -376,6 +380,10 @@
     "literal_object_value": {
       "type": "SYMBOL",
       "name": "expression"
+    },
+    "literal_object_shorthand": {
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "literal_regex": {
       "type": "TOKEN",

@@ -3,29 +3,21 @@ Object Literal
 ==============
 
 {};
-
 { a: "b" };
-
-{
-  a: "b",
-  
-  /* comment */
-
-  c: "d",
-};
+{ a: "b", /* comment */ c: "d", };
+{ a };
 
 ---
 
 (source_file
   (statement (expression (literal_object)))
-
   (statement (expression (literal_object
     (literal_object_key (identifier)) (literal_object_value (expression (literal_string)))
   )))
-
   (statement (expression (literal_object
     (literal_object_key (identifier)) (literal_object_value (expression (literal_string)))
     (comment)
     (literal_object_key (identifier)) (literal_object_value (expression (literal_string)))
   )))
+  (statement (expression (literal_object (literal_object_shorthand (identifier)))))
 )
