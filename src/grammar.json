@@ -110,7 +110,40 @@
         },
         {
           "type": "SYMBOL",
+          "name": "literal_object"
+        },
+        {
+          "type": "SYMBOL",
           "name": "literal_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_expr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_arrow_expr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parens_expr"
+        }
+      ]
+    },
+    "parens_expr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
@@ -133,6 +166,19 @@
         "type": "PATTERN",
         "value": "[0-9]+"
       }
+    },
+    "literal_object": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
     },
     "literal_string": {
       "type": "CHOICE",
@@ -329,20 +375,49 @@
           "name": "kw_function"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "function_name"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "function_name"
         },
         {
           "type": "SYMBOL",
           "name": "function_params"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_body"
+        }
+      ]
+    },
+    "function_expr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "kw_function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_params"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_body"
+        }
+      ]
+    },
+    "function_arrow_expr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "function_params"
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "=>"
+          }
         },
         {
           "type": "SYMBOL",
@@ -778,11 +853,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "function"
+          "name": "function_expr"
         },
         {
           "type": "SYMBOL",
-          "name": "dt_arrow_fn"
+          "name": "function_arrow_expr"
         }
       ]
     },
@@ -799,26 +874,6 @@
         "type": "STRING",
         "value": "null"
       }
-    },
-    "dt_arrow_fn": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "function_params"
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "=>"
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "function_body"
-        }
-      ]
     },
     "dt_bool": {
       "type": "CHOICE",
@@ -1344,6 +1399,10 @@
     }
   ],
   "conflicts": [
+    [
+      "expression",
+      "function_param"
+    ],
     [
       "ts_generic",
       "jsx_start"

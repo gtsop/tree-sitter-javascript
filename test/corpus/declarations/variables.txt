@@ -28,10 +28,10 @@ let a: MyType<Generic> = false;
     (variable (kw_let) (identifier) (initializer (identifier)))
   )
   (declaration
-    (variable (kw_let) (identifier) (initializer (function (kw_function) (function_params) (function_body))))
+    (variable (kw_let) (identifier) (initializer (function_expr (kw_function) (function_params) (function_body))))
   )
   (declaration
-    (variable (kw_let) (identifier) (initializer (dt_arrow_fn (function_params) (function_body))))
+    (variable (kw_let) (identifier) (initializer (function_arrow_expr (function_params) (function_body))))
   )
   (declaration
     (variable (kw_let) (identifier) (ts_type_annotation (ts_boolean)) (initializer (dt_bool (kw_false))))

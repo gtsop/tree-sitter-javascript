@@ -7,6 +7,10 @@ a;
 "hi";
 this;
 [];
+{};
+(a);
+(function(){});
+(()=>{});
 
 ---
 
@@ -16,4 +20,8 @@ this;
   (statement (expression (literal_string)))
   (statement (expression (kw_this)))
   (statement (expression (literal_array)))
+  (statement (expression (literal_object)))
+  (statement (expression (parens_expr (expression (identifier)))))
+  (statement (expression (parens_expr (expression (function_expr (kw_function) (function_params) (function_body))))))
+  (statement (expression (parens_expr (expression (function_arrow_expr (function_params) (function_body))))))
 )

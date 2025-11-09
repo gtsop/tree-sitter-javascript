@@ -11,6 +11,7 @@ module.exports = grammar({
   name: "javascript",
 
   conflicts: ($) => [
+    [$.expression, $.function_param],
     [$.ts_generic, $.jsx_start],
     [$.jsx_start, $.jsx_self],
   ],
@@ -42,11 +43,18 @@ module.exports = grammar({
         $.kw_this,
         $.literal_array,
         $.literal_numeric,
+        $.literal_object,
         $.literal_string,
+        $.function_expr,
+        $.function_arrow_expr,
+        $.parens_expr,
       ),
+
+    parens_expr: ($) => seq("(", $.expression, ")"),
 
     literal_array: (_) => seq("[", "]"),
     literal_numeric: (_) => token(/[0-9]+/),
+    literal_object: (_) => seq("{", "}"),
     literal_string: ($) =>
       choice($._single_string, $._double_string, $._template_string),
 
@@ -104,12 +112,13 @@ module.exports = grammar({
      */
 
     function: ($) =>
-      seq(
-        $.kw_function,
-        optional($.function_name),
-        $.function_params,
-        $.function_body,
-      ),
+      seq($.kw_function, $.function_name, $.function_params, $.function_body),
+
+    function_expr: ($) =>
+      seq($.kw_function, $.function_params, $.function_body),
+
+    function_arrow_expr: ($) =>
+      seq($.function_params, token("=>"), $.function_body),
 
     function_name: ($) => $.identifier,
 
@@ -202,13 +211,12 @@ module.exports = grammar({
         $.dt_null,
         $.dt_bool,
         $.identifier,
-        $.function,
-        $.dt_arrow_fn,
+        $.function_expr,
+        $.function_arrow_expr,
       ),
 
     dt_number: (_) => token(/[0-9]+/),
     dt_null: (_) => token("null"),
-    dt_arrow_fn: ($) => seq($.function_params, token("=>"), $.function_body),
     dt_bool: ($) => choice($.kw_true, $.kw_false),
 
     /*
