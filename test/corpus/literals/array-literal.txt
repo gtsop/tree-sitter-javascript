@@ -1,0 +1,17 @@
+=============
+Array Literal
+=============
+
+[];
+[1, {}];
+
+---
+
+(source_file
+  (statement (expression
+    (literal_array)
+  ))
+  (statement (expression
+    (literal_array (expression (literal_numeric)) (expression (literal_object)))
+  ))
+)

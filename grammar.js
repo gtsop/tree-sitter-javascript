@@ -60,7 +60,8 @@ module.exports = grammar({
     call_expr_params: ($) =>
       seq("(", optional(repeat(seq($.expression, optional(",")))), ")"),
 
-    literal_array: (_) => seq("[", "]"),
+    literal_array: ($) =>
+      seq("[", repeat(seq($.expression, optional(","))), "]"),
     literal_null: (_) => token("null"),
     literal_boolean: ($) => choice($.kw_true, $.kw_false),
     literal_numeric: (_) => token(/[0-9]+/),
