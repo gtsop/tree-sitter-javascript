@@ -26,7 +26,7 @@ JSX
     (jsx_self)
   )))
   (statement (expression (jsx_expr
-    (jsx_self (attribute_name) (attribute_value))
+    (jsx_self (attribute_name) (attribute_value (literal_string)))
   )))
   (statement (expression (jsx_expr
     (jsx_start (attribute_name) (attribute_value

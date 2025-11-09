@@ -1807,21 +1807,8 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "\""
-            },
-            {
-              "type": "PATTERN",
-              "value": "[a-z]+"
-            },
-            {
-              "type": "STRING",
-              "value": "\""
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "literal_string"
         },
         {
           "type": "SYMBOL",

@@ -125,10 +125,14 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "literal_string",
           "named": true
         }
       ]

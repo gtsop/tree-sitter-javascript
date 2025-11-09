@@ -1,4 +1,5 @@
-/**
+/*learSearch
+
  * @file Javascript grammar
  * @author George Tsopanoglou <gtsop+github@protonmail.com>
  * @license AGPLv3
@@ -86,34 +87,6 @@ module.exports = grammar({
     literal_object_key: ($) => $.identifier,
     literal_object_value: ($) => $.expression,
     literal_object_shorthand: ($) => $.identifier,
-
-    literal_regex: ($) =>
-      token(
-        prec(
-          1,
-          seq(
-            "/",
-            // Disallow starting a comment
-            token.immediate(/[^*/\n]/), // first char isn't '*' or '/' or newline
-            // The rest can be: normal chunks (no '/', '[', '\n', '\'),
-            // escapes, or a full character class that itself allows '/'
-            repeat(
-              choice(
-                /[^/\n\\\[]+/, // plain chunk
-                /\\./, // escape
-                seq(
-                  // character class [...]
-                  "[",
-                  repeat(choice(/[^]\n\\]/, /\\./)), // everything but ']' or escaped
-                  "]",
-                ),
-              ),
-            ),
-            "/",
-            optional(/[A-Za-z]+/), // flags (be permissive; JS has gimsuydv etc.)
-          ),
-        ),
-      ),
 
     literal_string: ($) =>
       choice($._single_string, $._double_string, $._template_string),
@@ -264,14 +237,6 @@ module.exports = grammar({
       prec.left(1, seq($.expression, "!==", $.expression)),
 
     /*
-     * Comments
-     */
-    comment: ($) => choice($._multi_comment, $._single_comment),
-
-    _multi_comment: (_) => seq("/*", token(/([^*]|\*[^/])*/), "*/"),
-    _single_comment: (_) => token(/\/\/.*\n/),
-
-    /*
      * Keywords
      */
 
@@ -373,7 +338,7 @@ module.exports = grammar({
 
     attribute_name: (_) => token(/[a-zA-Z]+/),
 
-    attribute_value: ($) => choice(seq('"', /[a-z]+/, '"'), $._jsx_context),
+    attribute_value: ($) => choice($.literal_string, $._jsx_context),
 
     _jsx_context: ($) => seq("{", $.expression, "}"),
 
@@ -394,5 +359,45 @@ module.exports = grammar({
     _ts_type_arguments: ($) => seq("<", $.ts_type_param, ">"),
 
     ts_type_param: ($) => choice($.ts_user_type),
+
+    /*****
+    THE HARD ONES
+    */
+
+    /*
+     * Comments
+     */
+    comment: ($) => choice($._multi_comment, $._single_comment),
+
+    _multi_comment: (_) => seq("/*", token(/([^*]|\*[^/])*/), "*/"),
+    _single_comment: (_) => token(/\/\/.*\n/),
+
+    literal_regex: ($) =>
+      token(
+        prec(
+          1,
+          seq(
+            "/",
+            // Disallow starting a comment
+            token.immediate(/[^*/\n]/), // first char isn't '*' or '/' or newline
+            // The rest can be: normal chunks (no '/', '[', '\n', '\'),
+            // escapes, or a full character class that itself allows '/'
+            repeat(
+              choice(
+                /[^/\n\\\[]+/, // plain chunk
+                /\\./, // escape
+                seq(
+                  // character class [...]
+                  "[",
+                  repeat(choice(/[^]\n\\]/, /\\./)), // everything but ']' or escaped
+                  "]",
+                ),
+              ),
+            ),
+            "/",
+            optional(/[A-Za-z]+/), // flags (be permissive; JS has gimsuydv etc.)
+          ),
+        ),
+      ),
   },
 });
