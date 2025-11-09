@@ -12,6 +12,7 @@ module.exports = grammar({
   name: "javascript",
 
   conflicts: ($) => [
+    [$.jsx_name, $.ts_generic],
     [$.function_body, $.literal_object],
     [$._assign_target, $.function_param],
     [$._initializer, $.assign],
@@ -307,7 +308,7 @@ module.exports = grammar({
     jsx_start: ($) =>
       seq(
         "<",
-        optional(/[a-zA-Z]*/),
+        optional($.jsx_name),
         optional(
           repeat(seq($.attribute_name, optional(seq("=", $.attribute_value)))),
         ),
@@ -324,17 +325,19 @@ module.exports = grammar({
         $.jsx_self,
       ),
 
+    jsx_name: ($) => token(/[a-zA-Z]*/),
+
     jsx_self: ($) =>
       seq(
         "<",
-        optional(/[a-zA-Z]*/),
+        optional($.jsx_name),
         optional(
           repeat(seq($.attribute_name, optional(seq("=", $.attribute_value)))),
         ),
         "/>",
       ),
 
-    jsx_end: (_) => seq("</", optional(/[a-zA-Z]+/), ">"),
+    jsx_end: ($) => seq("</", optional($.jsx_name), ">"),
 
     attribute_name: (_) => token(/[a-zA-Z]+/),
 

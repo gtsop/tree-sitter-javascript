@@ -2,7 +2,6 @@
 JSX
 ===
 
-<></>;
 <Hello></Hello>;
 <Hello/>;
 <Hello foo="bar" />;
@@ -17,40 +16,37 @@ JSX
 
 (source_file
   (statement (expression (jsx_expr
-    (jsx_start) (jsx_end)
+    (jsx_start (jsx_name)) (jsx_end (jsx_name))
   )))
   (statement (expression (jsx_expr
-    (jsx_start) (jsx_end)
+    (jsx_self (jsx_name))
   )))
   (statement (expression (jsx_expr
-    (jsx_self)
+    (jsx_self (jsx_name) (attribute_name) (attribute_value (literal_string)))
   )))
   (statement (expression (jsx_expr
-    (jsx_self (attribute_name) (attribute_value (literal_string)))
-  )))
-  (statement (expression (jsx_expr
-    (jsx_start (attribute_name) (attribute_value
+    (jsx_start (jsx_name) (attribute_name) (attribute_value
       (expression (literal_string))
     ))
-    (jsx_end)
+    (jsx_end (jsx_name))
   )))
   (statement (expression (jsx_expr
-    (jsx_start)
+    (jsx_start (jsx_name))
       (text)
-    (jsx_end)
+    (jsx_end (jsx_name))
   )))
   (statement (expression (jsx_expr
-    (jsx_start)
-      (jsx_self)
-    (jsx_end)
+    (jsx_start (jsx_name))
+      (jsx_self (jsx_name))
+    (jsx_end (jsx_name))
   )))
   (statement (expression (jsx_expr
-    (jsx_self (attribute_name) (attribute_value
+    (jsx_self (jsx_name) (attribute_name) (attribute_value
       (expression (identifier))
     ))
   )))
   (statement (expression (jsx_expr
-    (jsx_self (attribute_name) (attribute_value
+    (jsx_self (jsx_name) (attribute_name) (attribute_value
       (expression (property_expr (identifier) (identifier)))
     ))
   )))
