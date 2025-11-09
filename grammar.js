@@ -117,7 +117,7 @@ module.exports = grammar({
      * Variables
      */
 
-    variable: ($) => seq($.kw_let, $.identifier, $._semi),
+    variable: ($) => seq(choice($.kw_let, $.kw_const), $.identifier, $._semi),
 
     /************************************************************************
      * Statements
@@ -136,6 +136,7 @@ module.exports = grammar({
      */
 
     kw_as: (_) => token("as"),
+    kw_const: (_) => token("const"),
     kw_from: (_) => token("from"),
     kw_function: (_) => token("function"),
     kw_import: (_) => token("import"),
@@ -147,7 +148,6 @@ module.exports = grammar({
           "break",
           "case",
           "class",
-          "const",
           "continue",
           "default",
           "delete",

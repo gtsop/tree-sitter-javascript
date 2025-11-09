@@ -3,11 +3,11 @@ Variables
 =========
 
 let a;
+const a;
 
 ---
 
 (source_file
-  (declaration
-    (variable (kw_let) (identifier))
-  )
+  (declaration (variable (kw_let) (identifier)))
+  (declaration (variable (kw_const) (identifier)))
 )

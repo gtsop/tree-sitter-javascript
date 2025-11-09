@@ -405,8 +405,17 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "kw_let"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "kw_let"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "kw_const"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -465,6 +474,13 @@
         "value": "as"
       }
     },
+    "kw_const": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "const"
+      }
+    },
     "kw_from": {
       "type": "TOKEN",
       "content": {
@@ -509,10 +525,6 @@
           {
             "type": "STRING",
             "value": "class"
-          },
-          {
-            "type": "STRING",
-            "value": "const"
           },
           {
             "type": "STRING",

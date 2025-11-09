@@ -408,6 +408,10 @@
           "named": true
         },
         {
+          "type": "kw_const",
+          "named": true
+        },
+        {
           "type": "kw_let",
           "named": true
         }
@@ -492,6 +496,10 @@
   },
   {
     "type": "kw_as",
+    "named": true
+  },
+  {
+    "type": "kw_const",
     "named": true
   },
   {

@@ -5,7 +5,6 @@ Keywords
 break
 case
 class
-const
 continue
 default
 delete
@@ -24,11 +23,9 @@ type
 var
 while
 
-
 ---
 
 (source_file
-  (keyword)
   (keyword)
   (keyword)
   (keyword)
