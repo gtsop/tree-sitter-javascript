@@ -39,27 +39,32 @@ module.exports = grammar({
     statement: ($) => seq(choice($.expression), $._semi),
 
     expression: ($) =>
-      choice(
-        $.function_arrow_expr,
-        $.function_expr,
-        $.identifier,
-        $.kw_this,
-        $.literal_array,
-        $.literal_boolean,
-        $.literal_null,
-        $.literal_numeric,
-        $.literal_object,
-        $.literal_regex,
-        $.literal_string,
-        $.parens_expr,
-        $.property_expr,
-        $.call_expr,
-        $.jsx_expr,
+      prec(
+        1,
+        choice(
+          $.function_arrow_expr,
+          $.function_expr,
+          $.identifier,
+          $.kw_this,
+          $.literal_array,
+          $.literal_boolean,
+          $.literal_null,
+          $.literal_numeric,
+          $.literal_object,
+          $.literal_regex,
+          $.literal_string,
+          $.parens_expr,
+          $.property_expr,
+          $.call_expr,
+          $.jsx_expr,
+        ),
       ),
+
+    _callable_expr: ($) => choice($.identifier, $.property_expr),
 
     parens_expr: ($) => seq("(", $.expression, ")"),
     property_expr: ($) => seq($.identifier, token("."), $.identifier),
-    call_expr: ($) => seq($.identifier, $.call_expr_params),
+    call_expr: ($) => seq($._callable_expr, $.call_expr_params),
     call_expr_params: ($) =>
       seq("(", optional(repeat(seq($.expression, optional(",")))), ")"),
 
@@ -309,9 +314,9 @@ module.exports = grammar({
 
     attribute_name: (_) => token(/[a-zA-Z]+/),
 
-    attribute_value: ($) => choice(seq('"', /[a-z]+/, '"'), $.jsx_context),
+    attribute_value: ($) => choice(seq('"', /[a-z]+/, '"'), $._jsx_context),
 
-    jsx_context: ($) => seq("{", $.expression, "}"),
+    _jsx_context: ($) => seq("{", $.expression, "}"),
 
     text: (_) => /[^<]+/,
 

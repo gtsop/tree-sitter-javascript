@@ -10,6 +10,9 @@ JSX
 <Hello>Some content</Hello>
 <Hello><World /></Hello>
 
+<Hello foo={a}/>
+<Hello foo={a.b}/>
+
 ---
 
 (source_file
@@ -18,21 +21,21 @@ JSX
   (jsx_start)
   (jsx_end)
   (jsx_self)
-  (jsx_self
-    (attribute_name)
-    (attribute_value))
-  (jsx_start
-    (attribute_name)
-    (attribute_value
-      (jsx_context
-        (expression (literal_string))
-      )))
+  (jsx_self (attribute_name) (attribute_value))
+  (jsx_start (attribute_name) (attribute_value
+    (expression (literal_string))
+  ))
   (jsx_end)
   (jsx_start)
-  (text)
+    (text)
   (jsx_end)
   (jsx_start)
-  (jsx_self)
+    (jsx_self)
   (jsx_end)
-
+  (jsx_self (attribute_name) (attribute_value
+    (expression (identifier))
+  ))
+  (jsx_self (attribute_name) (attribute_value
+    (expression (property_expr (identifier) (identifier)))
+  ))
 )
