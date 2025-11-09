@@ -3,11 +3,27 @@ Assignment
 ==========
 
 a = a;
+a += a;
+a -= a;
+a *= a;
+a /= a;
 
 ---
 
 (source_file
   (statement (expression
     (assign (identifier) (expression (identifier)))
+  ))
+  (statement (expression
+    (assign_add (identifier) (expression (identifier)))
+  ))
+  (statement (expression
+    (assign_sub (identifier) (expression (identifier)))
+  ))
+  (statement (expression
+    (assign_mul (identifier) (expression (identifier)))
+  ))
+  (statement (expression
+    (assign_div (identifier) (expression (identifier)))
   ))
 )

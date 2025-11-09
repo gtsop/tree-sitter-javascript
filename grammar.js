@@ -207,9 +207,14 @@ module.exports = grammar({
 
     _operation: ($) => choice($._comparison_operation, $._assignment_operation),
 
-    _assignment_operation: ($) => choice($.assign),
+    _assignment_operation: ($) =>
+      choice($.assign, $.assign_add, $.assign_sub, $.assign_mul, $.assign_div),
 
     assign: ($) => seq($.identifier, "=", $.expression),
+    assign_add: ($) => seq($.identifier, "+=", $.expression),
+    assign_sub: ($) => seq($.identifier, "-=", $.expression),
+    assign_mul: ($) => seq($.identifier, "*=", $.expression),
+    assign_div: ($) => seq($.identifier, "/=", $.expression),
 
     _comparison_operation: ($) =>
       choice(
