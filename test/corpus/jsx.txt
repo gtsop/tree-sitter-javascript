@@ -25,7 +25,8 @@ JSX
     (attribute_name)
     (attribute_value
       (jsx_context
-        (string))))
+        (expression (literal_string))
+      )))
   (jsx_end)
   (jsx_start)
   (text)

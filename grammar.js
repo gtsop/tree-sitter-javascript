@@ -54,6 +54,7 @@ module.exports = grammar({
         $.parens_expr,
         $.property_expr,
         $.call_expr,
+        $.jsx_expr,
       ),
 
     parens_expr: ($) => seq("(", $.expression, ")"),
@@ -272,6 +273,8 @@ module.exports = grammar({
 
     ts_generic: (_) => seq("<", /[a-zA-Z]*/, ">"),
 
+    jsx_expr: ($) => $._full_jsx,
+
     jsx_start: ($) =>
       seq(
         "<",
@@ -308,7 +311,7 @@ module.exports = grammar({
 
     attribute_value: ($) => choice(seq('"', /[a-z]+/, '"'), $.jsx_context),
 
-    jsx_context: ($) => seq("{", $._js_context, "}"),
+    jsx_context: ($) => seq("{", $.expression, "}"),
 
     text: (_) => /[^<]+/,
 

@@ -147,6 +147,10 @@
         {
           "type": "SYMBOL",
           "name": "call_expr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "jsx_expr"
         }
       ]
     },
@@ -1171,6 +1175,10 @@
         }
       ]
     },
+    "jsx_expr": {
+      "type": "SYMBOL",
+      "name": "_full_jsx"
+    },
     "jsx_start": {
       "type": "SEQ",
       "members": [
@@ -1420,7 +1428,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_js_context"
+          "name": "expression"
         },
         {
           "type": "STRING",
