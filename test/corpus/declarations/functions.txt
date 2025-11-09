@@ -32,7 +32,7 @@ function foo (){
     (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier))) (function_body))
   )
   (declaration
-    (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier) (initializer (dt_number)))) (function_body))
+    (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier) (expression (literal_numeric)))) (function_body))
   )
   (declaration
     (function (kw_function) (function_name (identifier)) (function_params) (function_body

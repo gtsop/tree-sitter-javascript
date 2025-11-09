@@ -5,6 +5,9 @@ Primary Expressions
 a;
 1;
 "hi";
+/a/;
+true;
+null;
 this;
 [];
 {};
@@ -18,6 +21,9 @@ this;
   (statement (expression (identifier)))
   (statement (expression (literal_numeric)))
   (statement (expression (literal_string)))
+  (statement (expression (literal_regex)))
+  (statement (expression (literal_boolean (kw_true))))
+  (statement (expression (literal_null)))
   (statement (expression (kw_this)))
   (statement (expression (literal_array)))
   (statement (expression (literal_object)))

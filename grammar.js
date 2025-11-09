@@ -27,7 +27,7 @@ module.exports = grammar({
           $.string,
           $.comment,
           $.keyword,
-          $.regex,
+          $.literal_regex,
           $._full_jsx,
           $.ts_generic,
         ),
@@ -39,22 +39,42 @@ module.exports = grammar({
 
     expression: ($) =>
       choice(
+        $.function_arrow_expr,
+        $.function_expr,
         $.identifier,
         $.kw_this,
         $.literal_array,
+        $.literal_boolean,
+        $.literal_null,
         $.literal_numeric,
         $.literal_object,
+        $.literal_regex,
         $.literal_string,
-        $.function_expr,
-        $.function_arrow_expr,
         $.parens_expr,
       ),
 
     parens_expr: ($) => seq("(", $.expression, ")"),
 
     literal_array: (_) => seq("[", "]"),
+    literal_null: (_) => token("null"),
+    literal_boolean: ($) => choice($.kw_true, $.kw_false),
     literal_numeric: (_) => token(/[0-9]+/),
     literal_object: (_) => seq("{", "}"),
+    literal_regex: ($) =>
+      token(
+        prec(
+          1,
+          seq(
+            "/",
+            // first char: not '*', '/', '\n' (or allow escaped)
+            choice(/[^*/\n\\]/, /\\./),
+            // rest
+            repeat(choice(/[^/\n\\]/, /\\./)),
+            "/",
+            optional(/[a-zA-Z]+/),
+          ),
+        ),
+      ),
     literal_string: ($) =>
       choice($._single_string, $._double_string, $._template_string),
 
@@ -131,7 +151,7 @@ module.exports = grammar({
 
     function_param: ($) =>
       choice(
-        seq($.identifier, optional(seq(token("="), $.initializer))),
+        seq($.identifier, optional(seq(token("="), $._initializer))),
         seq(token("..."), $.identifier),
       ),
 
@@ -146,7 +166,7 @@ module.exports = grammar({
         choice($.kw_let, $.kw_const),
         $.identifier,
         optional($.ts_type_annotation),
-        optional(seq(token("="), $.initializer)),
+        optional(seq(token("="), $._initializer)),
         $._semi,
       ),
 
@@ -205,39 +225,12 @@ module.exports = grammar({
 
     identifier: (_) => token(/[A-Za-z_$][A-Za-z0-9_$]*/),
 
-    initializer: ($) =>
-      choice(
-        $.dt_number,
-        $.dt_null,
-        $.dt_bool,
-        $.identifier,
-        $.function_expr,
-        $.function_arrow_expr,
-      ),
-
-    dt_number: (_) => token(/[0-9]+/),
-    dt_null: (_) => token("null"),
-    dt_bool: ($) => choice($.kw_true, $.kw_false),
+    _initializer: ($) => $.expression,
 
     /*
      * RegEx
      */
     // regex literal: cannot start with '/*'
-    regex: ($) =>
-      token(
-        prec(
-          1,
-          seq(
-            "/",
-            // first char: not '*', '/', '\n' (or allow escaped)
-            choice(/[^*/\n\\]/, /\\./),
-            // rest
-            repeat(choice(/[^/\n\\]/, /\\./)),
-            "/",
-            optional(/[a-zA-Z]+/),
-          ),
-        ),
-      ),
 
     /*
      * Strings

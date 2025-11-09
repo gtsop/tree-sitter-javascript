@@ -22,24 +22,24 @@ let a: MyType<Generic> = false;
     (variable (kw_let) (identifier))
   )
   (declaration
-    (variable (kw_let) (identifier) (initializer (dt_null)))
+    (variable (kw_let) (identifier) (expression (literal_null)))
   )
   (declaration
-    (variable (kw_let) (identifier) (initializer (identifier)))
+    (variable (kw_let) (identifier) (expression (identifier)))
   )
   (declaration
-    (variable (kw_let) (identifier) (initializer (function_expr (kw_function) (function_params) (function_body))))
+    (variable (kw_let) (identifier) (expression (function_expr (kw_function) (function_params) (function_body))))
   )
   (declaration
-    (variable (kw_let) (identifier) (initializer (function_arrow_expr (function_params) (function_body))))
+    (variable (kw_let) (identifier) (expression (function_arrow_expr (function_params) (function_body))))
   )
   (declaration
-    (variable (kw_let) (identifier) (ts_type_annotation (ts_boolean)) (initializer (dt_bool (kw_false))))
+    (variable (kw_let) (identifier) (ts_type_annotation (ts_boolean)) (expression (literal_boolean (kw_false))))
   )
   (declaration
-    (variable (kw_let) (identifier) (ts_type_annotation (ts_user_type)) (initializer (dt_bool (kw_false))))
+    (variable (kw_let) (identifier) (ts_type_annotation (ts_user_type)) (expression (literal_boolean (kw_false))))
   )
   (declaration
-    (variable (kw_let) (identifier) (ts_type_annotation (ts_user_type (ts_type_param (ts_user_type)))) (initializer (dt_bool (kw_false))))
+    (variable (kw_let) (identifier) (ts_type_annotation (ts_user_type (ts_type_param (ts_user_type)))) (expression (literal_boolean (kw_false))))
   )
 )
