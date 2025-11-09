@@ -25,12 +25,26 @@
     "fields": {}
   },
   {
-    "type": "function_body",
+    "type": "declaration",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "function",
+          "named": true
+        },
+        {
+          "type": "import",
+          "named": true
+        }
+      ]
+    }
   },
   {
-    "type": "function_declaration",
+    "type": "function",
     "named": true,
     "fields": {},
     "children": {
@@ -55,6 +69,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "function_body",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "function_name",
@@ -106,53 +125,7 @@
     }
   },
   {
-    "type": "import_clause",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "import_clause_name",
-          "named": true
-        },
-        {
-          "type": "import_clause_namespace",
-          "named": true
-        },
-        {
-          "type": "kw_as",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "import_clause_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "import_declaration",
+    "type": "import",
     "named": true,
     "fields": {},
     "children": {
@@ -179,6 +152,37 @@
     }
   },
   {
+    "type": "import_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_name",
+          "named": true
+        },
+        {
+          "type": "import_namespace",
+          "named": true
+        },
+        {
+          "type": "kw_as",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "import_module_specifier",
     "named": true,
     "fields": {},
@@ -188,6 +192,21 @@
       "types": [
         {
           "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "import_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -221,6 +240,10 @@
           "named": true
         },
         {
+          "type": "declaration",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -242,10 +265,6 @@
         },
         {
           "type": "regex",
-          "named": true
-        },
-        {
-          "type": "statement",
           "named": true
         },
         {
@@ -320,6 +339,10 @@
           "named": true
         },
         {
+          "type": "declaration",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -344,10 +367,6 @@
           "named": true
         },
         {
-          "type": "statement",
-          "named": true
-        },
-        {
           "type": "string",
           "named": true
         },
@@ -357,25 +376,6 @@
         },
         {
           "type": "ts_generic",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "function_declaration",
-          "named": true
-        },
-        {
-          "type": "import_declaration",
           "named": true
         }
       ]
@@ -460,7 +460,7 @@
     "named": true
   },
   {
-    "type": "import_clause_namespace",
+    "type": "import_namespace",
     "named": true
   },
   {

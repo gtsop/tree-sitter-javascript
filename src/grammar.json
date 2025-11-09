@@ -21,7 +21,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "statement"
+            "name": "declaration"
           },
           {
             "type": "SYMBOL",
@@ -54,20 +54,20 @@
         ]
       }
     },
-    "statement": {
+    "declaration": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "import_declaration"
+          "name": "import"
         },
         {
           "type": "SYMBOL",
-          "name": "function_declaration"
+          "name": "function"
         }
       ]
     },
-    "import_declaration": {
+    "import": {
       "type": "SEQ",
       "members": [
         {
@@ -106,7 +106,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "_import_clause_namespace"
+                "name": "_import_namespace"
               },
               {
                 "type": "SYMBOL",
@@ -146,7 +146,7 @@
                 "members": [
                   {
                     "type": "SYMBOL",
-                    "name": "import_clause_name"
+                    "name": "import_name"
                   },
                   {
                     "type": "SYMBOL",
@@ -177,14 +177,14 @@
     },
     "_import_clause_default": {
       "type": "SYMBOL",
-      "name": "import_clause_name"
+      "name": "import_name"
     },
-    "_import_clause_namespace": {
+    "_import_namespace": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "import_clause_namespace"
+          "name": "import_namespace"
         },
         {
           "type": "SYMBOL",
@@ -192,7 +192,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "import_clause_name"
+          "name": "import_name"
         }
       ]
     },
@@ -218,15 +218,15 @@
         },
         {
           "type": "SYMBOL",
-          "name": "import_clause_name"
+          "name": "import_name"
         }
       ]
     },
-    "import_clause_name": {
+    "import_name": {
       "type": "SYMBOL",
       "name": "identifier"
     },
-    "import_clause_namespace": {
+    "import_namespace": {
       "type": "TOKEN",
       "content": {
         "type": "STRING",
@@ -237,7 +237,7 @@
       "type": "SYMBOL",
       "name": "string"
     },
-    "function_declaration": {
+    "function": {
       "type": "SEQ",
       "members": [
         {

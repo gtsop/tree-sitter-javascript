@@ -21,7 +21,8 @@ module.exports = grammar({
     _js_context: ($) =>
       repeat1(
         choice(
-          $.statement,
+          $.declaration,
+          // $.statement,
           $.string,
           $.comment,
           $.keyword,
@@ -32,7 +33,7 @@ module.exports = grammar({
         ),
       ),
 
-    statement: ($) => choice($.import_declaration, $.function_declaration),
+    declaration: ($) => choice($.import, $.function),
 
     /************************************************************************
      * DECLARATIONS
@@ -42,7 +43,7 @@ module.exports = grammar({
      * Import
      */
 
-    import_declaration: ($) =>
+    import: ($) =>
       seq(
         $.kw_import,
         $.import_clause,
@@ -56,7 +57,7 @@ module.exports = grammar({
         seq(
           choice(
             $._import_clause_default,
-            $._import_clause_namespace,
+            $._import_namespace,
             $._import_clause_named_imports,
           ),
           optional(","),
@@ -67,31 +68,27 @@ module.exports = grammar({
       seq(
         "{",
         repeat(
-          seq(
-            choice($.import_clause_name, $._import_clause_alias),
-            optional(","),
-          ),
+          seq(choice($.import_name, $._import_clause_alias), optional(",")),
         ),
         "}",
       ),
 
-    _import_clause_default: ($) => $.import_clause_name,
+    _import_clause_default: ($) => $.import_name,
 
-    _import_clause_namespace: ($) =>
-      seq($.import_clause_namespace, $.kw_as, $.import_clause_name),
+    _import_namespace: ($) => seq($.import_namespace, $.kw_as, $.import_name),
 
     _import_clause_alias: ($) =>
-      seq(choice($.identifier, $.string), $.kw_as, $.import_clause_name),
+      seq(choice($.identifier, $.string), $.kw_as, $.import_name),
 
-    import_clause_name: ($) => $.identifier,
-    import_clause_namespace: (_) => token("*"),
+    import_name: ($) => $.identifier,
+    import_namespace: (_) => token("*"),
     import_module_specifier: ($) => $.string,
 
     /**
      * Functions
      */
 
-    function_declaration: ($) =>
+    function: ($) =>
       seq(
         $.kw_function,
         optional($.function_name),
