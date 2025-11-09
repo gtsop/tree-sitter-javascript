@@ -66,7 +66,16 @@ module.exports = grammar({
     literal_null: (_) => token("null"),
     literal_boolean: ($) => choice($.kw_true, $.kw_false),
     literal_numeric: (_) => token(/[0-9]+/),
-    literal_object: (_) => seq("{", "}"),
+    literal_object: ($) =>
+      seq(
+        "{",
+        optional(
+          repeat(seq($.literal_object_key, ":", $.literal_object_value)),
+        ),
+        "}",
+      ),
+    literal_object_key: ($) => $.identifier,
+    literal_object_value: ($) => $.expression,
     literal_regex: ($) =>
       token(
         prec(

@@ -293,10 +293,46 @@
           "value": "{"
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "literal_object_key"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ":"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "literal_object_value"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "STRING",
           "value": "}"
         }
       ]
+    },
+    "literal_object_key": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
+    "literal_object_value": {
+      "type": "SYMBOL",
+      "name": "expression"
     },
     "literal_regex": {
       "type": "TOKEN",

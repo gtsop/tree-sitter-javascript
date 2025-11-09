@@ -1,0 +1,15 @@
+==============
+Object Literal
+==============
+
+{};
+{ key: "value" };
+
+---
+
+(source_file
+  (statement (expression (literal_object)))
+  (statement (expression (literal_object
+    (literal_object_key (identifier)) (literal_object_value (expression (literal_string)))
+  )))
+)
