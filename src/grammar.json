@@ -922,7 +922,15 @@
         },
         {
           "type": "SYMBOL",
+          "name": "greater_than_or_equal"
+        },
+        {
+          "type": "SYMBOL",
           "name": "less_than"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "less_than_or_equal"
         },
         {
           "type": "SYMBOL",
@@ -980,6 +988,27 @@
         ]
       }
     },
+    "greater_than_or_equal": {
+      "type": "PREC_LEFT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          },
+          {
+            "type": "STRING",
+            "value": ">="
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        ]
+      }
+    },
     "less_than": {
       "type": "PREC_LEFT",
       "value": 1,
@@ -993,6 +1022,27 @@
           {
             "type": "STRING",
             "value": "<"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        ]
+      }
+    },
+    "less_than_or_equal": {
+      "type": "PREC_LEFT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          },
+          {
+            "type": "STRING",
+            "value": "<="
           },
           {
             "type": "SYMBOL",

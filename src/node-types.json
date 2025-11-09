@@ -129,6 +129,10 @@
           "named": true
         },
         {
+          "type": "greater_than_or_equal",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -142,6 +146,10 @@
         },
         {
           "type": "less_than",
+          "named": true
+        },
+        {
+          "type": "less_than_or_equal",
           "named": true
         },
         {
@@ -364,6 +372,21 @@
     }
   },
   {
+    "type": "greater_than_or_equal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "import",
     "named": true,
     "fields": {},
@@ -527,6 +550,21 @@
   },
   {
     "type": "less_than",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "less_than_or_equal",
     "named": true,
     "fields": {},
     "children": {
@@ -922,6 +960,10 @@
     "named": false
   },
   {
+    "type": "<=",
+    "named": false
+  },
+  {
     "type": "=",
     "named": false
   },
@@ -939,6 +981,10 @@
   },
   {
     "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
     "named": false
   },
   {

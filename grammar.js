@@ -210,7 +210,9 @@ module.exports = grammar({
       choice(
         $.equal,
         $.greater_than,
+        $.greater_than_or_equal,
         $.less_than,
+        $.less_than_or_equal,
         $.not_equal,
         $.strict_equal,
         $.strict_not_equal,
@@ -218,7 +220,11 @@ module.exports = grammar({
 
     equal: ($) => prec.left(1, seq($.expression, "==", $.expression)),
     greater_than: ($) => prec.left(1, seq($.expression, ">", $.expression)),
+    greater_than_or_equal: ($) =>
+      prec.left(1, seq($.expression, ">=", $.expression)),
     less_than: ($) => prec.left(1, seq($.expression, "<", $.expression)),
+    less_than_or_equal: ($) =>
+      prec.left(1, seq($.expression, "<=", $.expression)),
     not_equal: ($) => prec.left(1, seq($.expression, "!=", $.expression)),
     strict_equal: ($) => prec.left(1, seq($.expression, "===", $.expression)),
     strict_not_equal: ($) =>

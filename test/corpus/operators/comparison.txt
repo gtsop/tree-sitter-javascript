@@ -8,6 +8,8 @@ a === a;
 a !== a;
 a > a;
 a < a;
+a >= a;
+a <= a;
 
 ---
 
@@ -29,6 +31,12 @@ a < a;
   ))
   (statement (expression
     (less_than (expression (identifier)) (expression (identifier)))
+  ))
+  (statement (expression
+    (greater_than_or_equal (expression (identifier)) (expression (identifier)))
+  ))
+  (statement (expression
+    (less_than_or_equal (expression (identifier)) (expression (identifier)))
   ))
 )
 
