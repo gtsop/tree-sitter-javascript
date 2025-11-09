@@ -125,6 +125,10 @@
           "named": true
         },
         {
+          "type": "greater_than",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -134,6 +138,10 @@
         },
         {
           "type": "kw_this",
+          "named": true
+        },
+        {
+          "type": "less_than",
           "named": true
         },
         {
@@ -250,35 +258,11 @@
           "named": true
         },
         {
-          "type": "jsx_end",
-          "named": true
-        },
-        {
-          "type": "jsx_self",
-          "named": true
-        },
-        {
-          "type": "jsx_start",
-          "named": true
-        },
-        {
           "type": "keyword",
           "named": true
         },
         {
-          "type": "literal_regex",
-          "named": true
-        },
-        {
           "type": "statement",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "text",
           "named": true
         },
         {
@@ -359,6 +343,21 @@
       "types": [
         {
           "type": "function_param",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "greater_than",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
           "named": true
         }
       ]
@@ -521,6 +520,21 @@
         },
         {
           "type": "attribute_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "less_than",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
           "named": true
         }
       ]
@@ -690,35 +704,11 @@
           "named": true
         },
         {
-          "type": "jsx_end",
-          "named": true
-        },
-        {
-          "type": "jsx_self",
-          "named": true
-        },
-        {
-          "type": "jsx_start",
-          "named": true
-        },
-        {
           "type": "keyword",
           "named": true
         },
         {
-          "type": "literal_regex",
-          "named": true
-        },
-        {
           "type": "statement",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "text",
           "named": true
         },
         {

@@ -23,16 +23,7 @@ module.exports = grammar({
 
     _js_context: ($) =>
       repeat1(
-        choice(
-          $.declaration,
-          $.statement,
-          $.keyword,
-          $.literal_regex,
-          $._full_jsx,
-          $.ts_generic,
-          $.string,
-          $.comment,
-        ),
+        choice($.declaration, $.statement, $.keyword, $.ts_generic, $.comment),
       ),
 
     declaration: ($) => choice($.import, $.function, $.variable),
@@ -55,8 +46,8 @@ module.exports = grammar({
         $.parens_expr,
         $.property_expr,
         $.call_expr,
-        $.jsx_expr,
         $._operation,
+        $.jsx_expr,
       ),
 
     _callable_expr: ($) => choice($.identifier, $.property_expr),
@@ -219,6 +210,7 @@ module.exports = grammar({
       choice(
         $.equal,
         $.greater_than,
+        $.less_than,
         $.not_equal,
         $.strict_equal,
         $.strict_not_equal,
@@ -226,6 +218,7 @@ module.exports = grammar({
 
     equal: ($) => prec.left(1, seq($.expression, "==", $.expression)),
     greater_than: ($) => prec.left(1, seq($.expression, ">", $.expression)),
+    less_than: ($) => prec.left(1, seq($.expression, "<", $.expression)),
     not_equal: ($) => prec.left(1, seq($.expression, "!=", $.expression)),
     strict_equal: ($) => prec.left(1, seq($.expression, "===", $.expression)),
     strict_not_equal: ($) =>

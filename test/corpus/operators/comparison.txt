@@ -7,6 +7,7 @@ a != a;
 a === a;
 a !== a;
 a > a;
+a < a;
 
 ---
 
@@ -25,6 +26,9 @@ a > a;
   ))
   (statement (expression
     (greater_than (expression (identifier)) (expression (identifier)))
+  ))
+  (statement (expression
+    (less_than (expression (identifier)) (expression (identifier)))
   ))
 )
 

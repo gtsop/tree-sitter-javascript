@@ -1,18 +1,19 @@
 =======
-Strings
+literal_strings
 =======
 
-'foo'
-"foo"
-"fo\"o"
-"fo\\o"
-`foo`
+'foo';
+"foo";
+"fo\"o";
+"fo\\o";
+`foo`;
 
 ---
 
 (source_file
-  (string)
-  (string)
-  (string)
-  (string)
-  (string))
+  (statement (expression (literal_string)))
+  (statement (expression (literal_string)))
+  (statement (expression (literal_string)))
+  (statement (expression (literal_string)))
+  (statement (expression (literal_string)))
+)

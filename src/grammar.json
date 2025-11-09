@@ -33,19 +33,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "literal_regex"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_full_jsx"
-          },
-          {
-            "type": "SYMBOL",
             "name": "ts_generic"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "string"
           },
           {
             "type": "SYMBOL",
@@ -150,11 +138,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "jsx_expr"
+          "name": "_operation"
         },
         {
           "type": "SYMBOL",
-          "name": "_operation"
+          "name": "jsx_expr"
         }
       ]
     },
@@ -930,6 +918,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "greater_than"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "less_than"
+        },
+        {
+          "type": "SYMBOL",
           "name": "not_equal"
         },
         {
@@ -955,6 +951,48 @@
           {
             "type": "STRING",
             "value": "=="
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        ]
+      }
+    },
+    "greater_than": {
+      "type": "PREC_LEFT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          },
+          {
+            "type": "STRING",
+            "value": ">"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        ]
+      }
+    },
+    "less_than": {
+      "type": "PREC_LEFT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          },
+          {
+            "type": "STRING",
+            "value": "<"
           },
           {
             "type": "SYMBOL",
