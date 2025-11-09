@@ -121,6 +121,7 @@ module.exports = grammar({
       seq(
         choice($.kw_let, $.kw_const),
         $.identifier,
+        optional($.ts_type_annotation),
         optional(seq(token("="), $.initializer)),
         $._semi,
       ),
@@ -143,10 +144,12 @@ module.exports = grammar({
 
     kw_as: (_) => token("as"),
     kw_const: (_) => token("const"),
+    kw_false: (_) => token("false"),
     kw_from: (_) => token("from"),
     kw_function: (_) => token("function"),
     kw_import: (_) => token("import"),
     kw_let: (_) => token("let"),
+    kw_true: (_) => token("true"),
 
     keyword: ($) =>
       token(
@@ -178,10 +181,19 @@ module.exports = grammar({
     identifier: (_) => token(/[A-Za-z_$][A-Za-z0-9_$]*/),
 
     initializer: ($) =>
-      choice($.dt_number, $.dt_null, $.identifier, $.function),
+      choice(
+        $.dt_number,
+        $.dt_null,
+        $.dt_bool,
+        $.identifier,
+        $.function,
+        $.dt_arrow_fn,
+      ),
 
     dt_number: (_) => token(/[0-9]+/),
     dt_null: (_) => token("null"),
+    dt_arrow_fn: ($) => seq($.function_params, token("=>"), $.function_body),
+    dt_bool: ($) => choice($.kw_true, $.kw_false),
 
     /*
      * RegEx
@@ -260,6 +272,10 @@ module.exports = grammar({
     text: (_) => /[^<]+/,
 
     _semi: (_) => ";",
+
+    ts_type_annotation: ($) => seq(":", choice($.ts_boolean)),
+
+    ts_boolean: (_) => token("boolean"),
   },
 });
 
