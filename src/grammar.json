@@ -702,8 +702,17 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "function_body"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "function_body"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "expression"
+            }
+          ]
         }
       ]
     },
@@ -1924,6 +1933,10 @@
     }
   ],
   "conflicts": [
+    [
+      "function_body",
+      "literal_object"
+    ],
     [
       "_assign_target",
       "function_param"

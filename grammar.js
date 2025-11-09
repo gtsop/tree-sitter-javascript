@@ -10,7 +10,9 @@
 module.exports = grammar({
   name: "javascript",
 
+  conflicts: () => {},
   conflicts: ($) => [
+    [$.function_body, $.literal_object],
     [$._assign_target, $.function_param],
     [$._initializer, $.assign],
     [$.expression, $._callable_expr],
@@ -163,7 +165,11 @@ module.exports = grammar({
       seq($.kw_function, $.function_params, $.function_body),
 
     function_arrow_expr: ($) =>
-      seq($.function_params, token("=>"), $.function_body),
+      seq(
+        $.function_params,
+        token("=>"),
+        choice($.function_body, $.expression),
+      ),
 
     function_name: ($) => $.identifier,
 

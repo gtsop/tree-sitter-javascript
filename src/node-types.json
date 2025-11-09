@@ -374,6 +374,10 @@
       "required": true,
       "types": [
         {
+          "type": "expression",
+          "named": true
+        },
+        {
           "type": "function_body",
           "named": true
         },
