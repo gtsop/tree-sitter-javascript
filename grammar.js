@@ -215,10 +215,14 @@ module.exports = grammar({
 
     _operation: ($) => choice($._comparison_operation),
 
-    _comparison_operation: ($) => choice($.equals, $.not_equals),
+    _comparison_operation: ($) =>
+      choice($.equal, $.not_equal, $.strict_equal, $.strict_not_equal),
 
-    equals: ($) => prec.left(1, seq($.expression, "==", $.expression)),
-    not_equals: ($) => prec.left(1, seq($.expression, "!=", $.expression)),
+    equal: ($) => prec.left(1, seq($.expression, "==", $.expression)),
+    not_equal: ($) => prec.left(1, seq($.expression, "!=", $.expression)),
+    strict_equal: ($) => prec.left(1, seq($.expression, "===", $.expression)),
+    strict_not_equal: ($) =>
+      prec.left(1, seq($.expression, "!==", $.expression)),
 
     /*
      * Comments

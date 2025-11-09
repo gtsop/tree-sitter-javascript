@@ -926,15 +926,23 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "equals"
+          "name": "equal"
         },
         {
           "type": "SYMBOL",
-          "name": "not_equals"
+          "name": "not_equal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "strict_equal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "strict_not_equal"
         }
       ]
     },
-    "equals": {
+    "equal": {
       "type": "PREC_LEFT",
       "value": 1,
       "content": {
@@ -955,7 +963,7 @@
         ]
       }
     },
-    "not_equals": {
+    "not_equal": {
       "type": "PREC_LEFT",
       "value": 1,
       "content": {
@@ -968,6 +976,48 @@
           {
             "type": "STRING",
             "value": "!="
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        ]
+      }
+    },
+    "strict_equal": {
+      "type": "PREC_LEFT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          },
+          {
+            "type": "STRING",
+            "value": "==="
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        ]
+      }
+    },
+    "strict_not_equal": {
+      "type": "PREC_LEFT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          },
+          {
+            "type": "STRING",
+            "value": "!=="
           },
           {
             "type": "SYMBOL",

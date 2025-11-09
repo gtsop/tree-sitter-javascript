@@ -4,15 +4,23 @@ Comparison
 
 a == a;
 a != a;
+a === a;
+a !== a;
 
 ---
 
 (source_file
   (statement (expression
-    (equals (expression (identifier)) (expression (identifier)))
+    (equal (expression (identifier)) (expression (identifier)))
   ))
   (statement (expression
-    (not_equals (expression (identifier)) (expression (identifier)))
+    (not_equal (expression (identifier)) (expression (identifier)))
+  ))
+  (statement (expression
+    (strict_equal (expression (identifier)) (expression (identifier)))
+  ))
+  (statement (expression
+    (strict_not_equal (expression (identifier)) (expression (identifier)))
   ))
 )
 
