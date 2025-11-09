@@ -414,17 +414,11 @@
               "value": "/"
             },
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "[^*/\\n\\\\]"
-                },
-                {
-                  "type": "PATTERN",
-                  "value": "\\\\."
-                }
-              ]
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "PATTERN",
+                "value": "[^*/\\n]"
+              }
             },
             {
               "type": "REPEAT",
@@ -433,11 +427,40 @@
                 "members": [
                   {
                     "type": "PATTERN",
-                    "value": "[^/\\n\\\\]"
+                    "value": "[^/\\n\\\\\\[]+"
                   },
                   {
                     "type": "PATTERN",
                     "value": "\\\\."
+                  },
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "["
+                      },
+                      {
+                        "type": "REPEAT",
+                        "content": {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "PATTERN",
+                              "value": "[^]\\n\\\\]"
+                            },
+                            {
+                              "type": "PATTERN",
+                              "value": "\\\\."
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "]"
+                      }
+                    ]
                   }
                 ]
               }
@@ -451,7 +474,7 @@
               "members": [
                 {
                   "type": "PATTERN",
-                  "value": "[a-zA-Z]+"
+                  "value": "[A-Za-z]+"
                 },
                 {
                   "type": "BLANK"

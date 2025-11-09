@@ -10,7 +10,6 @@
 module.exports = grammar({
   name: "javascript",
 
-  conflicts: () => {},
   conflicts: ($) => [
     [$.function_body, $.literal_object],
     [$._assign_target, $.function_param],
@@ -87,21 +86,35 @@ module.exports = grammar({
     literal_object_key: ($) => $.identifier,
     literal_object_value: ($) => $.expression,
     literal_object_shorthand: ($) => $.identifier,
+
     literal_regex: ($) =>
       token(
         prec(
           1,
           seq(
             "/",
-            // first char: not '*', '/', '\n' (or allow escaped)
-            choice(/[^*/\n\\]/, /\\./),
-            // rest
-            repeat(choice(/[^/\n\\]/, /\\./)),
+            // Disallow starting a comment
+            token.immediate(/[^*/\n]/), // first char isn't '*' or '/' or newline
+            // The rest can be: normal chunks (no '/', '[', '\n', '\'),
+            // escapes, or a full character class that itself allows '/'
+            repeat(
+              choice(
+                /[^/\n\\\[]+/, // plain chunk
+                /\\./, // escape
+                seq(
+                  // character class [...]
+                  "[",
+                  repeat(choice(/[^]\n\\]/, /\\./)), // everything but ']' or escaped
+                  "]",
+                ),
+              ),
+            ),
             "/",
-            optional(/[a-zA-Z]+/),
+            optional(/[A-Za-z]+/), // flags (be permissive; JS has gimsuydv etc.)
           ),
         ),
       ),
+
     literal_string: ($) =>
       choice($._single_string, $._double_string, $._template_string),
 
