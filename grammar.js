@@ -56,6 +56,7 @@ module.exports = grammar({
         $.property_expr,
         $.call_expr,
         $.jsx_expr,
+        $._operation,
       ),
 
     _callable_expr: ($) => choice($.identifier, $.property_expr),
@@ -207,6 +208,17 @@ module.exports = grammar({
     /************************************************************************
      * Statements
      */
+
+    /**
+     * Operations
+     */
+
+    _operation: ($) => choice($._comparison_operation),
+
+    _comparison_operation: ($) => choice($.equals, $.not_equals),
+
+    equals: ($) => prec.left(1, seq($.expression, "==", $.expression)),
+    not_equals: ($) => prec.left(1, seq($.expression, "!=", $.expression)),
 
     /*
      * Comments
