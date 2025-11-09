@@ -2,12 +2,28 @@
 Variables
 =========
 
-let a;
 const a;
+let a;
+let a = null;
+let a = b;
+let a = function(){};
 
 ---
 
 (source_file
-  (declaration (variable (kw_let) (identifier)))
-  (declaration (variable (kw_const) (identifier)))
+  (declaration
+    (variable (kw_const) (identifier))
+  )
+  (declaration
+    (variable (kw_let) (identifier))
+  )
+  (declaration
+    (variable (kw_let) (identifier) (initializer (dt_null)))
+  )
+  (declaration
+    (variable (kw_let) (identifier) (initializer (identifier)))
+  )
+  (declaration
+    (variable (kw_let) (identifier) (initializer (function (kw_function) (function_params) (function_body))))
+  )
 )

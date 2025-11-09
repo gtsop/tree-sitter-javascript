@@ -422,6 +422,30 @@
           "name": "identifier"
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": "="
+                  }
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "initializer"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
           "name": "_semi"
         }
@@ -614,6 +638,18 @@
         {
           "type": "SYMBOL",
           "name": "dt_number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dt_null"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function"
         }
       ]
     },
@@ -622,6 +658,13 @@
       "content": {
         "type": "PATTERN",
         "value": "[0-9]+"
+      }
+    },
+    "dt_null": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "null"
       }
     },
     "regex": {

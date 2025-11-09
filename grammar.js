@@ -117,7 +117,13 @@ module.exports = grammar({
      * Variables
      */
 
-    variable: ($) => seq(choice($.kw_let, $.kw_const), $.identifier, $._semi),
+    variable: ($) =>
+      seq(
+        choice($.kw_let, $.kw_const),
+        $.identifier,
+        optional(seq(token("="), $.initializer)),
+        $._semi,
+      ),
 
     /************************************************************************
      * Statements
@@ -171,9 +177,11 @@ module.exports = grammar({
 
     identifier: (_) => token(/[A-Za-z_$][A-Za-z0-9_$]*/),
 
-    initializer: ($) => choice($.dt_number),
+    initializer: ($) =>
+      choice($.dt_number, $.dt_null, $.identifier, $.function),
 
-    dt_number: ($) => token(/[0-9]+/),
+    dt_number: (_) => token(/[0-9]+/),
+    dt_null: (_) => token("null"),
 
     /*
      * RegEx

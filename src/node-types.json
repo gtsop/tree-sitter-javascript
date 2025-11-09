@@ -225,7 +225,19 @@
       "required": true,
       "types": [
         {
+          "type": "dt_null",
+          "named": true
+        },
+        {
           "type": "dt_number",
+          "named": true
+        },
+        {
+          "type": "function",
+          "named": true
+        },
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -408,6 +420,10 @@
           "named": true
         },
         {
+          "type": "initializer",
+          "named": true
+        },
+        {
           "type": "kw_const",
           "named": true
         },
@@ -477,6 +493,10 @@
   {
     "type": "`",
     "named": false
+  },
+  {
+    "type": "dt_null",
+    "named": true
   },
   {
     "type": "dt_number",
