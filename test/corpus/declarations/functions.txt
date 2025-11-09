@@ -9,6 +9,10 @@ function foo(a,b){}
 function foo(a, ...rest){}
 function foo(...rest){}
 function foo(a = 1){}
+function(){
+  let a;
+  let b;
+}
 
 ---
 
@@ -33,5 +37,11 @@ function foo(a = 1){}
   )
   (declaration
     (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier) (initializer (dt_number)))) (function_body))
+  )
+  (declaration
+    (function (kw_function) (function_params) (function_body
+      (declaration (variable (kw_let) (identifier)))
+      (declaration (variable (kw_let) (identifier)))
+    ))
   )
 )

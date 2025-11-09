@@ -111,7 +111,7 @@ module.exports = grammar({
         seq(token("..."), $.identifier),
       ),
 
-    function_body: ($) => seq(token("{"), token("}")),
+    function_body: ($) => seq(token("{"), optional($._js_context), token("}")),
 
     /**
      * Variables

@@ -115,7 +115,57 @@
   {
     "type": "function_body",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "declaration",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "jsx_end",
+          "named": true
+        },
+        {
+          "type": "jsx_self",
+          "named": true
+        },
+        {
+          "type": "jsx_start",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "text",
+          "named": true
+        },
+        {
+          "type": "ts_generic",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "function_name",
