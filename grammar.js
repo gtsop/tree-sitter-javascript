@@ -11,6 +11,7 @@ module.exports = grammar({
   name: "javascript",
 
   conflicts: ($) => [
+    [$.expression, $._callable_expr],
     [$.expression, $.function_param],
     [$.expression, $.call_expr],
     [$.ts_generic, $.jsx_start],
@@ -39,25 +40,22 @@ module.exports = grammar({
     statement: ($) => seq(choice($.expression), $._semi),
 
     expression: ($) =>
-      prec(
-        1,
-        choice(
-          $.function_arrow_expr,
-          $.function_expr,
-          $.identifier,
-          $.kw_this,
-          $.literal_array,
-          $.literal_boolean,
-          $.literal_null,
-          $.literal_numeric,
-          $.literal_object,
-          $.literal_regex,
-          $.literal_string,
-          $.parens_expr,
-          $.property_expr,
-          $.call_expr,
-          $.jsx_expr,
-        ),
+      choice(
+        $.function_arrow_expr,
+        $.function_expr,
+        $.identifier,
+        $.kw_this,
+        $.literal_array,
+        $.literal_boolean,
+        $.literal_null,
+        $.literal_numeric,
+        $.literal_object,
+        $.literal_regex,
+        $.literal_string,
+        $.parens_expr,
+        $.property_expr,
+        $.call_expr,
+        $.jsx_expr,
       ),
 
     _callable_expr: ($) => choice($.identifier, $.property_expr),
