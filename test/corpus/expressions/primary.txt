@@ -14,6 +14,7 @@ this;
 (a);
 (function(){});
 (()=>{});
+a.b;
 
 ---
 
@@ -30,4 +31,5 @@ this;
   (statement (expression (parens_expr (expression (identifier)))))
   (statement (expression (parens_expr (expression (function_expr (kw_function) (function_params) (function_body))))))
   (statement (expression (parens_expr (expression (function_arrow_expr (function_params) (function_body))))))
+  (statement (expression (property_expr (identifier) (identifier))))
 )

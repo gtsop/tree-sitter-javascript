@@ -12,6 +12,7 @@ module.exports = grammar({
 
   conflicts: ($) => [
     [$.expression, $.function_param],
+    [$.expression, $.call_expr],
     [$.ts_generic, $.jsx_start],
     [$.jsx_start, $.jsx_self],
   ],
@@ -51,9 +52,15 @@ module.exports = grammar({
         $.literal_regex,
         $.literal_string,
         $.parens_expr,
+        $.property_expr,
+        $.call_expr,
       ),
 
     parens_expr: ($) => seq("(", $.expression, ")"),
+    property_expr: ($) => seq($.identifier, token("."), $.identifier),
+    call_expr: ($) => seq($.identifier, $.call_expr_params),
+    call_expr_params: ($) =>
+      seq("(", optional(repeat(seq($.expression, optional(",")))), ")"),
 
     literal_array: (_) => seq("[", "]"),
     literal_null: (_) => token("null"),

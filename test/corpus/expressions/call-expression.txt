@@ -1,0 +1,15 @@
+===============
+Call Expression
+===============
+
+a();
+a(1);
+a(1, a);
+
+---
+
+(source_file
+  (statement (expression (call_expr (identifier) (call_expr_params))))
+  (statement (expression (call_expr (identifier) (call_expr_params (expression (literal_numeric))))))
+  (statement (expression (call_expr (identifier) (call_expr_params (expression (literal_numeric)) (expression (identifier))))))
+)
