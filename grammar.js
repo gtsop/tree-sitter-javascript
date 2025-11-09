@@ -11,6 +11,7 @@ module.exports = grammar({
   name: "javascript",
 
   conflicts: ($) => [
+    [$._assign_target, $.function_param],
     [$._initializer, $.assign],
     [$.expression, $._callable_expr],
     [$.expression, $.function_param],
@@ -210,11 +211,13 @@ module.exports = grammar({
     _assignment_operation: ($) =>
       choice($.assign, $.assign_add, $.assign_sub, $.assign_mul, $.assign_div),
 
-    assign: ($) => seq($.identifier, "=", $.expression),
-    assign_add: ($) => seq($.identifier, "+=", $.expression),
-    assign_sub: ($) => seq($.identifier, "-=", $.expression),
-    assign_mul: ($) => seq($.identifier, "*=", $.expression),
-    assign_div: ($) => seq($.identifier, "/=", $.expression),
+    assign: ($) => seq($._assign_target, "=", $.expression),
+    assign_add: ($) => seq($._assign_target, "+=", $.expression),
+    assign_sub: ($) => seq($._assign_target, "-=", $.expression),
+    assign_mul: ($) => seq($._assign_target, "*=", $.expression),
+    assign_div: ($) => seq($._assign_target, "/=", $.expression),
+
+    _assign_target: ($) => choice($.identifier, $.property_expr),
 
     _comparison_operation: ($) =>
       choice(

@@ -8,6 +8,8 @@ a -= a;
 a *= a;
 a /= a;
 
+a.b = a;
+
 ---
 
 (source_file
@@ -25,5 +27,8 @@ a /= a;
   ))
   (statement (expression
     (assign_div (identifier) (expression (identifier)))
+  ))
+  (statement (expression
+    (assign (property_expr (identifier) (identifier)) (expression (identifier)))
   ))
 )

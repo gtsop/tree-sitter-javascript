@@ -919,7 +919,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "_assign_target"
         },
         {
           "type": "STRING",
@@ -936,7 +936,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "_assign_target"
         },
         {
           "type": "STRING",
@@ -953,7 +953,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "_assign_target"
         },
         {
           "type": "STRING",
@@ -970,7 +970,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "_assign_target"
         },
         {
           "type": "STRING",
@@ -987,7 +987,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "identifier"
+          "name": "_assign_target"
         },
         {
           "type": "STRING",
@@ -996,6 +996,19 @@
         {
           "type": "SYMBOL",
           "name": "expression"
+        }
+      ]
+    },
+    "_assign_target": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "property_expr"
         }
       ]
     },
@@ -1887,6 +1900,10 @@
     }
   ],
   "conflicts": [
+    [
+      "_assign_target",
+      "function_param"
+    ],
     [
       "_initializer",
       "assign"
