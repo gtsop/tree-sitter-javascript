@@ -39,6 +39,10 @@
         {
           "type": "import",
           "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
         }
       ]
     }
@@ -392,6 +396,25 @@
     "fields": {}
   },
   {
+    "type": "variable",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "kw_let",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "\"",
     "named": false
   },
@@ -481,6 +504,10 @@
   },
   {
     "type": "kw_import",
+    "named": true
+  },
+  {
+    "type": "kw_let",
     "named": true
   },
   {

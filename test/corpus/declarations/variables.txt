@@ -2,6 +2,12 @@
 Variables
 =========
 
+let a;
+
 ---
 
-(source_file)
+(source_file
+  (declaration
+    (variable (kw_let) (identifier))
+  )
+)

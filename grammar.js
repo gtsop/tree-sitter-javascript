@@ -33,7 +33,7 @@ module.exports = grammar({
         ),
       ),
 
-    declaration: ($) => choice($.import, $.function),
+    declaration: ($) => choice($.import, $.function, $.variable),
 
     /************************************************************************
      * DECLARATIONS
@@ -85,7 +85,7 @@ module.exports = grammar({
     import_module_specifier: ($) => $.string,
 
     /**
-     * Functions
+     * Function
      */
 
     function: ($) =>
@@ -113,8 +113,14 @@ module.exports = grammar({
 
     function_body: ($) => seq(token("{"), token("}")),
 
+    /**
+     * Variables
+     */
+
+    variable: ($) => seq($.kw_let, $.identifier, $._semi),
+
     /************************************************************************
-     * DECLARATIONS
+     * Statements
      */
 
     /*
@@ -133,6 +139,7 @@ module.exports = grammar({
     kw_from: (_) => token("from"),
     kw_function: (_) => token("function"),
     kw_import: (_) => token("import"),
+    kw_let: (_) => token("let"),
 
     keyword: ($) =>
       token(
@@ -152,7 +159,6 @@ module.exports = grammar({
           "in",
           "interface",
           "keyof",
-          "let",
           "new",
           "of",
           "return",

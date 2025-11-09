@@ -64,6 +64,10 @@
         {
           "type": "SYMBOL",
           "name": "function"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "variable"
         }
       ]
     },
@@ -397,6 +401,23 @@
         }
       ]
     },
+    "variable": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "kw_let"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_semi"
+        }
+      ]
+    },
     "comment": {
       "type": "CHOICE",
       "members": [
@@ -465,6 +486,13 @@
         "value": "import"
       }
     },
+    "kw_let": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "let"
+      }
+    },
     "keyword": {
       "type": "TOKEN",
       "content": {
@@ -529,10 +557,6 @@
           {
             "type": "STRING",
             "value": "keyof"
-          },
-          {
-            "type": "STRING",
-            "value": "let"
           },
           {
             "type": "STRING",

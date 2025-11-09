@@ -16,7 +16,6 @@ for
 if
 in
 interface
-let
 new
 of
 return
@@ -29,7 +28,6 @@ while
 ---
 
 (source_file
-  (keyword)
   (keyword)
   (keyword)
   (keyword)
