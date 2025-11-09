@@ -216,9 +216,16 @@ module.exports = grammar({
     _operation: ($) => choice($._comparison_operation),
 
     _comparison_operation: ($) =>
-      choice($.equal, $.not_equal, $.strict_equal, $.strict_not_equal),
+      choice(
+        $.equal,
+        $.greater_than,
+        $.not_equal,
+        $.strict_equal,
+        $.strict_not_equal,
+      ),
 
     equal: ($) => prec.left(1, seq($.expression, "==", $.expression)),
+    greater_than: ($) => prec.left(1, seq($.expression, ">", $.expression)),
     not_equal: ($) => prec.left(1, seq($.expression, "!=", $.expression)),
     strict_equal: ($) => prec.left(1, seq($.expression, "===", $.expression)),
     strict_not_equal: ($) =>

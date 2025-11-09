@@ -6,6 +6,7 @@ a == a;
 a != a;
 a === a;
 a !== a;
+a > a;
 
 ---
 
@@ -21,6 +22,9 @@ a !== a;
   ))
   (statement (expression
     (strict_not_equal (expression (identifier)) (expression (identifier)))
+  ))
+  (statement (expression
+    (greater_than (expression (identifier)) (expression (identifier)))
   ))
 )
 
