@@ -181,7 +181,11 @@ module.exports = grammar({
 
     function_param: ($) =>
       choice(
-        seq($.identifier, optional(seq(token("="), $._initializer))),
+        seq(
+          $.identifier,
+          optional($.ts_type_annotation),
+          optional(seq(token("="), $._initializer)),
+        ),
         seq(token("..."), $.identifier),
       ),
 
@@ -324,9 +328,10 @@ module.exports = grammar({
 
     ts_type_annotation: ($) => seq(":", $._ts_type),
 
-    _ts_type: ($) => choice($.ts_boolean, $.ts_user_type),
+    _ts_type: ($) => choice($.ts_boolean, $.ts_number, $.ts_user_type),
 
     ts_boolean: (_) => token("boolean"),
+    ts_number: (_) => token("number"),
 
     ts_user_type: ($) =>
       seq(token(/[A-Z][a-zA-Z]+/), optional($._ts_type_arguments)),

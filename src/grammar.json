@@ -763,6 +763,18 @@
               "type": "CHOICE",
               "members": [
                 {
+                  "type": "SYMBOL",
+                  "name": "ts_type_annotation"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
                   "type": "SEQ",
                   "members": [
                     {
@@ -1487,6 +1499,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "ts_number"
+        },
+        {
+          "type": "SYMBOL",
           "name": "ts_user_type"
         }
       ]
@@ -1496,6 +1512,13 @@
       "content": {
         "type": "STRING",
         "value": "boolean"
+      }
+    },
+    "ts_number": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "number"
       }
     },
     "ts_user_type": {

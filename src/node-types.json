@@ -310,6 +310,10 @@
         {
           "type": "identifier",
           "named": true
+        },
+        {
+          "type": "ts_type_annotation",
+          "named": true
         }
       ]
     }
@@ -716,6 +720,10 @@
           "named": true
         },
         {
+          "type": "ts_number",
+          "named": true
+        },
+        {
           "type": "ts_user_type",
           "named": true
         }
@@ -929,6 +937,10 @@
   },
   {
     "type": "ts_boolean",
+    "named": true
+  },
+  {
+    "type": "ts_number",
     "named": true
   },
   {
