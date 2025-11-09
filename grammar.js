@@ -11,6 +11,7 @@ module.exports = grammar({
   name: "javascript",
 
   conflicts: ($) => [
+    [$._initializer, $.assign],
     [$.expression, $._callable_expr],
     [$.expression, $.function_param],
     [$.expression, $.call_expr],
@@ -176,7 +177,7 @@ module.exports = grammar({
         seq(
           $.identifier,
           optional($.ts_type_annotation),
-          optional(seq(token("="), $._initializer)),
+          optional($._initializer),
         ),
         seq(token("..."), $.identifier),
       ),
@@ -192,7 +193,7 @@ module.exports = grammar({
         choice($.kw_let, $.kw_const),
         $.identifier,
         optional($.ts_type_annotation),
-        optional(seq(token("="), $._initializer)),
+        optional($._initializer),
         $._semi,
       ),
 
@@ -204,7 +205,11 @@ module.exports = grammar({
      * Operations
      */
 
-    _operation: ($) => choice($._comparison_operation),
+    _operation: ($) => choice($._comparison_operation, $._assignment_operation),
+
+    _assignment_operation: ($) => choice($.assign),
+
+    assign: ($) => seq($.identifier, "=", $.expression),
 
     _comparison_operation: ($) =>
       choice(
@@ -281,7 +286,7 @@ module.exports = grammar({
 
     identifier: (_) => token(/[A-Za-z_$][A-Za-z0-9_$]*/),
 
-    _initializer: ($) => $.expression,
+    _initializer: ($) => seq(token("="), $.expression),
 
     /*
      * RegEx

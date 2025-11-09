@@ -1,0 +1,13 @@
+==========
+Assignment
+==========
+
+a = a;
+
+---
+
+(source_file
+  (statement (expression
+    (assign (identifier) (expression (identifier)))
+  ))
+)

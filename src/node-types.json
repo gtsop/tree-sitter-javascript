@@ -1,5 +1,24 @@
 [
   {
+    "type": "assign",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "attribute_name",
     "named": true,
     "fields": {}
@@ -108,6 +127,10 @@
       "multiple": false,
       "required": false,
       "types": [
+        {
+          "type": "assign",
+          "named": true
+        },
         {
           "type": "call_expr",
           "named": true
