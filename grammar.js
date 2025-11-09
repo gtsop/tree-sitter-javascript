@@ -22,18 +22,33 @@ module.exports = grammar({
       repeat1(
         choice(
           $.declaration,
-          // $.statement,
+          $.statement,
           $.string,
           $.comment,
           $.keyword,
           $.regex,
-          $.identifier,
           $._full_jsx,
           $.ts_generic,
         ),
       ),
 
     declaration: ($) => choice($.import, $.function, $.variable),
+
+    statement: ($) => seq(choice($.expression), $._semi),
+
+    expression: ($) =>
+      choice(
+        $.identifier,
+        $.kw_this,
+        $.literal_array,
+        $.literal_numeric,
+        $.literal_string,
+      ),
+
+    literal_array: (_) => seq("[", "]"),
+    literal_numeric: (_) => token(/[0-9]+/),
+    literal_string: ($) =>
+      choice($._single_string, $._double_string, $._template_string),
 
     /************************************************************************
      * DECLARATIONS
@@ -149,6 +164,7 @@ module.exports = grammar({
     kw_function: (_) => token("function"),
     kw_import: (_) => token("import"),
     kw_let: (_) => token("let"),
+    kw_this: (_) => token("this"),
     kw_true: (_) => token("true"),
 
     keyword: ($) =>
@@ -287,4 +303,3 @@ module.exports = grammar({
     ts_type_param: ($) => choice($.ts_user_type),
   },
 });
-

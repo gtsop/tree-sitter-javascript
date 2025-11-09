@@ -25,6 +25,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "statement"
+          },
+          {
+            "type": "SYMBOL",
             "name": "string"
           },
           {
@@ -38,10 +42,6 @@
           {
             "type": "SYMBOL",
             "name": "regex"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "identifier"
           },
           {
             "type": "SYMBOL",
@@ -68,6 +68,86 @@
         {
           "type": "SYMBOL",
           "name": "variable"
+        }
+      ]
+    },
+    "statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "expression"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_semi"
+        }
+      ]
+    },
+    "expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "kw_this"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "literal_array"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "literal_numeric"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "literal_string"
+        }
+      ]
+    },
+    "literal_array": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "literal_numeric": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[0-9]+"
+      }
+    },
+    "literal_string": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_single_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_double_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_template_string"
         }
       ]
     },
@@ -562,6 +642,13 @@
       "content": {
         "type": "STRING",
         "value": "let"
+      }
+    },
+    "kw_this": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "this"
       }
     },
     "kw_true": {

@@ -1,0 +1,19 @@
+===================
+Primary Expressions
+===================
+
+a;
+1;
+"hi";
+this;
+[];
+
+---
+
+(source_file
+  (statement (expression (identifier)))
+  (statement (expression (literal_numeric)))
+  (statement (expression (literal_string)))
+  (statement (expression (kw_this)))
+  (statement (expression (literal_array)))
+)
