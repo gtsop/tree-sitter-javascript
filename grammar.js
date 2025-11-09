@@ -273,9 +273,18 @@ module.exports = grammar({
 
     _semi: (_) => ";",
 
-    ts_type_annotation: ($) => seq(":", choice($.ts_boolean)),
+    ts_type_annotation: ($) => seq(":", $._ts_type),
+
+    _ts_type: ($) => choice($.ts_boolean, $.ts_user_type),
 
     ts_boolean: (_) => token("boolean"),
+
+    ts_user_type: ($) =>
+      seq(token(/[A-Z][a-zA-Z]+/), optional($._ts_type_arguments)),
+
+    _ts_type_arguments: ($) => seq("<", $.ts_type_param, ">"),
+
+    ts_type_param: ($) => choice($.ts_user_type),
   },
 });
 

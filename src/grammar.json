@@ -1162,13 +1162,21 @@
           "value": ":"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "ts_boolean"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_ts_type"
+        }
+      ]
+    },
+    "_ts_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "ts_boolean"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ts_user_type"
         }
       ]
     },
@@ -1178,6 +1186,56 @@
         "type": "STRING",
         "value": "boolean"
       }
+    },
+    "ts_user_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "[A-Z][a-zA-Z]+"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_ts_type_arguments"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "_ts_type_arguments": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ts_type_param"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
+    },
+    "ts_type_param": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "ts_user_type"
+        }
+      ]
     }
   },
   "extras": [

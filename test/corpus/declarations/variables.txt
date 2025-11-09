@@ -9,6 +9,8 @@ let a = b;
 let a = function(){};
 let a = () => {};
 let a: boolean = false;
+let a: MyType = false;
+let a: MyType<Generic> = false;
 
 ---
 
@@ -33,5 +35,11 @@ let a: boolean = false;
   )
   (declaration
     (variable (kw_let) (identifier) (ts_type_annotation (ts_boolean)) (initializer (dt_bool (kw_false))))
+  )
+  (declaration
+    (variable (kw_let) (identifier) (ts_type_annotation (ts_user_type)) (initializer (dt_bool (kw_false))))
+  )
+  (declaration
+    (variable (kw_let) (identifier) (ts_type_annotation (ts_user_type (ts_type_param (ts_user_type)))) (initializer (dt_bool (kw_false))))
   )
 )
