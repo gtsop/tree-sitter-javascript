@@ -540,6 +540,10 @@
       "required": false,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "literal_object_key",
           "named": true
         },

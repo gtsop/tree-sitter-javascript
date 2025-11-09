@@ -70,7 +70,15 @@ module.exports = grammar({
       seq(
         "{",
         optional(
-          repeat(seq($.literal_object_key, ":", $.literal_object_value)),
+          repeat(
+            seq(
+              choice(
+                $.comment,
+                seq($.literal_object_key, ":", $.literal_object_value),
+              ),
+              optional(","),
+            ),
+          ),
         ),
         "}",
       ),
