@@ -39,6 +39,10 @@
           "named": true
         },
         {
+          "type": "object_binding",
+          "named": true
+        },
+        {
           "type": "property_expr",
           "named": true
         }
@@ -63,6 +67,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "object_binding",
           "named": true
         },
         {
@@ -93,6 +101,10 @@
           "named": true
         },
         {
+          "type": "object_binding",
+          "named": true
+        },
+        {
           "type": "property_expr",
           "named": true
         }
@@ -117,6 +129,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "object_binding",
           "named": true
         },
         {
@@ -147,6 +163,10 @@
           "named": true
         },
         {
+          "type": "object_binding",
+          "named": true
+        },
+        {
           "type": "property_expr",
           "named": true
         }
@@ -167,6 +187,21 @@
         },
         {
           "type": "literal_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "bind_as",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -895,6 +930,29 @@
       "types": [
         {
           "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "object_binding",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "assign",
+          "named": true
+        },
+        {
+          "type": "bind_as",
+          "named": true
+        },
+        {
+          "type": "identifier",
           "named": true
         }
       ]

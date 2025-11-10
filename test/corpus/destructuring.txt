@@ -8,6 +8,12 @@ Destructuring
 [a, ...rest] = a;
 [a = a] = a;
 
+({ a } = a);
+({ a, b } = a);
+({ a: a1 } = a);
+({ a = a } = a);
+({ ...rest } = a);
+
 ---
 
 (source_file
@@ -26,4 +32,19 @@ Destructuring
   (statement (expression
     (assign (array_binding (assign (identifier) (expression (identifier)))) (expression (identifier)))
   ))
+  (statement (expression (parens_expr (expression
+    (assign (object_binding (identifier)) (expression (identifier)))
+  ))))
+  (statement (expression (parens_expr (expression
+    (assign (object_binding (identifier) (identifier)) (expression (identifier)))
+  ))))
+  (statement (expression (parens_expr (expression
+    (assign (object_binding (bind_as (identifier) (identifier))) (expression (identifier)))
+  ))))
+  (statement (expression (parens_expr (expression
+    (assign (object_binding (assign (identifier) (expression (identifier)))) (expression (identifier)))
+  ))))
+  (statement (expression (parens_expr (expression
+    (assign (object_binding (identifier)) (expression (identifier)))
+  ))))
 )
