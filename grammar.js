@@ -33,7 +33,7 @@ module.exports = grammar({
         choice($.statement, $.function, $.keyword, $.ts_generic, $.comment),
       ),
 
-    statement: ($) => seq(choice($.expression, $.declaration), $._semi),
+    statement: ($) => seq(choice($.declaration, $.expression), $._semi),
 
     declaration: ($) => choice($.import, $.variable),
 
@@ -182,7 +182,7 @@ module.exports = grammar({
     variable: ($) =>
       seq(
         choice($.kw_let, $.kw_const),
-        $.identifier,
+        choice($.identifier, $.array_binding),
         optional($.ts_type_annotation),
         optional($._initializer),
       ),

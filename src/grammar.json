@@ -50,11 +50,11 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "expression"
+              "name": "declaration"
             },
             {
               "type": "SYMBOL",
-              "name": "declaration"
+              "name": "expression"
             }
           ]
         },
@@ -811,8 +811,17 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "array_binding"
+            }
+          ]
         },
         {
           "type": "CHOICE",

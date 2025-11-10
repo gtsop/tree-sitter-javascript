@@ -1083,6 +1083,10 @@
       "required": true,
       "types": [
         {
+          "type": "array_binding",
+          "named": true
+        },
+        {
           "type": "expression",
           "named": true
         },
