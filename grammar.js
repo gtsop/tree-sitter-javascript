@@ -12,6 +12,8 @@ module.exports = grammar({
   name: "javascript",
 
   conflicts: ($) => [
+    [$.array_binding, $.literal_array],
+    [$.object_binding, $.literal_object],
     [$.function_param, $._assignment_operation],
     [$.bind_as, $.literal_object_key],
     [$.object_binding, $.literal_object_shorthand],
@@ -168,15 +170,14 @@ module.exports = grammar({
 
     function_param: ($) =>
       choice(
-        choice(
-          seq(
-            $.identifier,
-            optional($.ts_type_annotation),
-            optional($._initializer),
-          ),
-          $.assign,
+        seq(
+          $.identifier,
+          optional($.ts_type_annotation),
+          optional($._initializer),
         ),
         seq(token("..."), $.identifier),
+        $.object_binding,
+        $.array_binding,
       ),
 
     function_body: ($) => seq(token("{"), optional($._js_context), token("}")),

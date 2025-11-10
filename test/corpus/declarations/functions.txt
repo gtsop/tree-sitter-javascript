@@ -12,6 +12,7 @@ function foo (){
   let a;
 }
 function foo(a: number){}
+function foo({ a }) {}
 
 ---
 
@@ -26,4 +27,5 @@ function foo(a: number){}
     (statement (declaration (variable (kw_let) (identifier))))
   ))
   (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier) (ts_type_annotation (ts_number)))) (function_body))
+  (function (kw_function) (function_name (identifier)) (function_params (function_param (object_binding (identifier)))) (function_body))
 )

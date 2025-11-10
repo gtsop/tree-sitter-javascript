@@ -535,7 +535,7 @@
       "required": true,
       "types": [
         {
-          "type": "assign",
+          "type": "array_binding",
           "named": true
         },
         {
@@ -544,6 +544,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "object_binding",
           "named": true
         },
         {

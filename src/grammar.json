@@ -713,44 +713,35 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
-              "type": "SEQ",
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "CHOICE",
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "identifier"
+                  "name": "ts_type_annotation"
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "ts_type_annotation"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_initializer"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
+                  "type": "BLANK"
                 }
               ]
             },
             {
-              "type": "SYMBOL",
-              "name": "assign"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_initializer"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             }
           ]
         },
@@ -769,6 +760,14 @@
               "name": "identifier"
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "object_binding"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "array_binding"
         }
       ]
     },
@@ -2132,6 +2131,14 @@
     }
   ],
   "conflicts": [
+    [
+      "array_binding",
+      "literal_array"
+    ],
+    [
+      "object_binding",
+      "literal_object"
+    ],
     [
       "function_param",
       "_assignment_operation"
