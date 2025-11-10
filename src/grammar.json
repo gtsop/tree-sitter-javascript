@@ -976,11 +976,32 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "array_binding"
+        },
+        {
+          "type": "SYMBOL",
           "name": "identifier"
         },
         {
           "type": "SYMBOL",
           "name": "property_expr"
+        }
+      ]
+    },
+    "array_binding": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
       ]
     },
@@ -1950,6 +1971,10 @@
     }
   ],
   "conflicts": [
+    [
+      "array_binding",
+      "expression"
+    ],
     [
       "jsx_name",
       "ts_generic"
