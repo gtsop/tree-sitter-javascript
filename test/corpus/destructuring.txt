@@ -3,11 +3,15 @@ Destructuring
 =============
 
 [a] = a;
+[a, b] = a;
 
 ---
 
 (source_file
   (statement (expression
     (assign (array_binding (identifier)) (expression (identifier)))
+  ))
+  (statement (expression
+    (assign (array_binding (identifier) (identifier)) (expression (identifier)))
   ))
 )
