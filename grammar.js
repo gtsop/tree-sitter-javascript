@@ -215,7 +215,8 @@ module.exports = grammar({
     _assign_target: ($) =>
       choice($.array_binding, $.identifier, $.property_expr),
 
-    array_binding: ($) => seq("[", $.identifier, "]"),
+    array_binding: ($) =>
+      seq("[", repeat(seq($.identifier, optional(","))), "]"),
 
     _comparison_operation: ($) =>
       choice(
