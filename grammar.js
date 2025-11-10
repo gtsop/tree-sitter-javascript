@@ -216,7 +216,16 @@ module.exports = grammar({
       choice($.array_binding, $.identifier, $.property_expr),
 
     array_binding: ($) =>
-      seq("[", repeat(seq($.identifier, optional(","))), "]"),
+      seq(
+        "[",
+        repeat(
+          seq(
+            choice(seq(optional(token("...")), $.identifier), token(",")),
+            optional(","),
+          ),
+        ),
+        "]",
+      ),
 
     _comparison_operation: ($) =>
       choice(
