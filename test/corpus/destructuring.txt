@@ -13,6 +13,7 @@ Destructuring
 ({ a: a1 } = a);
 ({ a = a } = a);
 ({ ...rest } = a);
+({ a: a1 = a } = a);
 
 ---
 
@@ -46,5 +47,8 @@ Destructuring
   ))))
   (statement (expression (parens_expr (expression
     (assign (object_binding (identifier)) (expression (identifier)))
+  ))))
+  (statement (expression (parens_expr (expression
+    (assign (object_binding (bind_as (identifier) (assign (identifier) (expression (identifier))))) (expression (identifier)))
   ))))
 )

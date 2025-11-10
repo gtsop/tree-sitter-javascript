@@ -249,7 +249,7 @@ module.exports = grammar({
         "}",
       ),
 
-    bind_as: ($) => seq($.identifier, ":", $.identifier),
+    bind_as: ($) => seq($.identifier, ":", choice($.identifier, $.assign)),
 
     _comparison_operation: ($) =>
       choice(
