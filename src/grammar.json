@@ -21,11 +21,11 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "declaration"
+            "name": "statement"
           },
           {
             "type": "SYMBOL",
-            "name": "statement"
+            "name": "function"
           },
           {
             "type": "SYMBOL",
@@ -42,23 +42,6 @@
         ]
       }
     },
-    "declaration": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "import"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "function"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "variable"
-        }
-      ]
-    },
     "statement": {
       "type": "SEQ",
       "members": [
@@ -68,12 +51,29 @@
             {
               "type": "SYMBOL",
               "name": "expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "declaration"
             }
           ]
         },
         {
           "type": "SYMBOL",
           "name": "_semi"
+        }
+      ]
+    },
+    "declaration": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "import"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "variable"
         }
       ]
     },
@@ -436,10 +436,6 @@
         {
           "type": "SYMBOL",
           "name": "import_module_specifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_semi"
         }
       ]
     },
@@ -841,10 +837,6 @@
               "type": "BLANK"
             }
           ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_semi"
         }
       ]
     },

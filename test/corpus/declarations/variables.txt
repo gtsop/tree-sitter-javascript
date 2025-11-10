@@ -3,43 +3,56 @@ Variables
 =========
 
 const a;
-let a;
-let a = null;
-let a = b;
-let a = function(){};
-let a = () => {};
-let a: boolean = false;
-let a: MyType = false;
-let a: MyType<Generic> = false;
+//let a;
+//let a = null;
+//let a = b;
+//let a = function(){};
+//let a = () => {};
+//let a: boolean = false;
+//let a: MyType = false;
+//let a: MyType<Generic> = false;
+//let [a] = a;
 
 ---
 
 (source_file
-  (declaration
+  (statement (declaration
     (variable (kw_const) (identifier))
-  )
-  (declaration
-    (variable (kw_let) (identifier))
-  )
-  (declaration
-    (variable (kw_let) (identifier) (expression (literal_null)))
-  )
-  (declaration
-    (variable (kw_let) (identifier) (expression (identifier)))
-  )
-  (declaration
-    (variable (kw_let) (identifier) (expression (function_expr (kw_function) (function_params) (function_body))))
-  )
-  (declaration
-    (variable (kw_let) (identifier) (expression (function_arrow_expr (function_params) (function_body))))
-  )
-  (declaration
-    (variable (kw_let) (identifier) (ts_type_annotation (ts_boolean)) (expression (literal_boolean (kw_false))))
-  )
-  (declaration
-    (variable (kw_let) (identifier) (ts_type_annotation (ts_user_type)) (expression (literal_boolean (kw_false))))
-  )
-  (declaration
-    (variable (kw_let) (identifier) (ts_type_annotation (ts_user_type (ts_type_param (ts_user_type)))) (expression (literal_boolean (kw_false))))
-  )
+  ))
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  ;(statement (declaration
+  ;  (variable (kw_let) (identifier))
+  ;))
+  ;(statement (declaration
+  ;  (variable (kw_let) (identifier) (expression (literal_null)))
+  ;))
+  ;(statement (declaration
+  ;  (variable (kw_let) (identifier) (expression (identifier)))
+  ;))
+  ;(statement (declaration
+  ;  (variable (kw_let) (identifier) (expression (function_expr (kw_function) (function_params) (function_body))))
+  ;))
+  ;(statement (declaration
+  ;  (variable (kw_let) (identifier) (expression (function_arrow_expr (function_params) (function_body))))
+  ;))
+  ;(statement (declaration
+  ;  (variable (kw_let) (identifier) (ts_type_annotation (ts_boolean)) (expression (literal_boolean (kw_false))))
+  ;))
+  ;(statement (declaration
+  ;  (variable (kw_let) (identifier) (ts_type_annotation (ts_user_type)) (expression (literal_boolean (kw_false))))
+  ;))
+  ;(statement (declaration
+  ;  (variable (kw_let) (identifier) (ts_type_annotation (ts_user_type (ts_type_param (ts_user_type)))) (expression (literal_boolean (kw_false))))
+  ;))
+  ;(statement (declaration
+  ;  (variable (kw_let) (array_bind (identifier)) (identifier))
+  ;))
 )

@@ -14,33 +14,33 @@ import defailt, * as target, { one } from 'module';
 ---
 
 (source_file
-  (declaration
+  (statement (declaration
     (import (kw_import) (import_clause (import_name (identifier))) (kw_from) (import_module_specifier (string)))
-  )
-  (declaration
+  ))
+  (statement (declaration
     (import (kw_import) (import_clause (import_namespace) (kw_as) (import_name (identifier))) (kw_from) (import_module_specifier (string)))
-  )
-  (declaration
+  ))
+  (statement (declaration
     (import (kw_import) (import_clause (import_name (identifier))) (kw_from) (import_module_specifier (string)))
-  )
-  (declaration
+  ))
+  (statement (declaration
     (import (kw_import) (import_clause (identifier) (kw_as) (import_name (identifier))) (kw_from) (import_module_specifier (string)))
-  )
-  (declaration
+  ))
+  (statement (declaration
     (import (kw_import) (import_clause (import_name (identifier)) (import_name (identifier))) (kw_from) (import_module_specifier (string)))
-  )
-  (declaration
+  ))
+  (statement (declaration
     (import (kw_import) (import_clause (identifier) (kw_as) (import_name (identifier)) (import_name (identifier))) (kw_from) (import_module_specifier (string)))
-  )
-  (declaration
+  ))
+  (statement (declaration
     (import (kw_import) (import_clause (string) (kw_as) (import_name (identifier))) (kw_from) (import_module_specifier (string)))
-  )
-  (declaration
+  ))
+  (statement (declaration
     (import (kw_import) (import_clause
       (import_name (identifier))
       (import_namespace) (kw_as) (import_name (identifier))
       (import_name (identifier))
     )
     (kw_from) (import_module_specifier (string)))
-  )
+  ))
 )

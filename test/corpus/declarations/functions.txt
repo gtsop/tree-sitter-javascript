@@ -10,38 +10,20 @@ function foo(...rest){}
 function foo(a = 1){}
 function foo (){
   let a;
-  let b;
 }
 function foo(a: number){}
 
 ---
 
 (source_file
-  (declaration
-    (function (kw_function) (function_name (identifier)) (function_params) (function_body))
-  )
-  (declaration
-    (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier))) (function_body))
-  )
-  (declaration
-    (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier)) (function_param (identifier))) (function_body))
-  )
-  (declaration
-    (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier)) (function_param (identifier))) (function_body))
-  )
-  (declaration
-    (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier))) (function_body))
-  )
-  (declaration
-    (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier) (expression (literal_numeric)))) (function_body))
-  )
-  (declaration
-    (function (kw_function) (function_name (identifier)) (function_params) (function_body
-      (declaration (variable (kw_let) (identifier)))
-      (declaration (variable (kw_let) (identifier)))
-    ))
-  )
-  (declaration
-    (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier) (ts_type_annotation (ts_number)))) (function_body))
-  )
+  (function (kw_function) (function_name (identifier)) (function_params) (function_body))
+  (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier))) (function_body))
+  (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier)) (function_param (identifier))) (function_body))
+  (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier)) (function_param (identifier))) (function_body))
+  (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier))) (function_body))
+  (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier) (expression (literal_numeric)))) (function_body))
+  (function (kw_function) (function_name (identifier)) (function_params) (function_body
+    (statement (declaration (variable (kw_let) (identifier))))
+  ))
+  (function (kw_function) (function_name (identifier)) (function_params (function_param (identifier) (ts_type_annotation (ts_number)))) (function_body))
 )

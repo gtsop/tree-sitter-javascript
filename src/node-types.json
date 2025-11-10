@@ -224,10 +224,6 @@
       "required": true,
       "types": [
         {
-          "type": "function",
-          "named": true
-        },
-        {
           "type": "import",
           "named": true
         },
@@ -439,7 +435,7 @@
           "named": true
         },
         {
-          "type": "declaration",
+          "type": "function",
           "named": true
         },
         {
@@ -948,7 +944,7 @@
           "named": true
         },
         {
-          "type": "declaration",
+          "type": "function",
           "named": true
         },
         {
@@ -974,6 +970,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "declaration",
+          "named": true
+        },
         {
           "type": "expression",
           "named": true

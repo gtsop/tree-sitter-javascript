@@ -30,12 +30,12 @@ module.exports = grammar({
 
     _js_context: ($) =>
       repeat1(
-        choice($.declaration, $.statement, $.keyword, $.ts_generic, $.comment),
+        choice($.statement, $.function, $.keyword, $.ts_generic, $.comment),
       ),
 
-    declaration: ($) => choice($.import, $.function, $.variable),
+    statement: ($) => seq(choice($.expression, $.declaration), $._semi),
 
-    statement: ($) => seq(choice($.expression), $._semi),
+    declaration: ($) => choice($.import, $.variable),
 
     expression: ($) =>
       choice(
@@ -103,13 +103,7 @@ module.exports = grammar({
      */
 
     import: ($) =>
-      seq(
-        $.kw_import,
-        $.import_clause,
-        $.kw_from,
-        $.import_module_specifier,
-        $._semi,
-      ),
+      seq($.kw_import, $.import_clause, $.kw_from, $.import_module_specifier),
 
     import_clause: ($) =>
       repeat1(
@@ -191,7 +185,6 @@ module.exports = grammar({
         $.identifier,
         optional($.ts_type_annotation),
         optional($._initializer),
-        $._semi,
       ),
 
     /************************************************************************
