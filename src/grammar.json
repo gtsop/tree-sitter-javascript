@@ -1028,6 +1028,10 @@
                     ]
                   },
                   {
+                    "type": "SYMBOL",
+                    "name": "assign"
+                  },
+                  {
                     "type": "TOKEN",
                     "content": {
                       "type": "STRING",
@@ -2023,6 +2027,10 @@
     }
   ],
   "conflicts": [
+    [
+      "_assignment_operation",
+      "array_binding"
+    ],
     [
       "array_binding",
       "expression"

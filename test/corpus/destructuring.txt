@@ -6,6 +6,7 @@ Destructuring
 [a, b] = a;
 [a, , b] = a;
 [a, ...rest] = a;
+[a = a] = a;
 
 ---
 
@@ -21,5 +22,8 @@ Destructuring
   ))
   (statement (expression
     (assign (array_binding (identifier) (identifier)) (expression (identifier)))
+  ))
+  (statement (expression
+    (assign (array_binding (assign (identifier) (expression (identifier)))) (expression (identifier)))
   ))
 )

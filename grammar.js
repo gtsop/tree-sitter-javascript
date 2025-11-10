@@ -12,6 +12,7 @@ module.exports = grammar({
   name: "javascript",
 
   conflicts: ($) => [
+    [$._assignment_operation, $.array_binding],
     [$.array_binding, $.expression],
     [$.jsx_name, $.ts_generic],
     [$.function_body, $.literal_object],
@@ -220,7 +221,11 @@ module.exports = grammar({
         "[",
         repeat(
           seq(
-            choice(seq(optional(token("...")), $.identifier), token(",")),
+            choice(
+              seq(optional(token("...")), $.identifier),
+              $.assign,
+              token(","),
+            ),
             optional(","),
           ),
         ),

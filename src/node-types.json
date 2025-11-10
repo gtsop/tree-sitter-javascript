@@ -8,6 +8,10 @@
       "required": false,
       "types": [
         {
+          "type": "assign",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         }
