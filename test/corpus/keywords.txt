@@ -14,20 +14,16 @@ extends
 for
 if
 in
-interface
 new
 of
 return
 switch
-type
 var
 while
 
 ---
 
 (source_file
-  (keyword)
-  (keyword)
   (keyword)
   (keyword)
   (keyword)

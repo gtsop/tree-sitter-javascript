@@ -19,14 +19,12 @@ module.exports = grammar({
     [$.object_binding, $.literal_object_shorthand],
     [$._assignment_operation, $.array_binding],
     [$.array_binding, $.expression],
-    [$.jsx_name, $.ts_generic],
     [$.function_body, $.literal_object],
     [$._assign_target, $.function_param],
     [$._initializer, $.assign],
     [$.expression, $._callable_expr],
     [$.expression, $.function_param],
     [$.expression, $.call_expr],
-    [$.ts_generic, $.jsx_start],
     [$.jsx_start, $.jsx_self],
   ],
 
@@ -35,12 +33,12 @@ module.exports = grammar({
 
     _js_context: ($) =>
       repeat1(
-        choice($.statement, $.function, $.keyword, $.ts_generic, $.comment),
+        choice($.statement, $.function, $.ts_interface, $.keyword, $.comment),
       ),
 
     statement: ($) => seq(choice($.declaration, $.expression), $._semi),
 
-    declaration: ($) => choice($.import, $.variable),
+    declaration: ($) => choice($.import, $.variable, $.ts_type_alias),
 
     expression: ($) =>
       choice(
@@ -58,6 +56,7 @@ module.exports = grammar({
         $.parens_expr,
         $.property_expr,
         $.call_expr,
+        $.ts_as,
         $._operation,
         $.jsx_expr,
       ),
@@ -147,7 +146,13 @@ module.exports = grammar({
      */
 
     function: ($) =>
-      seq($.kw_function, $.function_name, $.function_params, $.function_body),
+      seq(
+        $.kw_function,
+        $.function_name,
+        optional($.ts_generic),
+        $.function_params,
+        $.function_body,
+      ),
 
     function_expr: ($) =>
       seq($.kw_function, $.function_params, $.function_body),
@@ -285,9 +290,11 @@ module.exports = grammar({
     kw_from: (_) => token("from"),
     kw_function: (_) => token("function"),
     kw_import: (_) => token("import"),
+    kw_interface: (_) => token("interface"),
     kw_let: (_) => token("let"),
     kw_this: (_) => token("this"),
     kw_true: (_) => token("true"),
+    kw_type: (_) => token("type"),
 
     keyword: ($) =>
       token(
@@ -304,13 +311,11 @@ module.exports = grammar({
           "for",
           "if",
           "in",
-          "interface",
           "keyof",
           "new",
           "of",
           "return",
           "switch",
-          "type",
           "var",
           "while",
         ),
@@ -339,7 +344,7 @@ module.exports = grammar({
      * JSX
      */
 
-    ts_generic: (_) => seq("<", /[a-zA-Z]*/, ">"),
+    ts_generic: ($) => seq("<", repeat1(seq($._ts_type, optional(","))), ">"),
 
     jsx_expr: ($) => $._full_jsx,
 
@@ -387,7 +392,7 @@ module.exports = grammar({
 
     _semi: (_) => ";",
 
-    ts_type_annotation: ($) => seq(":", $._ts_type),
+    ts_type_annotation: ($) => seq(optional("?"), ":", $._ts_type),
 
     _ts_type: ($) =>
       choice(
@@ -395,10 +400,13 @@ module.exports = grammar({
         $.ts_array,
         $.ts_bigint,
         $.ts_boolean,
+        $.ts_literal,
+        $.ts_null,
         $.ts_number,
         $.ts_object,
         $.ts_string,
         $.ts_tuple,
+        $.ts_union,
         $.ts_user_type,
       ),
 
@@ -406,6 +414,8 @@ module.exports = grammar({
     ts_array: ($) => seq($._ts_type, "[]"),
     ts_bigint: (_) => token("bigint"),
     ts_boolean: (_) => token("boolean"),
+    ts_literal: ($) => $.literal_string,
+    ts_null: (_) => token("null"),
     ts_number: (_) => token("number"),
     ts_object: ($) =>
       seq(
@@ -416,13 +426,18 @@ module.exports = grammar({
     ts_object_property: ($) => $.identifier,
     ts_string: (_) => token("string"),
     ts_tuple: ($) => seq("[", repeat1(seq($._ts_type, optional(","))), "]"),
+    ts_union: ($) => prec.left(1, seq($._ts_type, "|", $._ts_type)),
 
     ts_user_type: ($) =>
-      seq(token(/[A-Z][a-zA-Z]+/), optional($._ts_type_arguments)),
+      prec.left(1, seq(token(/[A-Z][a-zA-Z]+/), optional($.ts_generic))),
 
-    _ts_type_arguments: ($) => seq("<", $.ts_type_param, ">"),
+    ts_type_alias: ($) => seq($.kw_type, $.identifier, "=", $._ts_type),
 
     ts_type_param: ($) => choice($.ts_user_type),
+
+    ts_interface: ($) => seq($.kw_interface, $.identifier, $.ts_object),
+
+    ts_as: ($) => prec(1, seq($.expression, $.kw_as, $._ts_type)),
 
     /*****
     THE HARD ONES

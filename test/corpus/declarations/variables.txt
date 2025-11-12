@@ -41,7 +41,7 @@ let [a] = a;
     (variable (kw_let) (identifier) (ts_type_annotation (ts_user_type)) (expression (literal_boolean (kw_false))))
   ))
   (statement (declaration
-    (variable (kw_let) (identifier) (ts_type_annotation (ts_user_type (ts_type_param (ts_user_type)))) (expression (literal_boolean (kw_false))))
+    (variable (kw_let) (identifier) (ts_type_annotation (ts_user_type (ts_generic (ts_user_type)))) (expression (literal_boolean (kw_false))))
   ))
   (statement (declaration
     (variable (kw_let) (array_binding (identifier)) (expression (identifier)))

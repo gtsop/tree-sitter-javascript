@@ -1,0 +1,26 @@
+==============
+Advanced Types
+==============
+
+let a: number | string;
+type A = number;
+interface A { a: number; }
+let a = 1 as number;
+
+---
+
+(source_file
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_union (ts_number) (ts_string)))
+  )))
+  (statement (declaration (ts_type_alias
+    (kw_type) (identifier) (ts_number)
+  )))
+  (ts_interface
+    (kw_interface) (identifier) (ts_object (ts_object_property (identifier)) (ts_type_annotation (ts_number)))
+  )
+  (statement (declaration (variable
+    (kw_let) (identifier) (expression (ts_as (expression (literal_numeric)) (kw_as) (ts_number)))
+  )))
+)
+

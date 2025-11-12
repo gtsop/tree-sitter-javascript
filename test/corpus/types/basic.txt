@@ -3,10 +3,12 @@ Basic Types
 ===========
 
 let a: any;
+let a: null;
 let a: boolean;
 let a: number;
 let a: bigint;
 let a: string;
+let a: "hello";
 let a: string[];
 let a: [number, string];
 let a: { a: number; };
@@ -16,6 +18,9 @@ let a: { a: number; };
 (source_file
   (statement (declaration (variable
     (kw_let) (identifier) (ts_type_annotation (ts_any))
+  )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_null))
   )))
   (statement (declaration (variable
     (kw_let) (identifier) (ts_type_annotation (ts_boolean))
@@ -28,6 +33,9 @@ let a: { a: number; };
   )))
   (statement (declaration (variable
     (kw_let) (identifier) (ts_type_annotation (ts_string))
+  )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_literal (literal_string)))
   )))
   (statement (declaration (variable
     (kw_let) (identifier) (ts_type_annotation (ts_array (ts_string)))
