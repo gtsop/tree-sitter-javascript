@@ -391,19 +391,29 @@ module.exports = grammar({
 
     _ts_type: ($) =>
       choice(
+        $.ts_any,
         $.ts_array,
         $.ts_bigint,
         $.ts_boolean,
         $.ts_number,
+        $.ts_object,
         $.ts_string,
         $.ts_tuple,
         $.ts_user_type,
       ),
 
+    ts_any: (_) => token("any"),
     ts_array: ($) => seq($._ts_type, "[]"),
     ts_bigint: (_) => token("bigint"),
     ts_boolean: (_) => token("boolean"),
     ts_number: (_) => token("number"),
+    ts_object: ($) =>
+      seq(
+        "{",
+        repeat1(seq($.ts_object_property, $.ts_type_annotation, optional(";"))),
+        "}",
+      ),
+    ts_object_property: ($) => $.identifier,
     ts_string: (_) => token("string"),
     ts_tuple: ($) => seq("[", repeat1(seq($._ts_type, optional(","))), "]"),
 

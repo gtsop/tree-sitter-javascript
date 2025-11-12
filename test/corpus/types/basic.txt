@@ -2,16 +2,21 @@
 Basic Types
 ===========
 
+let a: any;
 let a: boolean;
 let a: number;
 let a: bigint;
 let a: string;
 let a: string[];
 let a: [number, string];
+let a: { a: number; };
 
 ---
 
 (source_file
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_any))
+  )))
   (statement (declaration (variable
     (kw_let) (identifier) (ts_type_annotation (ts_boolean))
   )))
@@ -29,5 +34,8 @@ let a: [number, string];
   )))
   (statement (declaration (variable
     (kw_let) (identifier) (ts_type_annotation (ts_tuple (ts_number) (ts_string)))
+  )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_object (ts_object_property (identifier)) (ts_type_annotation (ts_number))))
   )))
 )

@@ -1932,6 +1932,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "ts_any"
+        },
+        {
+          "type": "SYMBOL",
           "name": "ts_array"
         },
         {
@@ -1948,6 +1952,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "ts_object"
+        },
+        {
+          "type": "SYMBOL",
           "name": "ts_string"
         },
         {
@@ -1959,6 +1967,13 @@
           "name": "ts_user_type"
         }
       ]
+    },
+    "ts_any": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "any"
+      }
     },
     "ts_array": {
       "type": "SEQ",
@@ -1993,6 +2008,51 @@
         "type": "STRING",
         "value": "number"
       }
+    },
+    "ts_object": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "ts_object_property"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "ts_type_annotation"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ";"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "ts_object_property": {
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "ts_string": {
       "type": "TOKEN",
