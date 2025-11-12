@@ -6,6 +6,9 @@ let a: number | string;
 type A = number;
 interface A { a: number; }
 let a = 1 as number;
+let a: Ab<number, number>;
+let a: Ab['b'];
+let a: (a: any) => void;
 
 ---
 
@@ -22,5 +25,19 @@ let a = 1 as number;
   (statement (declaration (variable
     (kw_let) (identifier) (expression (ts_as (expression (literal_numeric)) (kw_as) (ts_number)))
   )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_user_type (ts_generic (ts_number) (ts_number))))
+  )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_user_type (ts_index_access (ts_literal (literal_string)))))
+  )))
+  (statement (declaration (variable
+    (kw_let)
+    (identifier)
+    (ts_type_annotation
+      (ts_function (ts_function_params (ts_function_param (identifier) (ts_type_annotation (ts_any)))) (ts_function_return (ts_void)))
+    )
+  )))
+
 )
 

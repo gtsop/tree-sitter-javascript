@@ -1123,6 +1123,10 @@
           "named": true
         },
         {
+          "type": "ts_function",
+          "named": true
+        },
+        {
           "type": "ts_literal",
           "named": true
         },
@@ -1156,6 +1160,10 @@
         },
         {
           "type": "ts_user_type",
+          "named": true
+        },
+        {
+          "type": "ts_void",
           "named": true
         }
       ]
@@ -1194,6 +1202,10 @@
           "named": true
         },
         {
+          "type": "ts_function",
+          "named": true
+        },
+        {
           "type": "ts_literal",
           "named": true
         },
@@ -1227,6 +1239,134 @@
         },
         {
           "type": "ts_user_type",
+          "named": true
+        },
+        {
+          "type": "ts_void",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ts_function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ts_function_params",
+          "named": true
+        },
+        {
+          "type": "ts_function_return",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ts_function_param",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "ts_type_annotation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ts_function_params",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "ts_function_param",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ts_function_return",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ts_any",
+          "named": true
+        },
+        {
+          "type": "ts_array",
+          "named": true
+        },
+        {
+          "type": "ts_bigint",
+          "named": true
+        },
+        {
+          "type": "ts_boolean",
+          "named": true
+        },
+        {
+          "type": "ts_function",
+          "named": true
+        },
+        {
+          "type": "ts_literal",
+          "named": true
+        },
+        {
+          "type": "ts_null",
+          "named": true
+        },
+        {
+          "type": "ts_number",
+          "named": true
+        },
+        {
+          "type": "ts_object",
+          "named": true
+        },
+        {
+          "type": "ts_string",
+          "named": true
+        },
+        {
+          "type": "ts_tuple",
+          "named": true
+        },
+        {
+          "type": "ts_undefined",
+          "named": true
+        },
+        {
+          "type": "ts_union",
+          "named": true
+        },
+        {
+          "type": "ts_user_type",
+          "named": true
+        },
+        {
+          "type": "ts_void",
           "named": true
         }
       ]
@@ -1257,6 +1397,10 @@
           "named": true
         },
         {
+          "type": "ts_function",
+          "named": true
+        },
+        {
           "type": "ts_literal",
           "named": true
         },
@@ -1290,6 +1434,81 @@
         },
         {
           "type": "ts_user_type",
+          "named": true
+        },
+        {
+          "type": "ts_void",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ts_index_access",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ts_any",
+          "named": true
+        },
+        {
+          "type": "ts_array",
+          "named": true
+        },
+        {
+          "type": "ts_bigint",
+          "named": true
+        },
+        {
+          "type": "ts_boolean",
+          "named": true
+        },
+        {
+          "type": "ts_function",
+          "named": true
+        },
+        {
+          "type": "ts_literal",
+          "named": true
+        },
+        {
+          "type": "ts_null",
+          "named": true
+        },
+        {
+          "type": "ts_number",
+          "named": true
+        },
+        {
+          "type": "ts_object",
+          "named": true
+        },
+        {
+          "type": "ts_string",
+          "named": true
+        },
+        {
+          "type": "ts_tuple",
+          "named": true
+        },
+        {
+          "type": "ts_undefined",
+          "named": true
+        },
+        {
+          "type": "ts_union",
+          "named": true
+        },
+        {
+          "type": "ts_user_type",
+          "named": true
+        },
+        {
+          "type": "ts_void",
           "named": true
         }
       ]
@@ -1397,6 +1616,10 @@
           "named": true
         },
         {
+          "type": "ts_function",
+          "named": true
+        },
+        {
           "type": "ts_literal",
           "named": true
         },
@@ -1430,6 +1653,10 @@
         },
         {
           "type": "ts_user_type",
+          "named": true
+        },
+        {
+          "type": "ts_void",
           "named": true
         }
       ]
@@ -1468,6 +1695,10 @@
           "named": true
         },
         {
+          "type": "ts_function",
+          "named": true
+        },
+        {
           "type": "ts_literal",
           "named": true
         },
@@ -1501,6 +1732,10 @@
         },
         {
           "type": "ts_user_type",
+          "named": true
+        },
+        {
+          "type": "ts_void",
           "named": true
         }
       ]
@@ -1531,6 +1766,10 @@
           "named": true
         },
         {
+          "type": "ts_function",
+          "named": true
+        },
+        {
           "type": "ts_literal",
           "named": true
         },
@@ -1564,6 +1803,10 @@
         },
         {
           "type": "ts_user_type",
+          "named": true
+        },
+        {
+          "type": "ts_void",
           "named": true
         }
       ]
@@ -1594,6 +1837,10 @@
           "named": true
         },
         {
+          "type": "ts_function",
+          "named": true
+        },
+        {
           "type": "ts_literal",
           "named": true
         },
@@ -1628,6 +1875,10 @@
         {
           "type": "ts_user_type",
           "named": true
+        },
+        {
+          "type": "ts_void",
+          "named": true
         }
       ]
     }
@@ -1642,6 +1893,10 @@
       "types": [
         {
           "type": "ts_generic",
+          "named": true
+        },
+        {
+          "type": "ts_index_access",
           "named": true
         }
       ]
@@ -1912,6 +2167,10 @@
   },
   {
     "type": "ts_undefined",
+    "named": true
+  },
+  {
+    "type": "ts_void",
     "named": true
   },
   {

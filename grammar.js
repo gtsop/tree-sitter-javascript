@@ -12,6 +12,7 @@ module.exports = grammar({
   name: "javascript",
 
   conflicts: ($) => [
+    [$.ts_array, $.ts_function_return],
     [$.array_binding, $.literal_array],
     [$.object_binding, $.literal_object],
     [$.function_param, $._assignment_operation],
@@ -400,6 +401,7 @@ module.exports = grammar({
         $.ts_array,
         $.ts_bigint,
         $.ts_boolean,
+        $.ts_function,
         $.ts_literal,
         $.ts_null,
         $.ts_number,
@@ -409,12 +411,15 @@ module.exports = grammar({
         $.ts_undefined,
         $.ts_union,
         $.ts_user_type,
+        $.ts_void,
       ),
 
     ts_any: (_) => token("any"),
     ts_array: ($) => seq(choice($._ts_type, seq("(", $._ts_type, ")")), "[]"),
     ts_bigint: (_) => token("bigint"),
     ts_boolean: (_) => token("boolean"),
+    ts_function: ($) =>
+      seq($.ts_function_params, token("=>"), $.ts_function_return),
     ts_literal: ($) => $.literal_string,
     ts_null: (_) => token("null"),
     ts_number: (_) => token("number"),
@@ -429,9 +434,20 @@ module.exports = grammar({
     ts_tuple: ($) => seq("[", repeat1(seq($._ts_type, optional(","))), "]"),
     ts_undefined: (_) => token("undefined"),
     ts_union: ($) => prec.left(1, seq($._ts_type, "|", $._ts_type)),
+    ts_void: ($) => token("void"),
 
     ts_user_type: ($) =>
-      prec.left(1, seq(token(/[A-Z][a-zA-Z]+/), optional($.ts_generic))),
+      prec.left(
+        1,
+        seq(
+          token(/[A-Z][a-zA-Z]+/),
+          optional(choice($.ts_generic, $.ts_index_access)),
+        ),
+      ),
+
+    ts_function_params: ($) => seq("(", repeat($.ts_function_param), ")"),
+    ts_function_param: ($) => seq($.identifier, $.ts_type_annotation),
+    ts_function_return: ($) => $._ts_type,
 
     ts_type_alias: ($) => seq($.kw_type, $.identifier, "=", $._ts_type),
 
@@ -440,6 +456,8 @@ module.exports = grammar({
     ts_interface: ($) => seq($.kw_interface, $.identifier, $.ts_object),
 
     ts_as: ($) => prec(1, seq($.expression, $.kw_as, $._ts_type)),
+
+    ts_index_access: ($) => seq("[", $._ts_type, "]"),
 
     /*****
     THE HARD ONES
