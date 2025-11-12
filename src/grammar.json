@@ -2030,6 +2030,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "ts_undefined"
+        },
+        {
+          "type": "SYMBOL",
           "name": "ts_union"
         },
         {
@@ -2178,6 +2182,13 @@
           "value": "]"
         }
       ]
+    },
+    "ts_undefined": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "undefined"
+      }
     },
     "ts_union": {
       "type": "PREC_LEFT",

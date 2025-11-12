@@ -406,6 +406,7 @@ module.exports = grammar({
         $.ts_object,
         $.ts_string,
         $.ts_tuple,
+        $.ts_undefined,
         $.ts_union,
         $.ts_user_type,
       ),
@@ -426,6 +427,7 @@ module.exports = grammar({
     ts_object_property: ($) => $.identifier,
     ts_string: (_) => token("string"),
     ts_tuple: ($) => seq("[", repeat1(seq($._ts_type, optional(","))), "]"),
+    ts_undefined: (_) => token("undefined"),
     ts_union: ($) => prec.left(1, seq($._ts_type, "|", $._ts_type)),
 
     ts_user_type: ($) =>
