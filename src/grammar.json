@@ -1932,6 +1932,14 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "ts_array"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ts_bigint"
+        },
+        {
+          "type": "SYMBOL",
           "name": "ts_boolean"
         },
         {
@@ -1940,9 +1948,37 @@
         },
         {
           "type": "SYMBOL",
+          "name": "ts_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ts_tuple"
+        },
+        {
+          "type": "SYMBOL",
           "name": "ts_user_type"
         }
       ]
+    },
+    "ts_array": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_ts_type"
+        },
+        {
+          "type": "STRING",
+          "value": "[]"
+        }
+      ]
+    },
+    "ts_bigint": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "bigint"
+      }
     },
     "ts_boolean": {
       "type": "TOKEN",
@@ -1957,6 +1993,50 @@
         "type": "STRING",
         "value": "number"
       }
+    },
+    "ts_string": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "string"
+      }
+    },
+    "ts_tuple": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_ts_type"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
     },
     "ts_user_type": {
       "type": "SEQ",

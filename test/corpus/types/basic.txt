@@ -1,0 +1,33 @@
+===========
+Basic Types
+===========
+
+let a: boolean;
+let a: number;
+let a: bigint;
+let a: string;
+let a: string[];
+let a: [number, string];
+
+---
+
+(source_file
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_boolean))
+  )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_number))
+  )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_bigint))
+  )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_string))
+  )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_array (ts_string)))
+  )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_tuple (ts_number) (ts_string)))
+  )))
+)
