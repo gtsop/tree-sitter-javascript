@@ -10,6 +10,7 @@ let a: bigint;
 let a: string;
 let a: "hello";
 let a: string[];
+let a: (string)[];
 let a: [number, string];
 let a: { a: number; };
 
@@ -36,6 +37,9 @@ let a: { a: number; };
   )))
   (statement (declaration (variable
     (kw_let) (identifier) (ts_type_annotation (ts_literal (literal_string)))
+  )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_array (ts_string)))
   )))
   (statement (declaration (variable
     (kw_let) (identifier) (ts_type_annotation (ts_array (ts_string)))

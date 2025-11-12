@@ -412,7 +412,7 @@ module.exports = grammar({
       ),
 
     ts_any: (_) => token("any"),
-    ts_array: ($) => seq($._ts_type, "[]"),
+    ts_array: ($) => seq(choice($._ts_type, seq("(", $._ts_type, ")")), "[]"),
     ts_bigint: (_) => token("bigint"),
     ts_boolean: (_) => token("boolean"),
     ts_literal: ($) => $.literal_string,
