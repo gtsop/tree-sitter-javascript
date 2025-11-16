@@ -12,6 +12,13 @@ module.exports = grammar({
   name: "javascript",
 
   conflicts: ($) => [
+    [$.ternary_test, $.ternary_alternate],
+    [$.assign_div, $.ternary_test],
+    [$.assign_mul, $.ternary_test],
+    [$.assign_sub, $.ternary_test],
+    [$.assign_add, $.ternary_test],
+    [$.assign, $.ternary_test],
+    [$.ternary_test, $.function_arrow_expr],
     [$.ts_array, $.ts_function_return],
     [$.array_binding, $.literal_array],
     [$.object_binding, $.literal_object],
@@ -223,7 +230,13 @@ module.exports = grammar({
      * Operations
      */
 
-    _operation: ($) => choice($._comparison_operation, $._assignment_operation),
+    _operation: ($) =>
+      choice(
+        $._comparison_operation,
+        $._assignment_operation,
+        $._logical_operation,
+        $._ternary_operation,
+      ),
 
     _assignment_operation: ($) =>
       choice($.assign, $.assign_add, $.assign_sub, $.assign_mul, $.assign_div),
@@ -296,6 +309,22 @@ module.exports = grammar({
     strict_not_equal: ($) =>
       prec.left(1, seq($.expression, "!==", $.expression)),
 
+    _logical_operation: ($) => choice($.or, $.and, $.not),
+
+    or: ($) => prec.left(1, seq($.expression, "||", $.expression)),
+    and: ($) => prec.left(1, seq($.expression, "&&", $.expression)),
+    not: ($) => prec.left(1, seq("!", $.expression)),
+
+    _ternary_operation: ($) => $.ternary,
+
+    ternary: ($) =>
+      seq($.ternary_test, "?", $.ternary_consequent, ":", $.ternary_alternate),
+
+    ternary_test: ($) => $.expression,
+
+    ternary_consequent: ($) => $.expression,
+
+    ternary_alternate: ($) => $.expression,
     /*
      * Keywords
      */
