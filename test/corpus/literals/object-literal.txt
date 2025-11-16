@@ -6,6 +6,7 @@ Object Literal
 { a: "b" };
 { a: "b", /* comment */ c: "d", };
 { a };
+{ ...a };
 
 ---
 
@@ -20,4 +21,5 @@ Object Literal
     (literal_object_key (identifier)) (literal_object_value (expression (literal_string)))
   )))
   (statement (expression (literal_object (literal_object_shorthand (identifier)))))
+  (statement (expression (literal_object (expression (identifier)))))
 )

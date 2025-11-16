@@ -378,6 +378,19 @@
                         "type": "SEQ",
                         "members": [
                           {
+                            "type": "STRING",
+                            "value": "..."
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "expression"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "SEQ",
+                        "members": [
+                          {
                             "type": "SYMBOL",
                             "name": "literal_object_key"
                           },
@@ -2797,6 +2810,10 @@
     }
   ],
   "conflicts": [
+    [
+      "expression",
+      "object_binding"
+    ],
     [
       "block_statement",
       "literal_object"
