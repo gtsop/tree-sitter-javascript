@@ -58,6 +58,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "return"
                 }
               ]
             },
@@ -87,6 +91,19 @@
         {
           "type": "SYMBOL",
           "name": "ts_type_alias"
+        }
+      ]
+    },
+    "return": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "kw_return"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
         }
       ]
     },
@@ -801,35 +818,8 @@
       ]
     },
     "function_body": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "{"
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_js_context"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "}"
-          }
-        }
-      ]
+      "type": "SYMBOL",
+      "name": "block_statement"
     },
     "variable": {
       "type": "SEQ",
@@ -979,7 +969,7 @@
           "value": "{"
         },
         {
-          "type": "REPEAT1",
+          "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
             "name": "statement"
@@ -1708,6 +1698,13 @@
         "value": "let"
       }
     },
+    "kw_return": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "return"
+      }
+    },
     "kw_this": {
       "type": "TOKEN",
       "content": {
@@ -1785,10 +1782,6 @@
           {
             "type": "STRING",
             "value": "of"
-          },
-          {
-            "type": "STRING",
-            "value": "return"
           },
           {
             "type": "STRING",
@@ -2804,6 +2797,10 @@
     }
   ],
   "conflicts": [
+    [
+      "block_statement",
+      "literal_object"
+    ],
     [
       "ternary_test",
       "ternary_alternate"

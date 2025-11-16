@@ -255,7 +255,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "statement",
@@ -566,27 +566,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
-          "type": "comment",
-          "named": true
-        },
-        {
-          "type": "function",
-          "named": true
-        },
-        {
-          "type": "keyword",
-          "named": true
-        },
-        {
-          "type": "statement",
-          "named": true
-        },
-        {
-          "type": "ts_interface",
+          "type": "block_statement",
           "named": true
         }
       ]
@@ -1173,6 +1157,25 @@
     }
   },
   {
+    "type": "return",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "kw_return",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -1222,6 +1225,10 @@
         },
         {
           "type": "if",
+          "named": true
+        },
+        {
+          "type": "return",
           "named": true
         }
       ]
@@ -2363,6 +2370,10 @@
   },
   {
     "type": "kw_let",
+    "named": true
+  },
+  {
+    "type": "kw_return",
     "named": true
   },
   {

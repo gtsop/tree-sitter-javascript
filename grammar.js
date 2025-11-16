@@ -12,6 +12,7 @@ module.exports = grammar({
   name: "javascript",
 
   conflicts: ($) => [
+    [$.block_statement, $.literal_object],
     [$.ternary_test, $.ternary_alternate],
     [$.assign_div, $.ternary_test],
     [$.assign_mul, $.ternary_test],
@@ -45,9 +46,11 @@ module.exports = grammar({
       ),
 
     statement: ($) =>
-      choice(seq(choice($.declaration, $.expression), $._semi), $.if),
+      choice(seq(choice($.declaration, $.expression, $.return), $._semi), $.if),
 
     declaration: ($) => choice($.import, $.variable, $.ts_type_alias),
+
+    return: ($) => seq($.kw_return, $.expression),
 
     expression: ($) =>
       choice(
@@ -194,7 +197,8 @@ module.exports = grammar({
         $.array_binding,
       ),
 
-    function_body: ($) => seq(token("{"), optional($._js_context), token("}")),
+    //function_body: ($) => seq(token("{"), optional($._js_context), token("}")),
+    function_body: ($) => $.block_statement,
 
     /**
      * Variables
@@ -224,7 +228,7 @@ module.exports = grammar({
 
     consequent: ($) => choice($.statement, $.block_statement),
 
-    block_statement: ($) => seq("{", repeat1($.statement), "}"),
+    block_statement: ($) => seq("{", repeat($.statement), "}"),
 
     /**
      * Operations
@@ -339,6 +343,7 @@ module.exports = grammar({
     kw_import: (_) => token("import"),
     kw_interface: (_) => token("interface"),
     kw_let: (_) => token("let"),
+    kw_return: (_) => token("return"),
     kw_this: (_) => token("this"),
     kw_true: (_) => token("true"),
     kw_type: (_) => token("type"),
@@ -359,7 +364,6 @@ module.exports = grammar({
           "keyof",
           "new",
           "of",
-          "return",
           "switch",
           "var",
           "while",

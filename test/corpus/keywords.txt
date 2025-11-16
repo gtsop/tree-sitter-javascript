@@ -14,7 +14,6 @@ for
 in
 new
 of
-return
 switch
 var
 while
@@ -22,7 +21,6 @@ while
 ---
 
 (source_file
-  (keyword)
   (keyword)
   (keyword)
   (keyword)

@@ -29,10 +29,10 @@ let [a] = a;
     (variable (kw_let) (identifier) (expression (identifier)))
   ))
   (statement (declaration
-    (variable (kw_let) (identifier) (expression (function_expr (kw_function) (function_params) (function_body))))
+    (variable (kw_let) (identifier) (expression (function_expr (kw_function) (function_params) (function_body (block_statement)))))
   ))
   (statement (declaration
-    (variable (kw_let) (identifier) (expression (function_arrow_expr (function_params) (function_body))))
+    (variable (kw_let) (identifier) (expression (function_arrow_expr (function_params) (function_body (block_statement)))))
   ))
   (statement (declaration
     (variable (kw_let) (identifier) (ts_type_annotation (ts_boolean)) (expression (literal_boolean (kw_false))))

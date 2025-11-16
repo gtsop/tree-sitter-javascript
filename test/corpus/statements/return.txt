@@ -1,0 +1,16 @@
+======
+Return
+======
+
+function a () {
+  return 1;
+}
+
+---
+
+(source_file
+  (function (kw_function) (function_name (identifier)) (function_params) (function_body (block_statement
+    (statement (return (kw_return) (expression (literal_numeric))))
+  )))
+)
+
