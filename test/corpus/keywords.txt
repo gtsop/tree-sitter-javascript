@@ -8,11 +8,9 @@ class
 continue
 default
 delete
-else
 export
 extends
 for
-if
 in
 new
 of
@@ -24,8 +22,6 @@ while
 ---
 
 (source_file
-  (keyword)
-  (keyword)
   (keyword)
   (keyword)
   (keyword)

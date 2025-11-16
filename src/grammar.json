@@ -43,24 +43,33 @@
       }
     },
     "statement": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "declaration"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "declaration"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "expression"
+                }
+              ]
             },
             {
               "type": "SYMBOL",
-              "name": "expression"
+              "name": "_semi"
             }
           ]
         },
         {
           "type": "SYMBOL",
-          "name": "_semi"
+          "name": "if"
         }
       ]
     },
@@ -877,6 +886,111 @@
         }
       ]
     },
+    "if": {
+      "type": "PREC_LEFT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "kw_if"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "if_test"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "consequent"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "alternate"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "alternate": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "kw_else"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "if"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "block_statement"
+            }
+          ]
+        }
+      ]
+    },
+    "if_test": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "consequent": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block_statement"
+        }
+      ]
+    },
+    "block_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "statement"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
     "_operation": {
       "type": "CHOICE",
       "members": [
@@ -1413,6 +1527,13 @@
         "value": "const"
       }
     },
+    "kw_else": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "else"
+      }
+    },
     "kw_false": {
       "type": "TOKEN",
       "content": {
@@ -1432,6 +1553,13 @@
       "content": {
         "type": "STRING",
         "value": "function"
+      }
+    },
+    "kw_if": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "if"
       }
     },
     "kw_import": {
@@ -1507,10 +1635,6 @@
           },
           {
             "type": "STRING",
-            "value": "else"
-          },
-          {
-            "type": "STRING",
             "value": "export"
           },
           {
@@ -1520,10 +1644,6 @@
           {
             "type": "STRING",
             "value": "for"
-          },
-          {
-            "type": "STRING",
-            "value": "if"
           },
           {
             "type": "STRING",

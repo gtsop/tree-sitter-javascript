@@ -37,7 +37,8 @@ module.exports = grammar({
         choice($.statement, $.function, $.ts_interface, $.keyword, $.comment),
       ),
 
-    statement: ($) => seq(choice($.declaration, $.expression), $._semi),
+    statement: ($) =>
+      choice(seq(choice($.declaration, $.expression), $._semi), $.if),
 
     declaration: ($) => choice($.import, $.variable, $.ts_type_alias),
 
@@ -204,6 +205,20 @@ module.exports = grammar({
      * Statements
      */
 
+    if: ($) =>
+      prec.left(
+        1,
+        seq($.kw_if, $.if_test, $.consequent, optional($.alternate)),
+      ),
+
+    alternate: ($) => seq($.kw_else, choice($.if, $.block_statement)),
+
+    if_test: ($) => seq("(", $.expression, ")"),
+
+    consequent: ($) => choice($.statement, $.block_statement),
+
+    block_statement: ($) => seq("{", repeat1($.statement), "}"),
+
     /**
      * Operations
      */
@@ -287,9 +302,11 @@ module.exports = grammar({
 
     kw_as: (_) => token("as"),
     kw_const: (_) => token("const"),
+    kw_else: (_) => token("else"),
     kw_false: (_) => token("false"),
     kw_from: (_) => token("from"),
     kw_function: (_) => token("function"),
+    kw_if: (_) => token("if"),
     kw_import: (_) => token("import"),
     kw_interface: (_) => token("interface"),
     kw_let: (_) => token("let"),
@@ -306,11 +323,9 @@ module.exports = grammar({
           "continue",
           "default",
           "delete",
-          "else",
           "export",
           "extends",
           "for",
-          "if",
           "in",
           "keyof",
           "new",
