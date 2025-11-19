@@ -218,7 +218,7 @@ module.exports = grammar({
     variable: ($) =>
       seq(
         choice($.kw_let, $.kw_const),
-        choice($.identifier, $.array_binding),
+        choice($.identifier, $.array_binding, $.object_binding),
         optional($.ts_type_annotation),
         optional($._initializer),
       ),

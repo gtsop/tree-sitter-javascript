@@ -12,6 +12,7 @@ let a: boolean = false;
 let a: MyType = false;
 let a: MyType<Generic> = false;
 let [a] = a;
+let { a } = a;
 
 ---
 
@@ -45,5 +46,8 @@ let [a] = a;
   ))
   (statement (declaration
     (variable (kw_let) (array_binding (identifier)) (expression (identifier)))
+  ))
+  (statement (declaration
+    (variable (kw_let) (object_binding (identifier)) (expression (identifier)))
   ))
 )

@@ -894,6 +894,10 @@
             {
               "type": "SYMBOL",
               "name": "array_binding"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "object_binding"
             }
           ]
         },

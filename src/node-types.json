@@ -2186,6 +2186,10 @@
           "named": true
         },
         {
+          "type": "object_binding",
+          "named": true
+        },
+        {
           "type": "ts_type_annotation",
           "named": true
         }
