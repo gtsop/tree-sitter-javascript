@@ -230,7 +230,7 @@ module.exports = grammar({
 
     consequent: ($) => choice($.statement, $.block_statement),
 
-    block_statement: ($) => seq("{", repeat($.statement), "}"),
+    block_statement: ($) => seq("{", repeat($.statement, $.comment), "}"),
 
     /**
      * Operations
