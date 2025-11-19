@@ -258,6 +258,10 @@
       "required": false,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "statement",
           "named": true
         }
@@ -1154,7 +1158,15 @@
       "required": true,
       "types": [
         {
+          "type": "call_expr",
+          "named": true
+        },
+        {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "property_expr",
           "named": true
         }
       ]

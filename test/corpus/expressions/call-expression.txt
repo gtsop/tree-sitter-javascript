@@ -6,6 +6,8 @@ a();
 a(1);
 a(1, a);
 a.b();
+a.b.c();
+a().b;
 
 ---
 
@@ -21,5 +23,11 @@ a.b();
   ))
   (statement (expression 
     (call_expr (property_expr (identifier) (identifier)) (call_expr_params))
+  ))
+  (statement (expression 
+    (call_expr (property_expr (identifier) (property_expr (identifier) (identifier))) (call_expr_params))
+  ))
+  (statement (expression 
+    (property_expr (call_expr (identifier) (call_expr_params)) (identifier))
   ))
 )

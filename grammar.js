@@ -1,5 +1,4 @@
-/*learSearch
-
+/*
  * @file Javascript grammar
  * @author George Tsopanoglou <gtsop+github@protonmail.com>
  * @license AGPLv3
@@ -77,7 +76,16 @@ module.exports = grammar({
     _callable_expr: ($) => choice($.identifier, $.property_expr),
 
     parens_expr: ($) => seq("(", $.expression, ")"),
-    property_expr: ($) => seq($.identifier, token("."), $.identifier),
+    property_expr: ($) =>
+      prec(
+        1,
+        seq(
+          choice($.identifier, $.call_expr),
+          token("."),
+          choice($.identifier, $.property_expr),
+        ),
+      ),
+
     call_expr: ($) => seq($._callable_expr, $.call_expr_params),
     call_expr_params: ($) =>
       seq("(", optional(repeat(seq($.expression, optional(",")))), ")"),
@@ -230,7 +238,8 @@ module.exports = grammar({
 
     consequent: ($) => choice($.statement, $.block_statement),
 
-    block_statement: ($) => seq("{", repeat($.statement, $.comment), "}"),
+    block_statement: ($) =>
+      seq("{", repeat(choice($.statement, $.comment)), "}"),
 
     /**
      * Operations
