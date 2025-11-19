@@ -11,6 +11,7 @@ module.exports = grammar({
   name: "javascript",
 
   conflicts: ($) => [
+    [$.property_expr],
     [$.expression, $.object_binding],
     [$.block_statement, $.literal_object],
     [$.ternary_test, $.ternary_alternate],
@@ -81,7 +82,7 @@ module.exports = grammar({
         1,
         seq(
           choice($.identifier, $.call_expr),
-          token("."),
+          choice(token("?."), token(".")),
           choice($.identifier, $.property_expr),
         ),
       ),

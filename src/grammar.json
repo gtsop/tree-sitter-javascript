@@ -230,11 +230,23 @@
             ]
           },
           {
-            "type": "TOKEN",
-            "content": {
-              "type": "STRING",
-              "value": "."
-            }
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "?."
+                }
+              },
+              {
+                "type": "TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "."
+                }
+              }
+            ]
           },
           {
             "type": "CHOICE",
@@ -2841,6 +2853,9 @@
     }
   ],
   "conflicts": [
+    [
+      "property_expr"
+    ],
     [
       "expression",
       "object_binding"
