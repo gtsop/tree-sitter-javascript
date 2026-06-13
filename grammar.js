@@ -292,6 +292,7 @@ module.exports = grammar({
         repeat(
           seq(
             choice(
+              $.object_binding,
               seq(optional(token("...")), $.identifier),
               $.assign,
               token(","),

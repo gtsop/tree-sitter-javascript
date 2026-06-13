@@ -1307,6 +1307,10 @@
                 "type": "CHOICE",
                 "members": [
                   {
+                    "type": "SYMBOL",
+                    "name": "object_binding"
+                  },
+                  {
                     "type": "SEQ",
                     "members": [
                       {
