@@ -142,7 +142,13 @@ module.exports = grammar({
      */
 
     import: ($) =>
-      seq($.kw_import, $.import_clause, $.kw_from, $.import_module_specifier),
+      seq(
+        $.kw_import,
+        optional($.kw_type),
+        $.import_clause,
+        $.kw_from,
+        $.import_module_specifier,
+      ),
 
     import_clause: ($) =>
       repeat1(
@@ -160,7 +166,11 @@ module.exports = grammar({
       seq(
         "{",
         repeat(
-          seq(choice($.import_name, $._import_clause_alias), optional(",")),
+          seq(
+            optional($.kw_type),
+            choice($.import_name, $._import_clause_alias),
+            optional(","),
+          ),
         ),
         "}",
       ),

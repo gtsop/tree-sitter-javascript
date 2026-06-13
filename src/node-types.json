@@ -791,6 +791,10 @@
         {
           "type": "kw_import",
           "named": true
+        },
+        {
+          "type": "kw_type",
+          "named": true
         }
       ]
     }
@@ -817,6 +821,10 @@
         },
         {
           "type": "kw_as",
+          "named": true
+        },
+        {
+          "type": "kw_type",
           "named": true
         },
         {

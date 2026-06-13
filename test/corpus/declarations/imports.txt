@@ -10,6 +10,8 @@ import { target, two } from 'module';
 import { target as alias, two } from 'module';
 import { 'some string' as alias } from 'module';
 import defailt, * as target, { one } from 'module';
+import type { target } from 'module';
+import { type target } from 'module';
 
 ---
 
@@ -42,5 +44,11 @@ import defailt, * as target, { one } from 'module';
       (import_name (identifier))
     )
     (kw_from) (import_module_specifier (string)))
+  ))
+  (statement (declaration
+    (import (kw_import) (kw_type) (import_clause (import_name (identifier))) (kw_from) (import_module_specifier (string)))
+  ))
+  (statement (declaration
+    (import (kw_import) (import_clause (kw_type) (import_name (identifier))) (kw_from) (import_module_specifier (string)))
   ))
 )
