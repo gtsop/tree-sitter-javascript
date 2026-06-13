@@ -13,6 +13,7 @@ this;
 {};
 (a);
 (function(){});
+(async function(){});
 (()=>{});
 (()=>1);
 a.b;
@@ -32,6 +33,7 @@ a?.b;
   (statement (expression (literal_object)))
   (statement (expression (parens_expr (expression (identifier)))))
   (statement (expression (parens_expr (expression (function_expr (kw_function) (function_params) (function_body (block_statement)))))))
+  (statement (expression (parens_expr (expression (function_expr (kw_async) (kw_function) (function_params) (function_body (block_statement)))))))
   (statement (expression (parens_expr (expression (function_arrow_expr (function_params) (function_body (block_statement)))))))
   (statement (expression (parens_expr (expression (function_arrow_expr (function_params) (expression (literal_numeric)))))))
   (statement (expression (property_expr (identifier) (identifier))))

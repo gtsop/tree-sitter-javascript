@@ -12,6 +12,7 @@ module.exports = grammar({
 
   conflicts: ($) => [
     [$.property_expr],
+    [$.call_expr],
     [$.return, $.expression],
     [$.expression, $.object_binding],
     [$.block_statement, $.literal_object],
@@ -89,7 +90,13 @@ module.exports = grammar({
       ),
 
     call_expr: ($) =>
-      seq($._callable_expr, optional($.ts_generic), $.call_expr_params),
+      seq(
+        optional($.kw_await),
+        optional($.kw_new),
+        $._callable_expr,
+        optional($.ts_generic),
+        $.call_expr_params,
+      ),
     call_expr_params: ($) =>
       seq("(", optional(repeat(seq($.expression, optional(",")))), ")"),
 
@@ -172,6 +179,7 @@ module.exports = grammar({
 
     function: ($) =>
       seq(
+        optional($.kw_async),
         $.kw_function,
         $.function_name,
         optional($.ts_generic),
@@ -181,10 +189,16 @@ module.exports = grammar({
       ),
 
     function_expr: ($) =>
-      seq($.kw_function, $.function_params, $.function_body),
+      seq(
+        optional($.kw_async),
+        $.kw_function,
+        $.function_params,
+        $.function_body,
+      ),
 
     function_arrow_expr: ($) =>
       seq(
+        optional($.kw_async),
         $.function_params,
         token("=>"),
         choice($.function_body, $.expression),
@@ -349,6 +363,8 @@ module.exports = grammar({
      */
 
     kw_as: (_) => token("as"),
+    kw_async: (_) => token("async"),
+    kw_await: (_) => token("await"),
     kw_const: (_) => token("const"),
     kw_else: (_) => token("else"),
     kw_false: (_) => token("false"),
@@ -358,6 +374,7 @@ module.exports = grammar({
     kw_import: (_) => token("import"),
     kw_interface: (_) => token("interface"),
     kw_let: (_) => token("let"),
+    kw_new: (_) => token("new"),
     kw_return: (_) => token("return"),
     kw_this: (_) => token("this"),
     kw_true: (_) => token("true"),
@@ -377,7 +394,6 @@ module.exports = grammar({
           "for",
           "in",
           "keyof",
-          "new",
           "of",
           "switch",
           "var",
@@ -482,6 +498,7 @@ module.exports = grammar({
         $.ts_tuple,
         $.ts_undefined,
         $.ts_union,
+        $.ts_unknown,
         $.ts_user_type,
         $.ts_void,
       ),
@@ -507,12 +524,13 @@ module.exports = grammar({
     ts_undefined: (_) => token("undefined"),
     ts_union: ($) => prec.left(1, seq($._ts_type, "|", $._ts_type)),
     ts_void: ($) => token("void"),
+    ts_unknown: ($) => token("unknown"),
 
     ts_user_type: ($) =>
       prec.left(
         1,
         seq(
-          token(/[A-Z][a-zA-Z]+/),
+          token(/[a-zA-Z]+/),
           optional(
             choice($.ts_generic, $.ts_index_access, seq(".", $.ts_user_type)),
           ),

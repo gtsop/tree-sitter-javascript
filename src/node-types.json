@@ -285,6 +285,14 @@
           "named": true
         },
         {
+          "type": "kw_await",
+          "named": true
+        },
+        {
+          "type": "kw_new",
+          "named": true
+        },
+        {
           "type": "property_expr",
           "named": true
         },
@@ -536,6 +544,10 @@
           "named": true
         },
         {
+          "type": "kw_async",
+          "named": true
+        },
+        {
           "type": "kw_function",
           "named": true
         },
@@ -568,6 +580,10 @@
         },
         {
           "type": "function_params",
+          "named": true
+        },
+        {
+          "type": "kw_async",
           "named": true
         }
       ]
@@ -602,6 +618,10 @@
         },
         {
           "type": "function_params",
+          "named": true
+        },
+        {
+          "type": "kw_async",
           "named": true
         },
         {
@@ -1426,6 +1446,10 @@
           "named": true
         },
         {
+          "type": "ts_unknown",
+          "named": true
+        },
+        {
           "type": "ts_user_type",
           "named": true
         },
@@ -1502,6 +1526,10 @@
         },
         {
           "type": "ts_union",
+          "named": true
+        },
+        {
+          "type": "ts_unknown",
           "named": true
         },
         {
@@ -1629,6 +1657,10 @@
           "named": true
         },
         {
+          "type": "ts_unknown",
+          "named": true
+        },
+        {
           "type": "ts_user_type",
           "named": true
         },
@@ -1704,6 +1736,10 @@
           "named": true
         },
         {
+          "type": "ts_unknown",
+          "named": true
+        },
+        {
           "type": "ts_user_type",
           "named": true
         },
@@ -1772,6 +1808,10 @@
         },
         {
           "type": "ts_union",
+          "named": true
+        },
+        {
+          "type": "ts_unknown",
           "named": true
         },
         {
@@ -1938,6 +1978,10 @@
           "named": true
         },
         {
+          "type": "ts_unknown",
+          "named": true
+        },
+        {
           "type": "ts_user_type",
           "named": true
         },
@@ -2017,6 +2061,10 @@
           "named": true
         },
         {
+          "type": "ts_unknown",
+          "named": true
+        },
+        {
           "type": "ts_user_type",
           "named": true
         },
@@ -2088,6 +2136,10 @@
           "named": true
         },
         {
+          "type": "ts_unknown",
+          "named": true
+        },
+        {
           "type": "ts_user_type",
           "named": true
         },
@@ -2156,6 +2208,10 @@
         },
         {
           "type": "ts_union",
+          "named": true
+        },
+        {
+          "type": "ts_unknown",
           "named": true
         },
         {
@@ -2400,6 +2456,14 @@
     "named": true
   },
   {
+    "type": "kw_async",
+    "named": true
+  },
+  {
+    "type": "kw_await",
+    "named": true
+  },
+  {
     "type": "kw_const",
     "named": true
   },
@@ -2433,6 +2497,10 @@
   },
   {
     "type": "kw_let",
+    "named": true
+  },
+  {
+    "type": "kw_new",
     "named": true
   },
   {
@@ -2489,6 +2557,10 @@
   },
   {
     "type": "ts_undefined",
+    "named": true
+  },
+  {
+    "type": "ts_unknown",
     "named": true
   },
   {

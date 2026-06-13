@@ -12,7 +12,6 @@ export
 extends
 for
 in
-new
 of
 switch
 var
@@ -21,7 +20,6 @@ while
 ---
 
 (source_file
-  (keyword)
   (keyword)
   (keyword)
   (keyword)

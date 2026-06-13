@@ -9,6 +9,8 @@ a.b();
 a.b.c();
 a().b;
 a<Type>();
+new A();
+await a();
 
 ---
 
@@ -33,5 +35,11 @@ a<Type>();
   ))
   (statement (expression 
     (call_expr (identifier) (ts_generic (ts_user_type)) (call_expr_params))
+  ))
+  (statement (expression 
+    (call_expr (kw_new) (identifier) (call_expr_params))
+  ))
+  (statement (expression 
+    (call_expr (kw_await) (identifier) (call_expr_params))
   ))
 )

@@ -4,6 +4,8 @@ Basic Types
 
 let a: any;
 let a: null;
+let a: unknown;
+let a: undefined;
 let a: boolean;
 let a: number;
 let a: bigint;
@@ -22,6 +24,12 @@ let a: { a: number; };
   )))
   (statement (declaration (variable
     (kw_let) (identifier) (ts_type_annotation (ts_null))
+  )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_unknown))
+  )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_undefined))
   )))
   (statement (declaration (variable
     (kw_let) (identifier) (ts_type_annotation (ts_boolean))

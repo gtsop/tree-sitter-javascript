@@ -15,6 +15,7 @@ function foo(a: number){}
 function foo({ a }) {}
 function foo(): number {}
 function foo<Type>(){}
+async function foo(){}
 
 ---
 
@@ -32,4 +33,5 @@ function foo<Type>(){}
   (function (kw_function) (function_name (identifier)) (function_params (function_param (object_binding (identifier)))) (function_body (block_statement)))
   (function (kw_function) (function_name (identifier)) (function_params) (ts_type_annotation (ts_number)) (function_body (block_statement)))
   (function (kw_function) (function_name (identifier)) (ts_generic (ts_user_type)) (function_params) (function_body (block_statement)))
+  (function (kw_async) (kw_function) (function_name (identifier)) (function_params) (function_body (block_statement)))
 )
