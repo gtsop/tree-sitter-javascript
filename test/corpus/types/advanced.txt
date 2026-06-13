@@ -10,6 +10,7 @@ let a: Ab<number, number>;
 let a: Ab['b'];
 let a: (a: any) => void;
 let a: Ab<keyof Type>;
+let a: Ab.Ab;
 
 ---
 
@@ -41,6 +42,9 @@ let a: Ab<keyof Type>;
   )))
   (statement (declaration (variable
     (kw_let) (identifier) (ts_type_annotation (ts_user_type (ts_generic (ts_keyof (ts_user_type)))))
+  )))
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_user_type (ts_user_type)))
   )))
 )
 

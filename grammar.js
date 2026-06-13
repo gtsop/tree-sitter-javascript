@@ -513,7 +513,9 @@ module.exports = grammar({
         1,
         seq(
           token(/[A-Z][a-zA-Z]+/),
-          optional(choice($.ts_generic, $.ts_index_access)),
+          optional(
+            choice($.ts_generic, $.ts_index_access, seq(".", $.ts_user_type)),
+          ),
         ),
       ),
 

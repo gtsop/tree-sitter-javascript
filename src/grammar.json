@@ -2656,6 +2656,19 @@
                   {
                     "type": "SYMBOL",
                     "name": "ts_index_access"
+                  },
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "."
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "ts_user_type"
+                      }
+                    ]
                   }
                 ]
               },

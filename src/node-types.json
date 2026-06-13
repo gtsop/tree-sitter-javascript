@@ -2184,6 +2184,10 @@
         {
           "type": "ts_index_access",
           "named": true
+        },
+        {
+          "type": "ts_user_type",
+          "named": true
         }
       ]
     }
