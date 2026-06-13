@@ -18,6 +18,7 @@ this;
 (()=>1);
 a.b;
 a?.b;
+await a;
 
 ---
 
@@ -38,4 +39,5 @@ a?.b;
   (statement (expression (parens_expr (expression (function_arrow_expr (function_params) (expression (literal_numeric)))))))
   (statement (expression (property_expr (identifier) (identifier))))
   (statement (expression (property_expr (identifier) (identifier))))
+  (statement (expression (kw_await) (identifier)))
 )

@@ -12,6 +12,7 @@ module.exports = grammar({
 
   conflicts: ($) => [
     [$.property_expr],
+    [$.expression],
     [$.call_expr],
     [$.return, $.expression],
     [$.expression, $.object_binding],
@@ -56,24 +57,27 @@ module.exports = grammar({
     return: ($) => seq($.kw_return, choice($.expression, $.parens_expr)),
 
     expression: ($) =>
-      choice(
-        $.function_arrow_expr,
-        $.function_expr,
-        $.identifier,
-        $.kw_this,
-        $.literal_array,
-        $.literal_boolean,
-        $.literal_null,
-        $.literal_numeric,
-        $.literal_object,
-        $.literal_regex,
-        $.literal_string,
-        $.parens_expr,
-        $.property_expr,
-        $.call_expr,
-        $.ts_as,
-        $._operation,
-        $.jsx_expr,
+      seq(
+        optional($.kw_await),
+        choice(
+          $.function_arrow_expr,
+          $.function_expr,
+          $.identifier,
+          $.kw_this,
+          $.literal_array,
+          $.literal_boolean,
+          $.literal_null,
+          $.literal_numeric,
+          $.literal_object,
+          $.literal_regex,
+          $.literal_string,
+          $.parens_expr,
+          $.property_expr,
+          $.call_expr,
+          $.ts_as,
+          $._operation,
+          $.jsx_expr,
+        ),
       ),
 
     _callable_expr: ($) => choice($.identifier, $.property_expr),
@@ -91,7 +95,6 @@ module.exports = grammar({
 
     call_expr: ($) =>
       seq(
-        optional($.kw_await),
         optional($.kw_new),
         $._callable_expr,
         optional($.ts_generic),

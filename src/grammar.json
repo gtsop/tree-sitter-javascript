@@ -117,75 +117,92 @@
       ]
     },
     "expression": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "function_arrow_expr"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "kw_await"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "SYMBOL",
-          "name": "function_expr"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "kw_this"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "literal_array"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "literal_boolean"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "literal_null"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "literal_numeric"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "literal_object"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "literal_regex"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "literal_string"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "parens_expr"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "property_expr"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "call_expr"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "ts_as"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_operation"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "jsx_expr"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "function_arrow_expr"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_expr"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "kw_this"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "literal_array"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "literal_boolean"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "literal_null"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "literal_numeric"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "literal_object"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "literal_regex"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "literal_string"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "parens_expr"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "property_expr"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "call_expr"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ts_as"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_operation"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "jsx_expr"
+            }
+          ]
         }
       ]
     },
@@ -276,18 +293,6 @@
     "call_expr": {
       "type": "SEQ",
       "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "kw_await"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
         {
           "type": "CHOICE",
           "members": [
@@ -3024,6 +3029,9 @@
   "conflicts": [
     [
       "property_expr"
+    ],
+    [
+      "expression"
     ],
     [
       "call_expr"

@@ -40,6 +40,6 @@ await a();
     (call_expr (kw_new) (identifier) (call_expr_params))
   ))
   (statement (expression 
-    (call_expr (kw_await) (identifier) (call_expr_params))
+    (kw_await) (call_expr (identifier) (call_expr_params))
   ))
 )
