@@ -11,6 +11,7 @@ JSX
 
 <Hello foo={a}/>;
 <Hello foo={a.b}/>;
+<Hello aria-label="yolo"/>;
 
 ---
 
@@ -49,5 +50,8 @@ JSX
     (jsx_self (jsx_name) (attribute_name) (attribute_value
       (expression (property_expr (identifier) (identifier)))
     ))
+  )))
+  (statement (expression (jsx_expr
+    (jsx_self (jsx_name) (attribute_name) (attribute_value (literal_string)))
   )))
 )

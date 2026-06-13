@@ -102,8 +102,17 @@
           "name": "kw_return"
         },
         {
-          "type": "SYMBOL",
-          "name": "expression"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "parens_expr"
+            }
+          ]
         }
       ]
     },
@@ -270,6 +279,18 @@
         {
           "type": "SYMBOL",
           "name": "_callable_expr"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "ts_generic"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -691,6 +712,18 @@
         {
           "type": "SYMBOL",
           "name": "function_params"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "ts_type_annotation"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -1971,8 +2004,17 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "_ts_type"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_ts_type"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_ts_operator"
+                  }
+                ]
               },
               {
                 "type": "CHOICE",
@@ -2217,7 +2259,7 @@
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": "[a-zA-Z]+"
+        "value": "[a-zA-Z.-]+"
       }
     },
     "attribute_value": {
@@ -2280,6 +2322,28 @@
         {
           "type": "SYMBOL",
           "name": "_ts_type"
+        }
+      ]
+    },
+    "ts_keyof": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "keyof"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ts_user_type"
+        }
+      ]
+    },
+    "_ts_operator": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "ts_keyof"
         }
       ]
     },
@@ -2859,6 +2923,10 @@
   "conflicts": [
     [
       "property_expr"
+    ],
+    [
+      "return",
+      "expression"
     ],
     [
       "expression",

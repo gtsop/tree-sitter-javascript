@@ -12,6 +12,7 @@ module.exports = grammar({
 
   conflicts: ($) => [
     [$.property_expr],
+    [$.return, $.expression],
     [$.expression, $.object_binding],
     [$.block_statement, $.literal_object],
     [$.ternary_test, $.ternary_alternate],
@@ -51,7 +52,7 @@ module.exports = grammar({
 
     declaration: ($) => choice($.import, $.variable, $.ts_type_alias),
 
-    return: ($) => seq($.kw_return, $.expression),
+    return: ($) => seq($.kw_return, choice($.expression, $.parens_expr)),
 
     expression: ($) =>
       choice(
@@ -87,7 +88,8 @@ module.exports = grammar({
         ),
       ),
 
-    call_expr: ($) => seq($._callable_expr, $.call_expr_params),
+    call_expr: ($) =>
+      seq($._callable_expr, optional($.ts_generic), $.call_expr_params),
     call_expr_params: ($) =>
       seq("(", optional(repeat(seq($.expression, optional(",")))), ")"),
 
@@ -174,6 +176,7 @@ module.exports = grammar({
         $.function_name,
         optional($.ts_generic),
         $.function_params,
+        optional($.ts_type_annotation),
         $.function_body,
       ),
 
@@ -405,7 +408,12 @@ module.exports = grammar({
      * JSX
      */
 
-    ts_generic: ($) => seq("<", repeat1(seq($._ts_type, optional(","))), ">"),
+    ts_generic: ($) =>
+      seq(
+        "<",
+        repeat1(seq(choice($._ts_type, $._ts_operator), optional(","))),
+        ">",
+      ),
 
     jsx_expr: ($) => $._full_jsx,
 
@@ -443,7 +451,7 @@ module.exports = grammar({
 
     jsx_end: ($) => seq("</", optional($.jsx_name), ">"),
 
-    attribute_name: (_) => token(/[a-zA-Z]+/),
+    attribute_name: (_) => token(/[a-zA-Z.-]+/),
 
     attribute_value: ($) => choice($.literal_string, $._jsx_context),
 
@@ -454,6 +462,10 @@ module.exports = grammar({
     _semi: (_) => ";",
 
     ts_type_annotation: ($) => seq(optional("?"), ":", $._ts_type),
+
+    ts_keyof: ($) => seq("keyof", $.ts_user_type),
+
+    _ts_operator: ($) => choice($.ts_keyof),
 
     _ts_type: ($) =>
       choice(

@@ -9,6 +9,7 @@ let a = 1 as number;
 let a: Ab<number, number>;
 let a: Ab['b'];
 let a: (a: any) => void;
+let a: Ab<keyof Type>;
 
 ---
 
@@ -38,6 +39,8 @@ let a: (a: any) => void;
       (ts_function (ts_function_params (ts_function_param (identifier) (ts_type_annotation (ts_any)))) (ts_function_return (ts_void)))
     )
   )))
-
+  (statement (declaration (variable
+    (kw_let) (identifier) (ts_type_annotation (ts_user_type (ts_generic (ts_keyof (ts_user_type)))))
+  )))
 )
 

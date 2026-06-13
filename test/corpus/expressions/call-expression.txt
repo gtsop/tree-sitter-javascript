@@ -8,6 +8,7 @@ a(1, a);
 a.b();
 a.b.c();
 a().b;
+a<Type>();
 
 ---
 
@@ -29,5 +30,8 @@ a().b;
   ))
   (statement (expression 
     (property_expr (call_expr (identifier) (call_expr_params)) (identifier))
+  ))
+  (statement (expression 
+    (call_expr (identifier) (ts_generic (ts_user_type)) (call_expr_params))
   ))
 )
